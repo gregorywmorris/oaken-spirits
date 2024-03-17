@@ -77,6 +77,7 @@ for message in sales_consumer:
         shipping_info = {
             'Invoice/Item Number': invoice,
             'Date': date,
+            'sales': sales
             'Shipping Date': shipping_date.strftime('%m/%d/%Y'),
             'Shipping Cost': shipping_cost
         }

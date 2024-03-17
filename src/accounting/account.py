@@ -59,20 +59,13 @@ shipping_consumer = KafkaConsumer(
     bootstrap_servers=[KAFKA_SERVER],
     value_deserializer=lambda x: loads(x.decode('utf-8')))
 
-sales_consumer = KafkaConsumer(
-    INVOICES_TOPIC,
-    bootstrap_servers=[KAFKA_SERVER],
-    value_deserializer=lambda x: loads(x.decode('utf-8')))
-
-for shipping_message, sales_message in zip(shipping_consumer, sales_consumer):
+for shipping_message in shipping_consumer:
     try:
         shipping_data = shipping_message.value
-        sales_data = sales_message.value
 
         invoice = shipping_data.get('Invoice/Item Number', '')
         shipping_cost = shipping_data.get('Shipping Cost', '')
-
-        sales = sales_data.get('Sale (Dollars)', '')
+        sales = shipping_data.get('sales', '')
 
         # MySQL
         LEDGER_CREDIT = """
