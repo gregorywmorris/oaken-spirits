@@ -11,16 +11,27 @@ Liquor sales data engineering project.
 
 ![App Services Diagram](images/oaken-service-diagram.png)
 
-## Services Set Up
+## Set Up Services
 
-Business Services on AWS
+### Environment variables
+
+1. See ENV_VARIABLES.md
+
+### Business Services
+
+- On AWS
+
+1. Create EC2: see **EC2.md**
 1. Kafka: see **1A_Kafka_AWS.md**
 1. Run business services: see **2A_AWS.md**
 
-Business Services on local Docker
+or
+
+- On local Docker
+
 1. Kafka: see **1B_KAFKA_ON_DOCKER.md**
 1. Run business: see **2B_LOCAL_DOCKER.md**
 
-Analytics
-1. Run analytics services
-    - AWS: see **3_Analytics.md**
+### Analytics
+
+1. Run analytics services: see **3_ANALYTICS.md**

@@ -1,9 +1,9 @@
 import sys
 sys.path.append('..')
 
+import os
 import json
 import logging
-from variables import KAFKA_SERVER, INVOICES_TOPIC, SHIPPING_TOPIC, MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE, LOG_BUCKET
 from kafka import KafkaConsumer, KafkaProducer
 from json import loads
 import random
@@ -12,6 +12,14 @@ import mysql.connector
 import boto3
 from logging.handlers import RotatingFileHandler
 
+# env
+KAFKA_SERVER = os.getenv('KAFKA_SERVER')
+SHIPPING_TOPIC = os.getenv('SHIPPING_TOPIC')
+MYSQL_HOST = os.getenv('MYSQL_HOST')
+MYSQL_USER = os.getenv('MYSQL_USER')
+MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')
+MYSQL_DATABASE = os.getenv('MYSQL_DATABASE')
+ACCOUNTING_LOG_BUCKET = os.getenv('ACCOUNTING_LOG_BUCKET')
 
 # Configure logging
 logger = logging.getLogger(__name__)
@@ -39,7 +47,7 @@ class S3Handler(logging.StreamHandler):
         self.s3_client.put_object(Body=log_entry, Bucket=self.bucket_name, Key=self.key)
 
 # Create an instance of the S3Handler
-s3_handler = S3Handler(bucket_name= LOG_BUCKET, key='accounting.log')
+s3_handler = S3Handler(bucket_name=ACCOUNTING_LOG_BUCKET, key='accounting.log')
 s3_handler.setLevel(logging.ERROR)
 logger.addHandler(s3_handler)
 
