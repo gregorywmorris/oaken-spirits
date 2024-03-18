@@ -27,24 +27,18 @@ Testing:
 
 ## For local Docker
 
-Create docker.env (add to gitignore first) in folder with Dockerfiles. Add the list below with your information.
+Create docker.env (add to gitignore first) in folder with Dockerfiles. Add the list below with your information or use the default and just add your S3 log.
 
 ```Text
-ENV KAFKA_SERVER=
-
+ENV KAFKA_SERVER=kafka
 ENV SHIPPING_TOPIC=shipping
-
 ENV SHIPPING_TOPIC=invoices
 
-ENV MYSQL_HOST=
-
+ENV MYSQL_HOST=mysql
 ENV MYSQL_USER=root
-
 ENV MYSQL_PASSWORD=mysql
-
-ENV MYSQL_DATABASE=
+ENV MYSQL_DATABASE=oaken
 
 ENV SHIPPING_LOG_BUCKET=
-
 ENV ACCOUNTING_LOG_BUCKET=
 ```

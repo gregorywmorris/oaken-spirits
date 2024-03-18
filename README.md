@@ -13,25 +13,36 @@ Liquor sales data engineering project.
 
 ## Set Up Services
 
-### Environment variables
+Instructions order:
 
-1. See ENV_VARIABLES.md
+1. AWS S3
+1. Environment Variables
+1. Choose either AWS or Docker Business Services
+1. Analytics
+
+## AWS S3
+
+1. See [**AWS_S3.md**](AWS_S3.md)
+
+### Environment Variables
+
+1. See [**ENV_VARIABLES.md**](ENV_VARIABLES.md)
 
 ### Business Services
 
 - On AWS
 
-1. Create EC2: see **EC2.md**
-1. Kafka: see **1A_Kafka_AWS.md**
-1. Run business services: see **2A_AWS.md**
+1. Create EC2: see [**EC2.md**](EC2.md)
+1. Kafka: see [**1A_Kafka_AWS.md**](1A_Kafka_AWS.md)
+1. Run business services: see [**2A_AWS.md**](2A_AWS.md)
 
 or
 
 - On local Docker
 
-1. Kafka: see **1B_KAFKA_ON_DOCKER.md**
-1. Run business: see **2B_LOCAL_DOCKER.md**
+1. Kafka: see [**1B_KAFKA_ON_DOCKER.md**](1B_KAFKA_ON_DOCKER.md)
+1. Run business: see [**2B_LOCAL_DOCKER.md**](2B_LOCAL_DOCKER.md)
 
 ### Analytics
 
-1. Run analytics services: see **3_ANALYTICS.md**
+1. Run analytics services: see [**3_ANALYTICS.md**](3_ANALYTICS.md)
