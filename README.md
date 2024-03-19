@@ -20,7 +20,7 @@
 
 ![Python](https://img.shields.io/badge/Python-blue)![Kafka](https://img.shields.io/badge/kafka-black)![MySQL](https://img.shields.io/badge/MySQL-lightblue)![Ubuntu](https://img.shields.io/badge/Ubuntu-green)![FastAPI](https://img.shields.io/badge/FastAPI-lightgreen)![Airflow](https://img.shields.io/badge/Airflow-red)![Static Badge](https://img.shields.io/badge/AWS-yellow)
 
-##  **<span style="color:#FF847C">Project Prompt</span>**
+##  $${\color{salmon}Project Prompt}$$
 
 ### <span style="color:#FECEA8">Overview</span>
 
