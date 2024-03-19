@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Markdown Document with Background Color</title>
-    <style>
-        body {
-            background-color: black; /* Specify your desired background color */
-            color: offwhite;
-        }
-        .container { /* class="container" */
-            margin: 0 auto;
-            max-width: 800px;
-            padding: 20px;
-            background-color: black; /* Specify the background color of the content area */
-        }
-    </style>
-</head>
-<body>
-
-# <span style="color:#FECEA8">Oaken Spirits Technical Design Document</span>
+# Oaken Spirits Technical Design Document
 
 ## 1. Description of the Problem
 
@@ -32,16 +13,16 @@ Oaken Spirits is looking to expand and the current application implementations a
 
 ## 3. Glossary
 
-- <span style="color:red">**A single source of truth (SSOT):**</span> The practice of aggregating the data from many systems within an organization to a single location.
-- <span style="color:red">**Scope creep:**</span> Adding additional features or functions of a new product, requirements, or work that is not authorized during project scoping.
-- <span style="color:red">**OLTP:**</span> Online Transactional Processing. I.e. every day business services.
-- <span style="color:red">**OLAP:**</span> Online analytical processing.For data analytics.
-- <span style="color:red">**Apache Kafka:**</span> A pub/sub message queue.
-- <span style="color:red">**Pub/sub message queue:**</span> Publisher and subscriber message queue. Where a source publishes messages to a queue and a subscribers get those messages from the queue.
-- <span style="color:red">**ETL:**</span> Extract, Transform, Load. The order of operations in a data transfer.
-- <span style="color:red">**SuperSet:**</span> Data analytics and dashboard application.
-- <span style="color:red">**Airflow:**</span> Application for scheduling and orchestration of data pipelines or workflows.
-- <span style="color:red">**Virtual Machine (VM):**</span> a compute resource that uses software instead of a physical computer to run programs and deploy apps.
+- **A single source of truth (SSOT):** The practice of aggregating the data from many systems within an organization to a single location.
+- **Scope creep:** Adding additional features or functions of a new product, requirements, or work that is not authorized during project scoping.
+- **OLTP:** Online Transactional Processing. I.e. every day business services.
+- **OLAP:** Online analytical processing.For data analytics.
+- **Apache Kafka:** A pub/sub message queue.
+- **Pub/sub message queue:** Publisher and subscriber message queue. Where a source publishes messages to a queue and a subscribers get those messages from the queue.
+- **ETL:** Extract, Transform, Load. The order of operations in a data transfer.
+- **SuperSet:** Data analytics and dashboard application.
+- **Airflow:** Application for scheduling and orchestration of data pipelines or workflows.
+- **Virtual Machine (VM):** a compute resource that uses software instead of a physical computer to run programs and deploy apps.
 
 ## 4. Out of Scope (Non-goals)
 
@@ -168,6 +149,3 @@ At a high level, describe how your chosen solution be tested.
 ## 15. References
 
 Links to any other documents that may be relevant, or sources you wish to cite.
-
-</body>
-</html>
