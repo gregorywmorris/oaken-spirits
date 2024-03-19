@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Markdown Document with Background Color</title>
     <style>
         body {
             background-color: black; /* Specify your desired background color */
