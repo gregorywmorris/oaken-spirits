@@ -1,0 +1,136 @@
+version: 3.8
+
+services:
+    database-mysql:
+    image: mysql:8.3.0
+    env_file:
+      - docker.env
+    restart: always
+    hostname: database-mysql
+    container_name: database-mysql
+    volumes: 
+      - oaken-mysql:/
+    network:
+      - OakenSpirits
+
+  mysql-kafka-processor:
+    image: mysql-kafka-processor
+    env_file:
+      - docker.env
+    restart: always
+    hostname: mysql-kafka-processor
+    container_name: mysql-kafka-processor
+    volumes: 
+      - oaken-mysql:/app/mysql_kafka.py
+    network:
+      - OakenSpirits
+
+  shipping-processor:
+    image: shipping-processor
+    env_file:
+      - docker.env
+    restart: always
+    hostname: shipping-processor
+    container_name: shipping-processor
+    volumes: 
+      - ./mysql_kafka.py:/app/shipping.py
+    network:
+      - OakenSpirits
+
+  accounting-processor:
+    image: accounting-processor
+    env_file:
+      - docker.env
+    restart: always
+    hostname: accounting-processor
+    container_name: accounting-processor
+    volumes: 
+      - ./mysql_kafka.py:/app/accounting.py
+    network:
+      - OakenSpirits
+
+  cloudbeaver:
+    image: dbeaver/cloudbeaver:latest
+    container_name: dbeaver
+    hostname: dbeaver
+    restart: on-failure:5
+    ports:
+      - 8978:8978
+    volumes: 
+      - oaken-cloudbeaver:/opt/cloudbeaver/workspace
+    network:
+    - OakenSpirits
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    hostname: zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    network:
+      - OakenSpirits
+
+  kafka1:
+    image: confluentinc/cp-kafka:7.3.2
+    hostname: kafka1
+    container_name: kafka1
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka1:9092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - ./create-topics.sh:/create-topics.sh
+    command: ["/bin/bash", "-c", "/create-topics.sh"]
+    network:
+      - OakenSpirits
+
+  kafka2:
+    image: confluentinc/cp-kafka:7.3.2
+    hostname: kafka2
+    container_name: kafka2
+    depends_on:
+      - zookeeper
+    ports:
+      - 9093:9093
+    environment:
+      KAFKA_BROKER_ID: 2
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka2:9093,PLAINTEXT_HOST://localhost:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+
+  create-topics:
+    image: confluentinc/cp-kafka:7.3.2
+    depends_on:
+      - kafka1
+    command: ["kafka-topics", "--create", "--zookeeper", "zookeeper:2181", "--replication-factor", "1", "--partitions", "1", "--topic", "mysql"]
+
+  invoice-topic:
+    image: confluentinc/cp-kafka:7.3.2
+    depends_on:
+      - kafka1
+    command: ["kafka-topics", "--create", "--zookeeper", "zookeeper:2181", "--replication-factor", "1", "--partitions", "1", "--topic", "invoices"]
+
+  shipping-topic:
+    image: confluentinc/cp-kafka:7.3.2
+    depends_on:
+      - kafka1
+    command: ["kafka-topics", "--create", "--zookeeper", "zookeeper:2181", "--replication-factor", "1", "--partitions", "1", "--topic", "shipping"]
+
+networks:
+  OakenSpirits:
+
+volumes:
+  oaken-mysql:
+  oaken-cloudbeaver:

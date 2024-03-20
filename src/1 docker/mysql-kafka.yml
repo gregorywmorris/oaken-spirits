@@ -1,0 +1,13 @@
+FROM python:3.11
+
+COPY docker.env /app/docker.env
+
+RUN export $(cat /app/docker.env | xargs)
+
+RUN pip install kafka-python mysql-connector-python
+
+COPY . /app
+
+WORKDIR /app
+
+CMD ["python", "../mysql-api/mysql-api.py"]
