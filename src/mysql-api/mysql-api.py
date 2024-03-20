@@ -70,66 +70,112 @@ mysql_consumer = KafkaConsumer(
 invoice_producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER],
                          value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
+
 for message in mysql_consumer:
     try:
         data=message.value
         # Customer
-        storNumber = data.get('store number','')
-        storeName = data.get('Store Name','')
+        storNumber = data.get('StoreNumber','')
+        if storNumber is None:
+            logger.error("StoreNumber is null. Skipping insertion.")
+            continue
+        storeName = data.get('StoreName','')
         address = data.get('Address','')
         city = data.get('City','')
+        county = data.get('County','')
         state = data.get('State','')
-        zip = data.get('Zip Code','')
-        county = data.get('Count','')
+        zip = data.get('ZipCode','')
         # Vendor
-        vendorNumber = data.get('Vendor Number','')
-        vendorName = data.get('Vendor Name','')
+        vendorNumber = data.get('VendorNumber','')
+        if vendorNumber is None:
+            logger.error("VendorNumber is null. Skipping insertion.")
+            continue
+        vendorName = data.get('VendorName','')
         # Product
-        itemNumber = data.get('Item Number','')
-        itemDescription = data.get('Item Description','')
+        itemNumber = data.get('ItemNumber','')
+        if itemNumber is None:
+            logger.error("ItemNumber is null. Skipping insertion.")
+            continue
+        category = data.get('Category','')
+        categoryName = ('CategoryName','')
+        itemDescription = data.get('ItemDescription','')
         pack = data.get('Pack','')
-        volume = data.get('Bottle Volume (ml)','')
-        cost = data.get('State Bottle Cost','')
-        retail = data.get('State Bottle Retail','')
+        volume = data.get('BottleVolume(ml)','')
+        cost = data.get('BottleCost','')
+        retail = data.get('BottleRetail','')
         # Sales
-        invoice = data.get('Invoice/Item Number', '')
+        invoice = data.get('Invoice', '')
+        if invoice is None:
+            logger.error("Invoice is null. Skipping insertion.")
+            continue
         date = data.get('Date', '')
-        amountSold = data.get('Bottles Sold','')
-        totalLiters = data.get('Volume Sold (Liters)','')
-        totalGallons = data.get('Volume Sold (Gallons)','')
-        sales = data.get('Sale (Dollars)','')
+        amountSold = data.get('BottlesSold','')
+        totalLiters = data.get('VolumeSold(Liters)','')
+        totalGallons = data.get('VolumeSold(Gallons)','')
+        sales = data.get('Sale(Dollars)','')
         sales_amount = float(sales.replace('$', ''))
 
         invoice_date = datetime.datetime.strptime(date, '%m/%d/%Y')
         MYSQL_date = invoice_date + datetime.timedelta(days=random.randint(1, 4))
 
         # MySQL
-        
-        try:
-        CUSTOMER_QURY = '''
-            INSERT INTO customer (Store Number, )
-            VALUES (%s, %s, %s)
         '''
+        Multiple try/except blocks are used due to the simplistic invoicing application script.
+        In a real world scenario, likely each of these blocks would be done as a truly separate process.
+        The try/except prevents the duplicates failing to be added to the database preventing the rest of the processes from competing.
+        '''
+
+        try:
+            CUSTOMER_QUERY = '''
+                INSERT INTO customer (StoreNumber,StoreName,Address,City,County,State,ZipCode)
+                VALUES (%s,%s,%s,%s,%s,%s,%s)
+                '''
+            customer_data = (storNumber,storeName,address,city,county,state,zip)
+            mysql_cursor.execute(CUSTOMER_QUERY, customer_data)
+            mysql_conn.commit()
         except Exception as e:
             logger.error(f"Error processing message: {e}")
-        
-        UPDATE_QUERY = """
-            UPDATE sales
-            SET MYSQLDate = %s, MYSQLCost = %s
-            WHERE InvoiceItemNumber = %s
-        """
 
-        update_data = (MYSQL_date.strftime('%Y-%m-%d'), MYSQL_cost, invoice)
-        mysql_cursor.execute(UPDATE_QUERY, update_data)
+        try:
+            VENDOR_QUERY = '''
+                INSERT INTO vendor (VendorNumber,VendorName)
+                VALUES (%s,%s)
+                '''
+            vendor_data = (storNumber,storeName,address,city,county,state,zip)
+            mysql_cursor.execute(VENDOR_QUERY,vendor_data)
+            mysql_conn.commit()
+        except Exception as e:
+            logger.error(f"Error processing message: {e}")
 
-        mysql_conn.commit()
+        try:
+            PRODUCT_QUERY = '''
+                INSERT INTO product (ItemNumber,Category,CategoryName,ItemDescription,Pack,
+                BottleVolume(ml),BottleCost,BottleRetail)
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
+                '''
+            product_data = (itemNumber,category,categoryName,itemDescription,pack,volume,cost,retail)
+            mysql_cursor.execute(PRODUCT_QUERY, product_data)
+            mysql_conn.commit()
+        except Exception as e:
+            logger.error(f"Error processing message: {e}")
+
+        try:
+            SALES_QUERY = '''
+            INSERT INTO sales (Invoice,date,amountSold,totalLiters,sales)
+            VALUES (%s,%s,%s,%s,%s)
+            '''
+            sales_data = (invoice,date,amountSold,totalLiters,sales_amount)
+            mysql_cursor.execute(SALES_QUERY, sales_data)
+            mysql_conn.commit()
+        except Exception as e:
+            logger.error(f"Error processing message: {e}")
 
         # Topic should post after MySQL processing to ensure data is in the database.
         INVOICES_info = {
             'Invoice/Item Number': invoice,
             'Date': date,
-            'sales': sales,
-            'MYSQL Date': MYSQL_date.strftime('%m/%d/%Y'),
+            'sales': sales_amount,
+            'MYSQL Date': MYSQL_date.strftime('%m/%d/%Y')
         }
 
         invoice_producer.send(INVOICES_TOPIC, value=INVOICES_info)
