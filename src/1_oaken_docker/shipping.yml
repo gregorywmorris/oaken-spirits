@@ -6,8 +6,8 @@ RUN export $(cat /app/docker.env | xargs)
 
 RUN pip install kafka-python mysql-connector-python
 
-COPY . /app
+COPY ../shipping/shipping.py /app/shipping.py
 
 WORKDIR /app
 
-CMD ["python", "../shipping/shipping.py"]
+CMD ["python", "shipping.py"]
