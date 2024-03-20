@@ -6,11 +6,11 @@
 
 ### Overview
 
-Oaken Sprits is an alcohol distributor that gets its name from its popular private selection of whiskey. Its popularity has spurred growth and the company is looking to expand outside of Iowa, USA. Currently, the applications supporting the business are not integrated and the CEO is concerned that they will not support future growth.
+Oaken Sprits is an alcohol distributor that gets its name from its popular private selection of whiskey. Its popularity has spurred growth and the company has recently signed a deal to expand at a national level with several large vendors. Currently, the applications supporting the business are for Iowa sales only and the CEO is concerned that they will not support future growth and would like a system that can handle national-level sales.
 
 ### Concerns
 
-1. Not scalable
+1. Not scalable - some manual data entry and transfers
 1. Does not deliver real-time updates
 1. Has multiple databases
 1. Lacks a consolidated analytics solutions
@@ -33,7 +33,7 @@ See [OAKEN_TECHNICAL_DESIGN](OAKEN_TECHNICAL_DESIGN.md)
 1. [Ubuntu Kaggle API instructions](https://www.endtoend.ai/tutorial/how-to-download-kaggle-datasets-on-ubuntu/)
 1. `kaggle datasets download -d residentmario/iowa-liquor-sales`
 1. Alternatively, download data via the web browser
-1. `unzip iowa-liquor-sales.zip` - 3.47 GB file
+1. `unzip iowa-liquor-sales.zip 'unzip iowa-liquor-sales_dirty.csv'` - 3.47 GB file
 
 ## Set Up Services
 

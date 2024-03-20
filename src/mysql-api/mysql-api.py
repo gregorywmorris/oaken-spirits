@@ -67,42 +67,52 @@ mysql_consumer = KafkaConsumer(
     bootstrap_servers=[KAFKA_SERVER],
     value_deserializer=lambda x: loads(x.decode('utf-8')))
 
-MYSQL_producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER],
+invoice_producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER],
                          value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
 for message in mysql_consumer:
     try:
         data=message.value
-
-        storNumber = data.get('Store Number','')
+        # Customer
+        storNumber = data.get('store number','')
         storeName = data.get('Store Name','')
         address = data.get('Address','')
         city = data.get('City','')
         state = data.get('State','')
         zip = data.get('Zip Code','')
         county = data.get('Count','')
-
+        # Vendor
         vendorNumber = data.get('Vendor Number','')
         vendorName = data.get('Vendor Name','')
-
+        # Product
         itemNumber = data.get('Item Number','')
         itemDescription = data.get('Item Description','')
         pack = data.get('Pack','')
         volume = data.get('Bottle Volume (ml)','')
         cost = data.get('State Bottle Cost','')
         retail = data.get('State Bottle Retail','')
-
+        # Sales
         invoice = data.get('Invoice/Item Number', '')
         date = data.get('Date', '')
         amountSold = data.get('Bottles Sold','')
         totalLiters = data.get('Volume Sold (Liters)','')
-        totalGalons = data.get('Volume Sold (Gallons)','')
+        totalGallons = data.get('Volume Sold (Gallons)','')
         sales = data.get('Sale (Dollars)','')
+        sales_amount = float(sales.replace('$', ''))
 
         invoice_date = datetime.datetime.strptime(date, '%m/%d/%Y')
         MYSQL_date = invoice_date + datetime.timedelta(days=random.randint(1, 4))
 
         # MySQL
+        
+        try:
+        CUSTOMER_QURY = '''
+            INSERT INTO customer (Store Number, )
+            VALUES (%s, %s, %s)
+        '''
+        except Exception as e:
+            logger.error(f"Error processing message: {e}")
+        
         UPDATE_QUERY = """
             UPDATE sales
             SET MYSQLDate = %s, MYSQLCost = %s
@@ -122,8 +132,8 @@ for message in mysql_consumer:
             'MYSQL Date': MYSQL_date.strftime('%m/%d/%Y'),
         }
 
-        MYSQL_producer.send(INVOICES_TOPIC, value=INVOICES_info)
-        MYSQL_producer.flush()
+        invoice_producer.send(INVOICES_TOPIC, value=INVOICES_info)
+        invoice_producer.flush()
 
     except Exception as e:
         logger.error(f"Error processing message: {e}")
