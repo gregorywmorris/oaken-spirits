@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   database-mysql:
-    image: mysql:latest
+    image: mysql:8.0.34
     env_file:
       - .env
     restart: always
