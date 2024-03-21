@@ -2,9 +2,9 @@ version: '3.8'
 
 services:
   database-mysql:
-    image: mysql
+    image: mysql:latest
     env_file:
-      - docker.env
+      - .env
     restart: always
     hostname: oaken-mysql
     container_name: oaken-mysql
@@ -19,13 +19,14 @@ services:
       - 3306
     volumes: 
       - oaken-mysql:/var/lib/mysql
+      - ./app/mysql/init.sql:/data/application/init.sql
     networks:
       - OakenSpirits
 
   mysql-kafka-processor:
     image: oaken-mysql-kafka
     env_file:
-      - docker.env
+      - .env
     restart: always
     hostname: mysql-kafka-processor
     container_name: mysql-kafka-processor
@@ -37,7 +38,7 @@ services:
   shipping-processor:
     image: oaken-shipping
     env_file:
-      - docker.env
+      - .env
     restart: always
     hostname: shipping-processor
     container_name: shipping-processor
@@ -49,7 +50,7 @@ services:
   accounting-processor:
     image: oaken-accounting
     env_file:
-      - docker.env
+      - .env
     restart: always
     hostname: accounting-processor
     container_name: accounting-processor

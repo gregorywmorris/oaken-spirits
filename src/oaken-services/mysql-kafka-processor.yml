@@ -1,8 +1,8 @@
 FROM python:3.11
 
-COPY docker.env /app/docker.env
+COPY .env /app/.env
 
-RUN export $(cat /app/docker.env | xargs)
+RUN export $(cat /app/.env | xargs)
 
 RUN pip install kafka-python mysql-connector-python s3fs mysql-connector-python boto3
 
