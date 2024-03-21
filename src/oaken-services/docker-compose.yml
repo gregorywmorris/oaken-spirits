@@ -99,7 +99,7 @@ services:
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     volumes:
-      - oaken-kafka:/create-topics.sh
+      - ./create-topics.sh:/create-topics.sh
     command: ["/bin/bash", "-c", "/create-topics.sh"]
     networks:
       - OakenSpirits
@@ -121,24 +121,6 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     networks:
       - OakenSpirits
-
-  create-topics:
-    image: confluentinc/cp-kafka:7.1.0
-    depends_on:
-      - kafka1
-    command: ["kafka-topics", "--create", "--zookeeper", "zookeeper:2181", "--replication-factor", "1", "--partitions", "1", "--topic", "mysql"]
-
-  invoice-topic:
-    image: confluentinc/cp-kafka:7.1.0
-    depends_on:
-      - kafka1
-    command: ["kafka-topics", "--create", "--zookeeper", "zookeeper:2181", "--replication-factor", "1", "--partitions", "1", "--topic", "invoices"]
-
-  shipping-topic:
-    image: confluentinc/cp-kafka:7.1.0
-    depends_on:
-      - kafka1
-    command: ["kafka-topics", "--create", "--zookeeper", "zookeeper:2181", "--replication-factor", "1", "--partitions", "1", "--topic", "shipping"]
 
 networks:
   OakenSpirits:
