@@ -8,8 +8,17 @@ services:
     restart: always
     hostname: oaken-mysql
     container_name: oaken-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
     volumes: 
-      - oaken-mysql:/data
+      - oaken-mysql:/var/lib/mysql
     networks:
       - OakenSpirits
 
@@ -21,7 +30,7 @@ services:
     hostname: mysql-kafka-processor
     container_name: mysql-kafka-processor
     volumes: 
-      - oaken-mysql:/app
+      - oaken-api:/app
     networks:
       - OakenSpirits
 
@@ -33,7 +42,7 @@ services:
     hostname: shipping-processor
     container_name: shipping-processor
     volumes: 
-      - ./shipping:/app
+      - oaken-shipping:/app
     networks:
       - OakenSpirits
 
@@ -45,7 +54,7 @@ services:
     hostname: accounting-processor
     container_name: accounting-processor
     volumes: 
-      - ./accounting:/app
+      - oaken-accounting:/app
     networks:
       - OakenSpirits
 
@@ -89,7 +98,7 @@ services:
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     volumes:
-      - ./create-topics.sh:/create-topics.sh
+      - oaken-kafka:/create-topics.sh
     command: ["/bin/bash", "-c", "/create-topics.sh"]
     networks:
       - OakenSpirits
@@ -135,4 +144,14 @@ networks:
 
 volumes:
   oaken-mysql:
+    name: oaken-mysql
+  oaken-api:
+    name: oaken-api
+  oaken-shipping:
+    name: oaken-shipping
+  oaken-accounting:
+    name: oaken-accounting
   oaken-cloudbeaver:
+    name: oaken-cloudbeave
+  oaken-kafka:
+    name: oaken-kafka
