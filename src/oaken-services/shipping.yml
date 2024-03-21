@@ -6,7 +6,7 @@ RUN export $(cat /app/docker.env | xargs)
 
 RUN pip install kafka-python mysql-connector-python s3fs mysql-connector-python boto3
 
-COPY app/shipping /app
+COPY app/shipping/shipping.py /app
 
 WORKDIR /app
 

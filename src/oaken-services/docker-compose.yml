@@ -9,7 +9,7 @@ services:
     hostname: oaken-mysql
     container_name: oaken-mysql
     volumes: 
-      - oaken-mysql:/data/
+      - oaken-mysql:/data
     networks:
       - OakenSpirits
 
@@ -21,7 +21,7 @@ services:
     hostname: mysql-kafka-processor
     container_name: mysql-kafka-processor
     volumes: 
-      - oaken-mysql:/app/mysql_kafka.py
+      - oaken-mysql:/app
     networks:
       - OakenSpirits
 
@@ -33,7 +33,7 @@ services:
     hostname: shipping-processor
     container_name: shipping-processor
     volumes: 
-      - ./mysql_kafka.py:/app/shipping.py
+      - ./shipping:/app
     networks:
       - OakenSpirits
 
@@ -45,7 +45,7 @@ services:
     hostname: accounting-processor
     container_name: accounting-processor
     volumes: 
-      - ./mysql_kafka.py:/app/accounting.py
+      - ./accounting:/app
     networks:
       - OakenSpirits
 

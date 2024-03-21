@@ -20,6 +20,7 @@ MYSQL_USER = os.getenv('MYSQL_USER')
 MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')
 MYSQL_DATABASE = os.getenv('MYSQL_DATABASE')
 ACCOUNTING_LOG_BUCKET = os.getenv('ACCOUNTING_LOG_BUCKET')
+LOG_FOLDER = os.getenv('LOG_FOLDER')
 
 # Configure logging
 logger = logging.getLogger(__name__)
@@ -33,9 +34,10 @@ logger.addHandler(file_handler)
 
 # upload logs to S3
 class S3Handler(logging.StreamHandler):
-    def __init__(self, bucket_name, key):
+    def __init__(self, bucket_name, folder, key):  # Update S3Handler to accept folder parameter
         super().__init__()
         self.bucket_name = bucket_name
+        self.folder = folder  # Store folder name
         self.key = key
         self.s3_client = boto3.client('s3')
 
@@ -44,10 +46,12 @@ class S3Handler(logging.StreamHandler):
         self.upload_log(log_entry)
 
     def upload_log(self, log_entry):
-        self.s3_client.put_object(Body=log_entry, Bucket=self.bucket_name, Key=self.key)
+        # Construct the full key including the folder
+        full_key = f"{self.folder}/{self.key}"
+        self.s3_client.put_object(Body=log_entry, Bucket=self.bucket_name, Key=full_key)
 
-# Create an instance of the S3Handler
-s3_handler = S3Handler(bucket_name=ACCOUNTING_LOG_BUCKET, key='accounting.log')
+# Create an instance of the S3Handler with folder parameter
+s3_handler = S3Handler(bucket_name=ACCOUNTING_LOG_BUCKET, folder=LOG_FOLDER, key='accounting.log')
 s3_handler.setLevel(logging.ERROR)
 logger.addHandler(s3_handler)
 
