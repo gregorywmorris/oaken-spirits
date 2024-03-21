@@ -12,6 +12,7 @@ import mysql.connector
 import boto3
 from logging.handlers import RotatingFileHandler
 
+
 # env
 KAFKA_SERVER = os.getenv('KAFKA_SERVER')
 SHIPPING_TOPIC = os.getenv('SHIPPING_TOPIC')
@@ -55,7 +56,6 @@ s3_handler = S3Handler(bucket_name=ACCOUNTING_LOG_BUCKET, folder=LOG_FOLDER, key
 s3_handler.setLevel(logging.ERROR)
 logger.addHandler(s3_handler)
 
-
 # MySQL connection
 mysql_conn = mysql.connector.connect(
     host=MYSQL_HOST,
@@ -75,28 +75,34 @@ for shipping_message in shipping_consumer:
     try:
         shipping_data = shipping_message.value
 
-        invoice = shipping_data.get('Invoice/Item Number', '')
+        invoice = shipping_data.get('Invoice', '')
         shipping_cost = shipping_data.get('Shipping Cost', '')
         sales = shipping_data.get('sales', '')
+        shipping_expense = float(shipping_cost) * -1
 
         # MySQL
-        LEDGER_CREDIT = """
-            INSERT INTO ledger (InvoiceItemNumber, credit, note)
-            VALUES (%s, %s, 'sale')
-        """
+        try:
+            LEDGER_CREDIT = """
+                INSERT INTO ledger (Invoice, credit, note)
+                VALUES (%s, %s, 'sale')
+            """
+            credit_data = (invoice, sales)
+            mysql_cursor.execute(LEDGER_CREDIT, credit_data)
+            mysql_conn.commit()
+        except Exception as e:
+            logger.error(f"Error processing message: {e}")
 
-        LEDGER_DEBIT = """
-            INSERT INTO ledger (InvoiceItemNumber, debit, note)
-            VALUES (%s, %s, 'shipping')
-        """
-        credit_data = (invoice, sales)
-        mysql_cursor.execute(LEDGER_CREDIT, credit_data)
+        try:
+            LEDGER_DEBIT = """
+                INSERT INTO salesLedger (Invoice, debit, note)
+                VALUES (%s, %s, 'shipping')
+            """
+            debit_data = (invoice, shipping_expense)
+            mysql_cursor.execute(LEDGER_DEBIT, debit_data)
+            mysql_conn.commit()
+        except Exception as e:
+            logger.error(f"Error processing message: {e}")
 
-        shipping_expense = float(shipping_cost) * -1
-        debit_data = (invoice, shipping_expense)
-        mysql_cursor.execute(LEDGER_DEBIT, debit_data)
-
-        mysql_conn.commit()
     except Exception as e:
         logger.error(f"Error processing message: {e}")
 

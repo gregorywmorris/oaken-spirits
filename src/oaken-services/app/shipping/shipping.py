@@ -77,39 +77,41 @@ shipping_producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER],
 for message in sales_consumer:
     try:
         data = message.value
-        date = data.get('Date', '')
+        date = data.get('SalesDate', '')
         sales = data.get('Sale (Dollars)', '')
-        invoice = data.get('Invoice/Item Number', '')
+        invoice = data.get('Invoice', '')
 
         sales_amount = float(sales.replace('$', ''))
 
-        shipping_cost = sales_amount * 0.05
+        shipping_cost = round(sales_amount * 0.05,2)
 
         invoice_date = datetime.datetime.strptime(date, '%m/%d/%Y')
         shipping_date = invoice_date + datetime.timedelta(days=random.randint(1, 4))
-
-        shipping_info = {
-            'Invoice/Item Number': invoice,
-            'Date': date,
-            'sales': sales,
-            'Shipping Date': shipping_date.strftime('%m/%d/%Y'),
-            'Shipping Cost': shipping_cost
-        }
-
-        shipping_producer.send(SHIPPING_TOPIC, value=shipping_info)
-        shipping_producer.flush()
 
         # MySQL
         UPDATE_QUERY = """
             UPDATE sales
             SET ShippingDate = %s, ShippingCost = %s
-            WHERE InvoiceItemNumber = %s
+            WHERE Invoice = %s
         """
 
         update_data = (shipping_date.strftime('%Y-%m-%d'), shipping_cost, invoice)
         mysql_cursor.execute(UPDATE_QUERY, update_data)
 
         mysql_conn.commit()
+
+        # Kafka topic
+        shipping_info = {
+            'Invoice/Item Number': invoice,
+            'SalesDate': date,
+            'sales': sales_amount,
+            'ShippingDate': shipping_date.strftime('%m/%d/%Y'),
+            'ShippingCost': shipping_cost
+        }
+
+        shipping_producer.send(SHIPPING_TOPIC, value=shipping_info)
+        shipping_producer.flush()
+
     except Exception as e:
         logger.error(f"Error processing message: {e}")
 

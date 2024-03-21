@@ -86,6 +86,7 @@ for message in mysql_consumer:
         storeName = data.get('StoreName','')
         address = data.get('Address','')
         city = data.get('City','')
+        countyNumber = data.get('CountyNumber','')
         county = data.get('County','')
         state = data.get('State','')
         zip = data.get('ZipCode','')
@@ -115,7 +116,6 @@ for message in mysql_consumer:
         date = data.get('Date', '')
         amountSold = data.get('BottlesSold','')
         totalLiters = data.get('VolumeSold(Liters)','')
-        totalGallons = data.get('VolumeSold(Gallons)','')
         sales = data.get('Sale(Dollars)','')
         sales_amount = float(sales.replace('$', ''))
 
@@ -124,17 +124,33 @@ for message in mysql_consumer:
 
         # MySQL
         '''
-        Multiple try/except blocks are used due to the simplistic invoicing application script.
-        In a real world scenario, likely each of these blocks would be done as a truly separate process.
-        The try/except prevents the duplicates failing to be added to the database preventing the rest of the processes from competing.
+        Multiple try/except blocks are used due to the simplistic invoicing
+        application script.
+
+        In a real world scenario, likely each of these blocks would be done
+        as a truly separate process.
+
+        The try/except prevents the duplicates failing to be added to the
+        database from preventing the rest of the processes from competing.
         '''
 
         try:
+            COUNTY_QUERY = '''
+                INSERT INTO customer (CountyNumber,County)
+                VALUES (%s,%s)
+                '''
+            county_data = (countyNumber,county)
+            mysql_cursor.execute(COUNTY_QUERY, county_data)
+            mysql_conn.commit()
+        except Exception as e:
+            logger.error(f"Error processing message: {e}")
+
+        try:
             CUSTOMER_QUERY = '''
-                INSERT INTO customer (StoreNumber,StoreName,Address,City,County,State,ZipCode)
+                INSERT INTO customer (StoreNumber,StoreName,Address,City,CountyNumber,State,ZipCode)
                 VALUES (%s,%s,%s,%s,%s,%s,%s)
                 '''
-            customer_data = (storNumber,storeName,address,city,county,state,zip)
+            customer_data = (storNumber,storeName,address,city,countyNumber,state,zip)
             mysql_cursor.execute(CUSTOMER_QUERY, customer_data)
             mysql_conn.commit()
         except Exception as e:
@@ -145,19 +161,30 @@ for message in mysql_consumer:
                 INSERT INTO vendor (VendorNumber,VendorName)
                 VALUES (%s,%s)
                 '''
-            vendor_data = (storNumber,storeName,address,city,county,state,zip)
+            vendor_data = (vendorNumber,vendorName)
             mysql_cursor.execute(VENDOR_QUERY,vendor_data)
             mysql_conn.commit()
         except Exception as e:
             logger.error(f"Error processing message: {e}")
 
         try:
-            PRODUCT_QUERY = '''
-                INSERT INTO product (ItemNumber,Category,CategoryName,ItemDescription,Pack,
-                BottleVolume(ml),BottleCost,BottleRetail)
-                VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
+            CATEGORY_QUERY = '''
+                INSERT INTO customer (Category,CategoryName)
+                VALUES (%s,%s)
                 '''
-            product_data = (itemNumber,category,categoryName,itemDescription,pack,volume,cost,retail)
+            category_data = (countyNumber,county)
+            mysql_cursor.execute(CATEGORY_QUERY, category_data)
+            mysql_conn.commit()
+        except Exception as e:
+            logger.error(f"Error processing message: {e}")
+
+        try:
+            PRODUCT_QUERY = '''
+                INSERT INTO product (ItemNumber,Category,ItemDescription,BottleVolume(ml),
+                Pack,BottleCost,BottleRetail)
+                VALUES (%s,%s,%s,%s,%s,%s,%s,)
+                '''
+            product_data = (itemNumber,category,itemDescription,volume,pack,cost,retail)
             mysql_cursor.execute(PRODUCT_QUERY, product_data)
             mysql_conn.commit()
         except Exception as e:
@@ -165,10 +192,11 @@ for message in mysql_consumer:
 
         try:
             SALES_QUERY = '''
-            INSERT INTO sales (Invoice,date,amountSold,totalLiters,sales)
-            VALUES (%s,%s,%s,%s,%s)
+            INSERT INTO sales (Invoice,StoreNumber,VendorNumber,SalesDate,Sale(Dollars),
+            ItemNumber,VolumeSold(Liters))
+            VALUES (%s,%s,%s,%s,%s,%s,%s)
             '''
-            sales_data = (invoice,date,amountSold,totalLiters,sales_amount)
+            sales_data = (invoice,storNumber,vendorNumber,date,sales_amount,itemNumber,totalLiters)
             mysql_cursor.execute(SALES_QUERY, sales_data)
             mysql_conn.commit()
         except Exception as e:
