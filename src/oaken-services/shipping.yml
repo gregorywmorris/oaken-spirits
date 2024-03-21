@@ -1,9 +1,5 @@
 FROM python:3.11
 
-COPY .env /app/.env
-
-RUN export $(cat /app/.env | xargs)
-
 RUN pip install kafka-python mysql-connector-python s3fs mysql-connector-python boto3
 
 COPY app/shipping/shipping.py /app
