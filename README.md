@@ -1,6 +1,6 @@
 ![Oaken Spirirts Logo](images/oaken-spirits-logo.png)
 
-![Python](https://img.shields.io/badge/Python-blue)![Kafka](https://img.shields.io/badge/kafka-black)![MySQL](https://img.shields.io/badge/MySQL-lightblue)![Ubuntu](https://img.shields.io/badge/Ubuntu-green)![FastAPI](https://img.shields.io/badge/FastAPI-lightgreen)![Airflow](https://img.shields.io/badge/Airflow-red)![Static Badge](https://img.shields.io/badge/AWS-yellow)
+![Python](https://img.shields.io/badge/Python-red)![Kafka](https://img.shields.io/badge/kafka-black)![MySQL](https://img.shields.io/badge/MySQL-lightblue)![Ubuntu](https://img.shields.io/badge/Ubuntu-green)![Airflow](https://img.shields.io/badge/Airflow-red)![Static Badge](https://img.shields.io/badge/AWS-yellow)![Static Badge](https://img.shields.io/badge/docker-purple)
 
 ## Project Prompt
 
