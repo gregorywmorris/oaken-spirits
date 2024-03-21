@@ -4,9 +4,9 @@ COPY docker.env /app/docker.env
 
 RUN export $(cat /app/docker.env | xargs)
 
-RUN pip install kafka-python mysql-connector-python
+RUN pip install kafka-python mysql-connector-python s3fs mysql-connector-python boto3
 
-COPY ../mysql-api/mysql-api.py /app/mysql-api.py
+COPY /app/mysql-api /app
 
 WORKDIR /app
 
