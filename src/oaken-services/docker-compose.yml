@@ -3,6 +3,8 @@ version: '3.8'
 services:
   database-mysql:
     image: mysql:latest
+    env_file:
+      - .env
     restart: always
     hostname: oaken-mysql
     container_name: oaken-mysql
@@ -23,6 +25,8 @@ services:
 
   mysql-kafka-processor:
     image: oaken-mysql-kafka
+    env_file:
+      - .env
     restart: always
     hostname: mysql-kafka-processor
     container_name: mysql-kafka-processor
@@ -33,6 +37,8 @@ services:
 
   shipping-processor:
     image: oaken-shipping
+    env_file:
+      - .env
     restart: always
     hostname: shipping-processor
     container_name: shipping-processor
@@ -43,6 +49,8 @@ services:
 
   accounting-processor:
     image: oaken-accounting
+    env_file:
+      - .env
     restart: always
     hostname: accounting-processor
     container_name: accounting-processor
@@ -65,23 +73,23 @@ services:
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.3.2
-    hostname: oaken-zookeeper
-    container_name: oaken-zookeeper
+    hostname: zoo1
+    container_name: zoo1
     restart: on-failure:5
     ports:
       - 2181:2181
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_SERVER_ID: 1
-      ZOOKEEPER_SERVERS: oaken-zookeeper:2888:3888
+      ZOOKEEPER_SERVERS: zoo1:2888:3888
       ZOOKEEPER_TICK_TIME: 2000
     networks:
       - OakenSpirits
 
   kafka1:
     image: confluentinc/cp-kafka:7.3.2
-    hostname: oaken-kafka1
-    container_name: oaken-kafka1
+    hostname: kafka1
+    container_name: kafka1
     depends_on:
       - zookeeper
     restart: on-failure:5
@@ -90,10 +98,10 @@ services:
       - "29092:29092"
       - "9999:9999"
     environment:
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://oaken-kafka1:19092,EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092,DOCKER://host.docker.internal:29092
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka1:19092,EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092,DOCKER://host.docker.internal:29092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,DOCKER:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
-      KAFKA_ZOOKEEPER_CONNECT: "oaken-zookeeper:2181"
+      KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181"
       KAFKA_BROKER_ID: 1
       KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
@@ -104,6 +112,7 @@ services:
       KAFKA_AUTHORIZER_CLASS_NAME: kafka.security.authorizer.AclAuthorizer
       KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "true"
     volumes:
+      - oaken-kafka:/kafka
       - ./create-topics.sh:/create-topics.sh
     command: ["/bin/bash", "-c", "/create-topics.sh"]
     networks:

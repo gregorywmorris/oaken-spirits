@@ -2,3 +2,5 @@
 COPY .env /app/.env
 
 RUN export $(cat /app/.env | xargs)
+
+src/oaken-services/app/mysql-api/mysql-api.py
