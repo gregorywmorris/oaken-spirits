@@ -8,3 +8,4 @@
     - `docker build -t oaken-shipping -f shipping.yml .`
     - `docker build -t oaken-accounting -f accounting.yml .`
 1. docker compose: `docker-compose up -d`
+1. Once services are up see [CLOUD_BEAVER.md](CLOUD_BEAVER.md)
