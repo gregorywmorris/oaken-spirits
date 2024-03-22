@@ -71,20 +71,22 @@ shipping_consumer = KafkaConsumer(
     bootstrap_servers=[KAFKA_SERVER],
     value_deserializer=lambda x: loads(x.decode('utf-8')))
 
+shipping_consumer.subscribe(topics=[SHIPPING_TOPIC])
+
 for shipping_message in shipping_consumer:
     try:
         shipping_data = shipping_message.value
 
         invoice = shipping_data.get('Invoice', '')
-        shipping_cost = shipping_data.get('Shipping Cost', '')
-        sales = shipping_data.get('sales', '')
+        shipping_cost = shipping_data.get('ShippingCost', '')
+        sales = shipping_data.get('SaleDollars', '')
         shipping_expense = float(shipping_cost) * -1
 
         # MySQL
         try:
             LEDGER_CREDIT = """
-                INSERT INTO ledger (Invoice, credit, note)
-                VALUES (%s, %s, 'sale')
+                INSERT INTO ledger (Invoice, Credit, Note)
+                VALUES (%s, %s, 'Sale')
             """
             credit_data = (invoice, sales)
             mysql_cursor.execute(LEDGER_CREDIT, credit_data)
@@ -94,8 +96,8 @@ for shipping_message in shipping_consumer:
 
         try:
             LEDGER_DEBIT = """
-                INSERT INTO salesLedger (Invoice, debit, note)
-                VALUES (%s, %s, 'shipping')
+                INSERT INTO salesLedger (Invoice, Debit, Note)
+                VALUES (%s, %s, 'Shipping')
             """
             debit_data = (invoice, shipping_expense)
             mysql_cursor.execute(LEDGER_DEBIT, debit_data)

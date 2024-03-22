@@ -22,6 +22,11 @@ services:
       - /app/mysql/init.sql:/docker-entrypoint-initdb.d
     networks:
       - OakenSpirits
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
 
   mysql-kafka-processor:
     image: oaken-mysql-kafka
@@ -34,6 +39,9 @@ services:
       - oaken-api:/app
     networks:
       - OakenSpirits
+    depends_on:
+      database-mysql:
+        condition: service_healthy
 
   shipping-processor:
     image: oaken-shipping
@@ -46,6 +54,9 @@ services:
       - oaken-shipping:/app
     networks:
       - OakenSpirits
+    depends_on:
+      database-mysql:
+        condition: service_healthy
 
   accounting-processor:
     image: oaken-accounting
@@ -58,6 +69,9 @@ services:
       - oaken-accounting:/app
     networks:
       - OakenSpirits
+    depends_on:
+      database-mysql:
+        condition: service_healthy
 
   cloudbeaver:
     image: dbeaver/cloudbeaver:latest
@@ -70,6 +84,9 @@ services:
       - oaken-cloudbeaver:/opt/cloudbeaver/workspace
     networks:
       - OakenSpirits
+    depends_on:
+      database-mysql:
+        condition: service_healthy
 
   zoo1:
     image: confluentinc/cp-zookeeper:7.3.2
@@ -125,5 +142,3 @@ volumes:
     name: oaken-accounting
   oaken-cloudbeaver:
     name: oaken-cloudbeave
-  oaken-kafka:
-    name: oaken-kafka

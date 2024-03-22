@@ -71,22 +71,22 @@ sales_consumer = KafkaConsumer(
     bootstrap_servers=[KAFKA_SERVER],
     value_deserializer=lambda x: loads(x.decode('utf-8')))
 
+sales_consumer.subscribe(topics=[INVOICES_TOPIC])
+
 shipping_producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER],
                          value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
 for message in sales_consumer:
     try:
         data = message.value
-        date = data.get('SalesDate', '')
-        sales = data.get('Sale (Dollars)', '')
+        date = data.get('SaleDate', '')
+        sales = data.get('SaleDollars', '')
         invoice = data.get('Invoice', '')
 
-        sales_amount = float(sales.replace('$', ''))
+        shipping_cost = round(sales * 0.05,2)
 
-        shipping_cost = round(sales_amount * 0.05,2)
-
-        invoice_date = datetime.datetime.strptime(date, '%m/%d/%Y')
-        shipping_date = invoice_date + datetime.timedelta(days=random.randint(1, 4))
+        shipping_date = date + datetime.timedelta(days=random.randint(1, 4))
+        shipping_date = shipping_date.strftime('%m/%d/%Y')
 
         # MySQL
         UPDATE_QUERY = """
@@ -95,17 +95,17 @@ for message in sales_consumer:
             WHERE Invoice = %s
         """
 
-        update_data = (shipping_date.strftime('%Y-%m-%d'), shipping_cost, invoice)
+        update_data = (shipping_date, shipping_cost, invoice)
         mysql_cursor.execute(UPDATE_QUERY, update_data)
 
         mysql_conn.commit()
 
         # Kafka topic
         shipping_info = {
-            'Invoice/Item Number': invoice,
+            'Invoice': invoice,
             'SalesDate': date,
-            'sales': sales_amount,
-            'ShippingDate': shipping_date.strftime('%m/%d/%Y'),
+            'SaleDollars': sales,
+            'ShippingDate': shipping_date,
             'ShippingCost': shipping_cost
         }
 

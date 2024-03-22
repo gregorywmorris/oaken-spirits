@@ -55,7 +55,7 @@ CREATE TABLE sales (
     Invoice VARCHAR(255) NOT NULL,
     StoreNumber INT NOT NULL,
     VendorNumber INT NOT NULL,
-    SalesDate DATETIME NOT NULL,
+    SaleDate DATETIME NOT NULL,
     SaleDollars FLOAT NOT NULL,
     ItemNumber INT NOT NULL,
     BottlesSold INT NOT NULL,

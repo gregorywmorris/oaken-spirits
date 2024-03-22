@@ -35,10 +35,10 @@ logger.addHandler(file_handler)
 
 # Custom logging handler to upload logs to S3
 class S3Handler(logging.StreamHandler):
-    def __init__(self, bucket_name, folder, key):  # Update S3Handler to accept folder parameter
+    def __init__(self, bucket_name, folder, key): 
         super().__init__()
         self.bucket_name = bucket_name
-        self.folder = folder  # Store folder name
+        self.folder = folder
         self.key = key
         self.s3_client = boto3.client('s3')
 
@@ -71,6 +71,8 @@ mysql_consumer = KafkaConsumer(
     bootstrap_servers=[KAFKA_SERVER],
     value_deserializer=lambda x: loads(x.decode('utf-8')))
 
+mysql_consumer.subscribe(topics=[MYSQL_TOPIC])
+
 invoice_producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER],
                          value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
@@ -101,11 +103,11 @@ for message in mysql_consumer:
         if itemNumber is None:
             logger.error("ItemNumber is null. Skipping insertion.")
             continue
-        category = data.get('Category','')
+        category = data.get('CategoryNumber','')
         categoryName = ('CategoryName','')
         itemDescription = data.get('ItemDescription','')
         pack = data.get('Pack','')
-        volume = data.get('BottleVolume(ml)','')
+        volume = data.get('BottleVolumeML','')
         cost = data.get('BottleCost','')
         retail = data.get('BottleRetail','')
         # Sales
@@ -115,8 +117,8 @@ for message in mysql_consumer:
             continue
         date = data.get('Date', '')
         amountSold = data.get('BottlesSold','')
-        totalLiters = data.get('VolumeSold(Liters)','')
-        sales = data.get('Sale(Dollars)','')
+        totalLiters = data.get('VolumeSoldLiters','')
+        sales = data.get('SaleDollars','')
         sales_amount = float(sales.replace('$', ''))
 
         invoice_date = datetime.datetime.strptime(date, '%m/%d/%Y')
@@ -136,7 +138,7 @@ for message in mysql_consumer:
 
         try:
             COUNTY_QUERY = '''
-                INSERT INTO customer (CountyNumber,County)
+                INSERT INTO country (CountyNumber,CountyName)
                 VALUES (%s,%s)
                 '''
             county_data = (countyNumber,county)
@@ -169,10 +171,10 @@ for message in mysql_consumer:
 
         try:
             CATEGORY_QUERY = '''
-                INSERT INTO customer (Category,CategoryName)
+                INSERT INTO category (CategoryNumber,CategoryName)
                 VALUES (%s,%s)
                 '''
-            category_data = (countyNumber,county)
+            category_data = (category,categoryName)
             mysql_cursor.execute(CATEGORY_QUERY, category_data)
             mysql_conn.commit()
         except Exception as e:
@@ -180,7 +182,7 @@ for message in mysql_consumer:
 
         try:
             PRODUCT_QUERY = '''
-                INSERT INTO product (ItemNumber,Category,ItemDescription,BottleVolume(ml),
+                INSERT INTO product (ItemNumber,CategoryNumber,ItemDescription,BottleVolumeML,
                 Pack,BottleCost,BottleRetail)
                 VALUES (%s,%s,%s,%s,%s,%s,%s,)
                 '''
@@ -192,30 +194,26 @@ for message in mysql_consumer:
 
         try:
             SALES_QUERY = '''
-            INSERT INTO sales (Invoice,StoreNumber,VendorNumber,SalesDate,Sale(Dollars),
-            ItemNumber,VolumeSold(Liters))
-            VALUES (%s,%s,%s,%s,%s,%s,%s)
+            INSERT INTO sales (Invoice,StoreNumber,VendorNumber,SaleDate,SaleDollars,
+            ItemNumber,VolumeSoldLiters,BottlesSold)
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
             '''
-            sales_data = (invoice,storNumber,vendorNumber,date,sales_amount,itemNumber,totalLiters)
+            sales_data = (invoice,storNumber,vendorNumber,date,sales_amount,itemNumber,totalLiters,amountSold)
             mysql_cursor.execute(SALES_QUERY, sales_data)
             mysql_conn.commit()
+
+            # Topic should post after MySQL processing to ensure data is in the database.
+            INVOICES_info = {
+                'Invoice': invoice,
+                'SaleDate': date,
+                'saleDollars': sales_amount
+            }
+
+            invoice_producer.send(INVOICES_TOPIC, value=INVOICES_info)
+            invoice_producer.flush()
         except Exception as e:
             logger.error(f"Error processing message: {e}")
-
-        # Topic should post after MySQL processing to ensure data is in the database.
-        INVOICES_info = {
-            'Invoice/Item Number': invoice,
-            'Date': date,
-            'sales': sales_amount,
-            'MYSQL Date': MYSQL_date.strftime('%m/%d/%Y')
-        }
-
-        invoice_producer.send(INVOICES_TOPIC, value=INVOICES_info)
-        invoice_producer.flush()
 
     except Exception as e:
         logger.error(f"Error processing message: {e}")
 
-# Close MySQL connection
-mysql_cursor.close()
-mysql_conn.close()
