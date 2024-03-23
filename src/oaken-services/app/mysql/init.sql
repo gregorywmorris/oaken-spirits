@@ -7,24 +7,16 @@ DROP TABLE IF EXISTS customer;
 DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS vendor;
 DROP TABLE IF EXISTS category;
-DROP TABLE IF EXISTS county;
-
-CREATE TABLE county (
-    CountyNumber INT NOT NULL,
-    CountyName VARCHAR(255) NOT NULL,
-    PRIMARY KEY (CountyNumber)
-);
 
 CREATE TABLE customer (
     StoreNumber INT NOT NULL,
     StoreName VARCHAR(255) NOT NULL,
     Address VARCHAR(255) NOT NULL,
     City VARCHAR(255) NOT NULL,
+    CountyName VARCHAR(255) NOT NULL,
     State VARCHAR(255) NOT NULL,
-    CountyNumber INT,
     ZipCode INT NOT NULL,
     PRIMARY KEY (StoreNumber),
-    FOREIGN KEY (CountyNumber) REFERENCES county(CountyNumber)
 );
 
 CREATE TABLE vendor (

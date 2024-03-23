@@ -19,7 +19,7 @@ services:
       - 3306
     volumes: 
       - oaken-mysql:/var/lib/mysql
-      - /app/mysql/init.sql:/docker-entrypoint-initdb.d
+      - ./app/mysql:/docker-entrypoint-initdb.d
     networks:
       - OakenSpirits
     healthcheck:

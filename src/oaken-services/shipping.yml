@@ -1,8 +1,10 @@
 FROM python:3.11
 
-RUN pip install kafka-python mysql-connector-python s3fs boto3
-
-RUN mkdir -p /app
+RUN apt-get update && \
+    apt-get install -y pkg-config && \
+    pip install kafka-python mysql-connector-python s3fs boto3 && \
+    mkdir -p /app && \
+    apt-get clean
 
 COPY app/shipping/shipping.py /app
 

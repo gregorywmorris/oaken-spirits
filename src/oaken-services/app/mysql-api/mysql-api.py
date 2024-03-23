@@ -75,49 +75,66 @@ invoice_producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER],
                          value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
 try:
-    for message in mysql_consumer:
+    for message in consumer:
         try:
             data = message.value
             # Customer
-            storNumber = int(data.get('StoreNumber',''))
-            if storNumber is None or 0:
+            storNumber = int(data.get('StoreNumber', ''))
+            if not storNumber:
                 logger.error("StoreNumber is null or invalid. Skipping insertion.")
                 continue
-            storeName = data.get('StoreName','')
-            address = data.get('Address','')
-            city = data.get('City','')
-            countyNumber = data.get('CountyNumber','') # no longer in use
-            county = data.get('County','')
-            state = data.get('State','')
-            zip_code = int(data.get('ZipCode',''))
-            # Vendor
-            vendorNumber = int(data.get('VendorNumber',''))
-            if vendorNumber is None or 0:
+
+            storeName = data.get('StoreName', '')
+            address = data.get('Address', '')
+            city = data.get('City', '')
+            county = data.get('County', '')
+            state = data.get('State', '')
+            zip_code = int(data.get('ZipCode', ''))
+
+            # vendor
+            vendorNumber = int(float(data.get('VendorNumber', '')))
+            if not vendorNumber:
                 logger.error("VendorNumber is null or invalid. Skipping insertion.")
                 continue
-            vendorName = data.get('VendorName','')
-            # Product
-            itemNumber = int(data.get('ItemNumber',''))
-            if itemNumber is None:
+
+            vendorName = data.get('VendorName', '')
+
+            # category
+            category = int(float(data.get('Category','')))
+            if not category:
+                logger.error("Category is null or invalid. Skipping insertion.")
+                continue
+
+            categoryName = (data.get('CategoryName',''))
+
+            # product
+            itemNumber = int(data.get('ItemNumber', ''))
+            if not itemNumber:
                 logger.error("ItemNumber is null or invalid. Skipping insertion.")
                 continue
-            category = int(data.get('Category',''))
-            categoryName = ('CategoryName','')
-            itemDescription = data.get('ItemDescription','')
-            pack = int(data.get('Pack',''))
-            volume = int(data.get('BottleVolumeML',''))
-            cost = float(data.get('BottleCost','').replace('$', ''))
-            retail = float(data.get('BottleRetail','').replace('$', ''))
+            itemDescription = data.get('ItemDescription', '')
+            pack = int(data.get('Pack', ''))
+            volume = int(data.get('BottleVolumeML', ''))
+            cost = float(data.get('BottleCost', '').replace('$', ''))
+            retail = float(data.get('BottleRetail', '').replace('$', ''))
+
             # Sales
             invoice = data.get('Invoice', '')
-            if invoice is None or 0:
+            if not invoice:
                 logger.error("Invoice is null or invalid. Skipping insertion.")
                 continue
+
             date_string = data.get('Date', '')
-            sales_date = datetime.strptime(date_string,'%m/%d/%Y').date()
-            amountSold = int(data.get('BottlesSold',''))
-            totalLiters = float(data.get('VolumeSoldLiters',''))
-            sales = float(data.get('SaleDollars','').replace('$', ''))
+            if not date_string:
+                logger.error("Date is null or invalid. Skipping insertion.")
+                continue
+
+            sales_date = datetime.datetime.strptime(date_string, '%m/%d/%Y').date()
+
+            amountSold = int(data.get('BottlesSold', ''))
+            totalLiters = float(data.get('VolumeSoldLiters', ''))
+
+            sales = float(data.get('SaleDollars', '').replace('$', ''))
 
             # MySQL
             '''
