@@ -8,12 +8,17 @@
 
 Oaken Spirits is an alcohol distributor that gets its name from its popular private selection of whiskey. Its popularity has spurred growth and the company has recently signed a deal to expand at a national level with several large vendors. Currently, the applications supporting the business are for Iowa sales only and the CEO is concerned that they will not support future growth and would like a system that can handle national-level sales.
 
-### Concerns
+### Scenario
+
+Oaken Spirit applications store data locally and do not integrate with external databases. Working with the vendors we can get a JSON message from each application.
+
+### Concern
 
 1. Not scalable - some manual data entry and transfers
 1. Does not deliver real-time updates
-1. Has multiple databases
+1. Has data in multiple locations; sometimes duplicated.
 1. Lacks a consolidated analytics solutions
+1. Lacks integration options making replacement or adding applications difficult
 
 ### Objectives
 

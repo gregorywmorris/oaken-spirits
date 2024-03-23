@@ -78,8 +78,8 @@ for shipping_message in shipping_consumer:
         shipping_data = shipping_message.value
 
         invoice = shipping_data.get('Invoice', '')
-        shipping_cost = shipping_data.get('ShippingCost', '')
-        sales = shipping_data.get('SaleDollars', '')
+        shipping_cost = shipping_data.get('ShippingCost')
+        sales = shipping_data.get('SaleDollars')
         shipping_expense = float(shipping_cost) * -1
 
         # MySQL

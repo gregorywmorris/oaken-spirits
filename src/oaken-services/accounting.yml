@@ -1,6 +1,6 @@
 FROM python:3.11
 
-RUN pip install kafka-python mysql-connector-python s3fs mysql-connector-python boto3
+RUN pip install kafka-python mysql-connector-python s3fs boto3
 
 RUN mkdir -p /app
 

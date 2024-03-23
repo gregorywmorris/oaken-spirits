@@ -7,7 +7,7 @@ import logging
 from kafka import KafkaConsumer, KafkaProducer
 from json import loads
 import random
-import datetime
+from datetime import datetime
 import mysql.connector
 import boto3
 from logging.handlers import RotatingFileHandler
@@ -79,14 +79,14 @@ shipping_producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER],
 for message in sales_consumer:
     try:
         data = message.value
-        date = data.get('SaleDate', '')
-        sales = data.get('SaleDollars', '')
         invoice = data.get('Invoice', '')
+        sales_date = data.get('SaleDate')
+        sales = data.get('SaleDollars')
 
         shipping_cost = round(sales * 0.05,2)
 
-        shipping_date = date + datetime.timedelta(days=random.randint(1, 4))
-        shipping_date = shipping_date.strftime('%m/%d/%Y')
+        random_days = random.randint(1, 4)
+        shipping_date = sales_date + datetime.timedelta(days=random_days)
 
         # MySQL
         UPDATE_QUERY = """
@@ -103,7 +103,7 @@ for message in sales_consumer:
         # Kafka topic
         shipping_info = {
             'Invoice': invoice,
-            'SalesDate': date,
+            'SalesDate': sales_date,
             'SaleDollars': sales,
             'ShippingDate': shipping_date,
             'ShippingCost': shipping_cost

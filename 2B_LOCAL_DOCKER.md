@@ -9,3 +9,8 @@
     - `docker build -t oaken-accounting -f accounting.yml .`
 1. docker compose: `docker-compose up -d`
 1. Once services are up see [CLOUD_BEAVER.md](CLOUD_BEAVER.md)
+
+## Testing and trouble shooting a single service
+
+1. `docker-compose stop <service_name>`
+1. `docker-compose up --force-recreate <service_name>`
