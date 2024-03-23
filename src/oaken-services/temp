@@ -1,3 +1,0 @@
-# Close MySQL connection
-mysql_cursor.close()
-mysql_conn.close()

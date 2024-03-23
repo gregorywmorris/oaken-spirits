@@ -75,7 +75,7 @@ invoice_producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER],
                          value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
 try:
-    for message in consumer:
+    for message in mysql_consumer:
         try:
             data = message.value
             # Customer
