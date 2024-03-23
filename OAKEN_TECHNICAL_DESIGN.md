@@ -28,12 +28,12 @@ Oaken Spirits is looking to expand and the current application implementations a
 
 1. Implementing new applications that are not required for the initially identified requirements.
 1. Implementation team is not the training team.
-    - Documentation provided, but team trainers retain responsibility.
+    - Documentation provided, but IT support team trainers retain responsibility.
 
 ## 5. Assumptions
 
-1. IT leadership is willing to learn new applications and processes to support post implementation.
 1. Data contracts will be enforced.
+1. Kafka will allow better integration of future applications.
 
 ## 6. Solution
 
@@ -50,7 +50,7 @@ Oaken Spirits is looking to expand and the current application implementations a
     - API for invoice integration with MySQL.
 1. SSOT: Integrate into MySQL database for OLTP.
 1. Analytics:
-    - Database snapshot used for ETL to data warehouse.
+    - Database snapshot used for ETL.
     - Data extract to SuperSet.
     - Automate with Airflow.
 
@@ -65,6 +65,7 @@ Oaken Spirits is looking to expand and the current application implementations a
     - MySQL 33060.
 1. Sensitive environment variables.
     - AWS Systems Manager Parameter Store.
+1. Linux on each system to be updated on cycle with company policy.
 
 ## 8. Cost Analysis
 
@@ -74,7 +75,7 @@ Open source applications are preferred over paid with in-house support.
 
 ### Application Cost Estimate
 
-1. No additional cost.
+1. No additional cost. Continue to use legacy applications.
 
 ### Cloud Cost Estimate
 

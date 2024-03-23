@@ -86,7 +86,7 @@ try:
             storeName = data.get('StoreName','')
             address = data.get('Address','')
             city = data.get('City','')
-            countyNumber = data.get('CountyNumber','')
+            countyNumber = data.get('CountyNumber','') # no longer in use
             county = data.get('County','')
             state = data.get('State','')
             zip_code = int(data.get('ZipCode',''))
@@ -101,7 +101,7 @@ try:
             if itemNumber is None:
                 logger.error("ItemNumber is null or invalid. Skipping insertion.")
                 continue
-            category = int(data.get('CategoryNumber',''))
+            category = int(data.get('Category',''))
             categoryName = ('CategoryName','')
             itemDescription = data.get('ItemDescription','')
             pack = int(data.get('Pack',''))
@@ -115,7 +115,7 @@ try:
                 continue
             date_string = data.get('Date', '')
             sales_date = datetime.strptime(date_string,'%m/%d/%Y').date()
-            amountSold = data.get('BottlesSold','')
+            amountSold = int(data.get('BottlesSold',''))
             totalLiters = float(data.get('VolumeSoldLiters',''))
             sales = float(data.get('SaleDollars','').replace('$', ''))
 
@@ -132,23 +132,11 @@ try:
             '''
 
             try:
-                COUNTY_QUERY = '''
-                    INSERT INTO county (CountyNumber,CountyName)
-                    VALUES (%s,%s)
-                    '''
-                county_data = (countyNumber,county)
-                mysql_cursor.execute(COUNTY_QUERY, county_data)
-                mysql_conn.commit()
-            except Exception as e:
-                logger.error(f"Error processing message: {e}")
-                continue
-
-            try:
                 CUSTOMER_QUERY = '''
-                    INSERT INTO customer (StoreNumber,StoreName,Address,City,CountyNumber,State,Zip_codeCode)
+                    INSERT INTO customer (StoreNumber,StoreName,Address,City,County,State,ZipCode)
                     VALUES (%s,%s,%s,%s,%s,%s,%s)
                     '''
-                customer_data = (storNumber,storeName,address,city,countyNumber,state,zip_code)
+                customer_data = (storNumber,storeName,address,city,county,state,zip_code)
                 mysql_cursor.execute(CUSTOMER_QUERY, customer_data)
                 mysql_conn.commit()
             except Exception as e:
