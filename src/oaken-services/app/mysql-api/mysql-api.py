@@ -61,28 +61,34 @@ mysql_conn = mysql.connector.connect(
     password=MYSQL_PASSWORD,
     database=MYSQL_DATABASE
 )
+
 mysql_cursor = mysql_conn.cursor()
 
-# Kafka
-mysql_consumer = KafkaConsumer(
-    MYSQL_TOPIC,
-    bootstrap_servers=[KAFKA_SERVER],
+# Create a consumer instance
+consumer = KafkaConsumer(
+    'mysql',
+    bootstrap_servers=[KAFKA_SERVER ],
+    auto_offset_reset='earliest',  # Start consuming from the earliest offset
+    enable_auto_commit=True,       # Automatically commit offsets
+    group_id='oaken_mysql_api_group',  # Specify a consumer group
     value_deserializer=lambda x: loads(x.decode('utf-8')))
 
-mysql_consumer.subscribe(topics=[MYSQL_TOPIC])
+consumer.subscribe(topics=['mysql'])
 
-invoice_producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER],
-                         value_serializer=lambda x: json.dumps(x).encode('utf-8'))
+invoice_producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER ],
+                        value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
+
+# Poll for messages
 try:
-    for message in mysql_consumer:
+    for message in consumer:
         try:
             data = message.value
             # Customer
             storNumber = int(data.get('StoreNumber', ''))
             if not storNumber:
                 logger.error("StoreNumber is null or invalid. Skipping insertion.")
-                continue
+                pass
 
             storeName = data.get('StoreName', '')
             address = data.get('Address', '')
@@ -95,7 +101,7 @@ try:
             vendorNumber = int(float(data.get('VendorNumber', '')))
             if not vendorNumber:
                 logger.error("VendorNumber is null or invalid. Skipping insertion.")
-                continue
+                pass
 
             vendorName = data.get('VendorName', '')
 
@@ -103,7 +109,7 @@ try:
             category = int(float(data.get('Category','')))
             if not category:
                 logger.error("Category is null or invalid. Skipping insertion.")
-                continue
+                pass
 
             categoryName = (data.get('CategoryName',''))
 
@@ -111,7 +117,7 @@ try:
             itemNumber = int(data.get('ItemNumber', ''))
             if not itemNumber:
                 logger.error("ItemNumber is null or invalid. Skipping insertion.")
-                continue
+                pass
             itemDescription = data.get('ItemDescription', '')
             pack = int(data.get('Pack', ''))
             volume = int(data.get('BottleVolumeML', ''))
@@ -122,19 +128,20 @@ try:
             invoice = data.get('Invoice', '')
             if not invoice:
                 logger.error("Invoice is null or invalid. Skipping insertion.")
-                continue
+                pass
 
-            date_string = data.get('Date', '')
-            if not date_string:
+            date_str = data.get('Date', '')
+            if not date_str:
                 logger.error("Date is null or invalid. Skipping insertion.")
-                continue
+                pass
 
-            sales_date = datetime.datetime.strptime(date_string, '%m/%d/%Y').date()
+            sales_date = datetime.datetime.strptime(date_str, '%m/%d/%Y').date()
 
             amountSold = int(data.get('BottlesSold', ''))
             totalLiters = float(data.get('VolumeSoldLiters', ''))
 
-            sales = float(data.get('SaleDollars', '').replace('$', ''))
+            sales_str = data.get('SaleDollars', '').replace('$', '')
+            sales = float(sales_str)
 
             # MySQL
             '''
@@ -148,18 +155,19 @@ try:
             database from preventing the rest of the processes from competing.
             '''
 
+            print('customer')
             try:
                 CUSTOMER_QUERY = '''
-                    INSERT INTO customer (StoreNumber,StoreName,Address,City,County,State,ZipCode)
+                    INSERT INTO customer (StoreNumber,StoreName,Address,City,CountyName,State,ZipCode)
                     VALUES (%s,%s,%s,%s,%s,%s,%s)
                     '''
                 customer_data = (storNumber,storeName,address,city,county,state,zip_code)
                 mysql_cursor.execute(CUSTOMER_QUERY, customer_data)
                 mysql_conn.commit()
             except Exception as e:
-                logger.error(f"Error processing message: {e}")
-                continue
+                pass
 
+            print('vendor')
             try:
                 VENDOR_QUERY = '''
                     INSERT INTO vendor (VendorNumber,VendorName)
@@ -169,9 +177,9 @@ try:
                 mysql_cursor.execute(VENDOR_QUERY,vendor_data)
                 mysql_conn.commit()
             except Exception as e:
-                logger.error(f"Error processing message: {e}")
-                continue
+                pass
 
+            print(category)
             try:
                 CATEGORY_QUERY = '''
                     INSERT INTO category (CategoryNumber,CategoryName)
@@ -181,22 +189,24 @@ try:
                 mysql_cursor.execute(CATEGORY_QUERY, category_data)
                 mysql_conn.commit()
             except Exception as e:
-                logger.error(f"Error processing message: {e}")
-                continue
+                logger.error("StoreNumber is null or invalid. Skipping insertion.")
+                pass
 
+            print('product')
             try:
                 PRODUCT_QUERY = '''
                     INSERT INTO product (ItemNumber,CategoryNumber,ItemDescription,BottleVolumeML,
                     Pack,BottleCost,BottleRetail)
-                    VALUES (%s,%s,%s,%s,%s,%s,%s,)
+                    VALUES (%s,%s,%s,%s,%s,%s,%s)
                     '''
                 product_data = (itemNumber,category,itemDescription,volume,pack,cost,retail)
                 mysql_cursor.execute(PRODUCT_QUERY, product_data)
                 mysql_conn.commit()
             except Exception as e:
-                logger.error(f"Error processing message: {e}")
-                continue
+                logger.error("StoreNumber is null or invalid. Skipping insertion.")
+                pass
 
+            print(sales)
             try:
                 SALES_QUERY = '''
                 INSERT INTO sales (Invoice,StoreNumber,VendorNumber,SaleDate,SaleDollars,
@@ -204,27 +214,34 @@ try:
                 VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
                 '''
                 sales_data = (invoice,storNumber,vendorNumber,sales_date,sales,itemNumber,
-                              totalLiters,amountSold)
+                                totalLiters,amountSold)
                 mysql_cursor.execute(SALES_QUERY, sales_data)
                 mysql_conn.commit()
+            except Exception as e:
+                logger.error("StoreNumber is null or invalid. Skipping insertion.")
+                pass
 
-                # Topic should post after MySQL processing to ensure data is in the database.
+            print('topic')
+            # Topic should post after MySQL processing to ensure data is in the database.
+            try:
+                sales_date_str = str(sales_date)
                 INVOICES_info = {
-                    'Invoice': invoice,
-                    'SaleDate': sales_date,
-                    'saleDollars': sales
+                    "Invoice": invoice,
+                    "SaleDate": sales_date_str,
+                    "saleDollars": sales_str
                 }
 
-                invoice_producer.send(INVOICES_TOPIC, value=INVOICES_info)
+                invoice_producer.send('invoices', value=INVOICES_info)
                 invoice_producer.flush()
             except Exception as e:
-                logger.error(f"Error processing message: {e}", exc_info=True)
-                continue
+                logger.error("StoreNumber is null or invalid. Skipping insertion.", exc_info=True)
+                pass
 
         except Exception as e:
-            logger.error(f"Error in Kafka consumer: {e}", exc_info=True)
-            continue
+            print(f"Error in Kafka consumer: {e}", exc_info=True)
+            pass
 
+# Close the consumer
 finally:
-    mysql_cursor.close()
+    consumer.close()
     mysql_conn.close()

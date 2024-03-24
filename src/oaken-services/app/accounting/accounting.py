@@ -67,8 +67,11 @@ mysql_cursor = mysql_conn.cursor()
 
 # Kafka consumers
 shipping_consumer = KafkaConsumer(
-    SHIPPING_TOPIC,
-    bootstrap_servers=[KAFKA_SERVER],
+    'shipping',
+    bootstrap_servers=[KAFKA_SERVER ],
+    auto_offset_reset='earliest',  # Start consuming from the earliest offset
+    enable_auto_commit=True,       # Automatically commit offsets
+    group_id='oaken_accounting_group',  # Specify a consumer group
     value_deserializer=lambda x: loads(x.decode('utf-8')))
 
 shipping_consumer.subscribe(topics=[SHIPPING_TOPIC])
@@ -78,9 +81,10 @@ for shipping_message in shipping_consumer:
         shipping_data = shipping_message.value
 
         invoice = shipping_data.get('Invoice', '')
-        shipping_cost = shipping_data.get('ShippingCost')
-        sales = shipping_data.get('SaleDollars')
-        shipping_expense = float(shipping_cost) * -1
+
+        shipping_expense = float(shipping_data.get('ShippingCost')) * -1
+
+        sales = float(shipping_data.get('SaleDollars'))
 
         # MySQL
         try:
@@ -93,6 +97,7 @@ for shipping_message in shipping_consumer:
             mysql_conn.commit()
         except Exception as e:
             logger.error(f"Error processing message: {e}")
+            pass
 
         try:
             LEDGER_DEBIT = """
@@ -104,9 +109,11 @@ for shipping_message in shipping_consumer:
             mysql_conn.commit()
         except Exception as e:
             logger.error(f"Error processing message: {e}")
+            pass
 
     except Exception as e:
         logger.error(f"Error processing message: {e}")
+        pass
 
 mysql_cursor.close()
 mysql_conn.close()

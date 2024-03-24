@@ -67,8 +67,11 @@ mysql_cursor = mysql_conn.cursor()
 
 # Kafka
 sales_consumer = KafkaConsumer(
-    INVOICES_TOPIC,
-    bootstrap_servers=[KAFKA_SERVER],
+    'invoices',
+    bootstrap_servers=[KAFKA_SERVER ],
+    auto_offset_reset='earliest',  # Start consuming from the earliest offset
+    enable_auto_commit=True,       # Automatically commit offsets
+    group_id='oaken_shipping_group',  # Specify a consumer group
     value_deserializer=lambda x: loads(x.decode('utf-8')))
 
 sales_consumer.subscribe(topics=[INVOICES_TOPIC])
@@ -80,12 +83,13 @@ for message in sales_consumer:
     try:
         data = message.value
         invoice = data.get('Invoice', '')
-        sales_date = data.get('SaleDate')
+        date_str = data.get('SaleDate')
+        sales_date = datetime.datetime.strptime(date_str, '%m/%d/%Y').date()
         sales = data.get('SaleDollars')
 
-        shipping_cost = round(sales * 0.05,2)
+        shipping_cost = round(float(sales) * 0.05,2)
 
-        random_days = random.randint(1, 4)
+        random_days = random.randint(0, 4)
         shipping_date = sales_date + datetime.timedelta(days=random_days)
 
         # MySQL
@@ -103,7 +107,7 @@ for message in sales_consumer:
         # Kafka topic
         shipping_info = {
             'Invoice': invoice,
-            'SalesDate': sales_date,
+            'SalesDate': date_str,
             'SaleDollars': sales,
             'ShippingDate': shipping_date,
             'ShippingCost': shipping_cost
@@ -114,6 +118,7 @@ for message in sales_consumer:
 
     except Exception as e:
         logger.error(f"Error processing message: {e}")
+        pass
 
 # Close MySQL connection
 mysql_cursor.close()
