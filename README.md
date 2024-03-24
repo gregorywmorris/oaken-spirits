@@ -23,7 +23,7 @@ Oaken Spirits is an alcohol distributor that gets its name from its popular priv
 
 ### Scenario
 
-Oaken Spirit management does not want to spend money on more modern, but expensive, applications. You have been directed to work with the vendors to find a solution. The applications store data locally and do not integrate with external databases. Working with the vendors we can get a JSON message from each application.
+Oaken Spirit management does not want to spend money on more modern, but expensive, applications. You have been directed to work with the vendors to find a solution. The sales application stores data locally and does not integrate with external databases. Working with the vendors we can get a JSON message from each application. The shipping and accounting applications can integrate with an external database.
 
 ### Concern
 
