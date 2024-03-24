@@ -39,6 +39,8 @@ Oaken Spirits is looking to expand and the current application implementations a
 
 ![App Services Diagram](images/oaken-service-diagram.png)
 
+### Overview
+
 1. Scalable: use of cloud services will allow scalability to a national level if desired.
     - Virtual Machines (VM) allows auto scaling.
         - Machines Images can be used for quick service recovery.
@@ -53,6 +55,23 @@ Oaken Spirits is looking to expand and the current application implementations a
     - Database snapshot used for ETL.
     - Data extract to SuperSet.
     - Automate with Airflow.
+
+### Database
+
+### Data Retention
+
+1. **OLTP database:** 2 years. Data beyond this point moved to a data warehouse.
+1. **Data Warehouse:** At least 10 years for audit requirements.
+
+#### Data Types
+
+| Type | Storage(Bytes) | Minimum Value Signed | Minimum Value Unsigned | Maximum Value Signed | Maximum Value Unsigned |
+|:---| :---: | :---: | :---: | :---: | :---: |
+| MEDIUMINT | 3 | -8388608 | 0 | 8388607 | 16777215 |
+| INT | 4 | -2147483648 | 0 | 2147483647 | 4294967295 |
+| DECIMAL(11,2) | 8 | -999999999.99 | 0 | 999999999.99 | 999999999.99 |
+| VARCHAR(255) | 0 to 255 | 0 | 0 | 65,535 | 65,535 |
+| Date | 3 | \- | \- | \-| \- |
 
 ## 7. Security Considerations
 

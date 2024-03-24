@@ -12,47 +12,10 @@ from logging.handlers import RotatingFileHandler
 
 # env
 KAFKA_SERVER = os.getenv('KAFKA_SERVER')
-INVOICES_TOPIC = os.getenv('INVOICES_TOPIC')
-MYSQL_TOPIC = os.getenv('MYSQL_TOPIC')
 MYSQL_HOST = os.getenv('MYSQL_HOST')
 MYSQL_USER = os.getenv('MYSQL_USER')
 MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')
 MYSQL_DATABASE = os.getenv('MYSQL_DATABASE')
-MYSQL_LOG_BUCKET = os.getenv('MYSQL_LOG_BUCKET')
-LOG_FOLDER = os.getenv('LOG_FOLDER')
-
-# Configure logging
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.ERROR)
-
-# Create a file handler to log errors
-file_handler = RotatingFileHandler('MYSQL.log', maxBytes=10*1024*1024, backupCount=5)
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
-
-# Custom logging handler to upload logs to S3
-class S3Handler(logging.StreamHandler):
-    def __init__(self, bucket_name, folder, key): 
-        super().__init__()
-        self.bucket_name = bucket_name
-        self.folder = folder
-        self.key = key
-        self.s3_client = boto3.client('s3')
-
-    def emit(self, record):
-        log_entry = self.format(record) + '\n'
-        self.upload_log(log_entry)
-
-    def upload_log(self, log_entry):
-        # Construct the full key including the folder
-        full_key = f"{self.folder}/{self.key}"
-        self.s3_client.put_object(Body=log_entry, Bucket=self.bucket_name, Key=full_key)
-
-# Create an instance of the S3Handler with folder parameter
-s3_handler = S3Handler(bucket_name=MYSQL_LOG_BUCKET, folder=LOG_FOLDER, key='accounting.log')
-s3_handler.setLevel(logging.ERROR)
-logger.addHandler(s3_handler)
 
 # MySQL connection
 mysql_conn = mysql.connector.connect(
@@ -67,17 +30,16 @@ mysql_cursor = mysql_conn.cursor()
 # Create a consumer instance
 consumer = KafkaConsumer(
     'mysql',
-    bootstrap_servers=[KAFKA_SERVER ],
+bootstrap_servers=[KAFKA_SERVER],
     auto_offset_reset='earliest',  # Start consuming from the earliest offset
     enable_auto_commit=True,       # Automatically commit offsets
-    group_id='oaken_mysql_api_group',  # Specify a consumer group
+    group_id='oaken_mysql_group',  # Specify a consumer group
     value_deserializer=lambda x: loads(x.decode('utf-8')))
 
 consumer.subscribe(topics=['mysql'])
 
-invoice_producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER ],
+invoice_producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER],
                         value_serializer=lambda x: json.dumps(x).encode('utf-8'))
-
 
 # Poll for messages
 try:
@@ -87,7 +49,6 @@ try:
             # Customer
             storNumber = int(data.get('StoreNumber', ''))
             if not storNumber:
-                logger.error("StoreNumber is null or invalid. Skipping insertion.")
                 pass
 
             storeName = data.get('StoreName', '')
@@ -100,7 +61,6 @@ try:
             # vendor
             vendorNumber = int(float(data.get('VendorNumber', '')))
             if not vendorNumber:
-                logger.error("VendorNumber is null or invalid. Skipping insertion.")
                 pass
 
             vendorName = data.get('VendorName', '')
@@ -108,7 +68,6 @@ try:
             # category
             category = int(float(data.get('Category','')))
             if not category:
-                logger.error("Category is null or invalid. Skipping insertion.")
                 pass
 
             categoryName = (data.get('CategoryName',''))
@@ -116,7 +75,6 @@ try:
             # product
             itemNumber = int(data.get('ItemNumber', ''))
             if not itemNumber:
-                logger.error("ItemNumber is null or invalid. Skipping insertion.")
                 pass
             itemDescription = data.get('ItemDescription', '')
             pack = int(data.get('Pack', ''))
@@ -127,12 +85,10 @@ try:
             # Sales
             invoice = data.get('Invoice', '')
             if not invoice:
-                logger.error("Invoice is null or invalid. Skipping insertion.")
                 pass
 
             date_str = data.get('Date', '')
             if not date_str:
-                logger.error("Date is null or invalid. Skipping insertion.")
                 pass
 
             sales_date = datetime.datetime.strptime(date_str, '%m/%d/%Y').date()
@@ -155,7 +111,6 @@ try:
             database from preventing the rest of the processes from competing.
             '''
 
-            print('customer')
             try:
                 CUSTOMER_QUERY = '''
                     INSERT INTO customer (StoreNumber,StoreName,Address,City,CountyName,State,ZipCode)
@@ -167,7 +122,6 @@ try:
             except Exception as e:
                 pass
 
-            print('vendor')
             try:
                 VENDOR_QUERY = '''
                     INSERT INTO vendor (VendorNumber,VendorName)
@@ -179,7 +133,6 @@ try:
             except Exception as e:
                 pass
 
-            print(category)
             try:
                 CATEGORY_QUERY = '''
                     INSERT INTO category (CategoryNumber,CategoryName)
@@ -189,10 +142,8 @@ try:
                 mysql_cursor.execute(CATEGORY_QUERY, category_data)
                 mysql_conn.commit()
             except Exception as e:
-                logger.error("StoreNumber is null or invalid. Skipping insertion.")
                 pass
 
-            print('product')
             try:
                 PRODUCT_QUERY = '''
                     INSERT INTO product (ItemNumber,CategoryNumber,ItemDescription,BottleVolumeML,
@@ -203,10 +154,8 @@ try:
                 mysql_cursor.execute(PRODUCT_QUERY, product_data)
                 mysql_conn.commit()
             except Exception as e:
-                logger.error("StoreNumber is null or invalid. Skipping insertion.")
                 pass
 
-            print(sales)
             try:
                 SALES_QUERY = '''
                 INSERT INTO sales (Invoice,StoreNumber,VendorNumber,SaleDate,SaleDollars,
@@ -218,27 +167,23 @@ try:
                 mysql_cursor.execute(SALES_QUERY, sales_data)
                 mysql_conn.commit()
             except Exception as e:
-                logger.error("StoreNumber is null or invalid. Skipping insertion.")
                 pass
 
-            print('topic')
             # Topic should post after MySQL processing to ensure data is in the database.
             try:
                 sales_date_str = str(sales_date)
                 INVOICES_info = {
                     "Invoice": invoice,
-                    "SaleDate": sales_date_str,
+                    "SaleDate": date_str,
                     "saleDollars": sales_str
                 }
 
                 invoice_producer.send('invoices', value=INVOICES_info)
                 invoice_producer.flush()
             except Exception as e:
-                logger.error("StoreNumber is null or invalid. Skipping insertion.", exc_info=True)
                 pass
 
         except Exception as e:
-            print(f"Error in Kafka consumer: {e}", exc_info=True)
             pass
 
 # Close the consumer
