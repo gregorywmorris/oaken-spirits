@@ -17,6 +17,28 @@ MYSQL_USER = os.getenv('MYSQL_USER')
 MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')
 MYSQL_DATABASE = os.getenv('MYSQL_DATABASE')
 
+# Create a logger
+logger = logging.getLogger('my_logger')
+logger.setLevel(logging.DEBUG)
+
+# Create a RotatingFileHandler
+file_handler = RotatingFileHandler('example.log', maxBytes=10000, backupCount=5)
+file_handler.setLevel(logging.DEBUG)
+
+# Create a formatter and set it for the handler
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+
+# Attach the handler to the logger
+logger.addHandler(file_handler)
+
+# Log messages
+logger.debug('Debug message')
+logger.info('Info message')
+logger.warning('Warning message')
+logger.error('Error message')
+logger.critical('Critical message')
+
 # MySQL connection
 mysql_conn = mysql.connector.connect(
     host=MYSQL_HOST,
@@ -41,6 +63,7 @@ consumer.subscribe(topics=['mysql'])
 invoice_producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER],
                         value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
+print('set up complete')
 # Poll for messages
 try:
     for message in consumer:
@@ -120,6 +143,7 @@ try:
                 mysql_cursor.execute(CUSTOMER_QUERY, customer_data)
                 mysql_conn.commit()
             except Exception as e:
+                logger.error(f"Error processing message: {e}")
                 pass
 
             try:
@@ -131,6 +155,7 @@ try:
                 mysql_cursor.execute(VENDOR_QUERY,vendor_data)
                 mysql_conn.commit()
             except Exception as e:
+                logger.error(f"Error processing message: {e}")
                 pass
 
             try:
@@ -142,6 +167,7 @@ try:
                 mysql_cursor.execute(CATEGORY_QUERY, category_data)
                 mysql_conn.commit()
             except Exception as e:
+                logger.error(f"Error processing message: {e}")
                 pass
 
             try:
@@ -154,6 +180,7 @@ try:
                 mysql_cursor.execute(PRODUCT_QUERY, product_data)
                 mysql_conn.commit()
             except Exception as e:
+                logger.error(f"Error processing message: {e}")
                 pass
 
             try:
@@ -167,6 +194,7 @@ try:
                 mysql_cursor.execute(SALES_QUERY, sales_data)
                 mysql_conn.commit()
             except Exception as e:
+                logger.error(f"Error processing message: {e}")
                 pass
 
             # Topic should post after MySQL processing to ensure data is in the database.
@@ -181,12 +209,14 @@ try:
                 invoice_producer.send('invoices', value=INVOICES_info)
                 invoice_producer.flush()
             except Exception as e:
+                logger.error(f"Error processing message: {e}")
                 pass
 
         except Exception as e:
+            logger.error(f"Error processing message: {e}")
             pass
 
-# Close the consumer
+    # Close the consumer
 finally:
     consumer.close()
     mysql_conn.close()

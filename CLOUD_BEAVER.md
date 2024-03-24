@@ -13,15 +13,16 @@ The GitHub repository is [here](https://github.com/dbeaver/cloudbeaver) and you 
 1. Select the cbeaver icon in the upper left
 1. Select the **+** icon and choose MySQL from the list
 1. Enter the information shown here
-    - Note: User name and User password have been defined in the .env file. You would have to change them there before running docker-compose to change them here
+    - Note: User name and User password have been defined in the .env file. You would have to change them there before running docker-compose to change them here.
+    - Select **DRIVER PROPERTIES** from the top menu
+        - for **allowPublicKeyRetrieval** select **TRUE** from the drop down list
     - Select **Test** and in the bottom right you should get pop up with a green check and **Connection is Established**
     - Select **Create**
 1. create tables
-    - Select the connection on the right
+    - Select the connection on the left
     - Select the **oaken** database
     - Select **SQL** button above.
-    - Note: You must select the connection on the right and the database else the SQL editor will not associate with the connection. The tool is designed for multiple connections, so one must be selected.
+    - Note: You must select the connection on the left and the database else the SQL editor will not associate with the connection. The tool is designed for multiple connections, so one must be selected. Alternatively the database can be chose from the option above.
     - From `app/mysql/` open `init.sql` and copy into the SQL editor
-    - In the SQL editor highlight each `CREATE TABE` statement and select the orange arrow on the left
-    - Note: script is written to be run all at once but at this time it will fail. So just run each statement
+    - In the SQL editor highlight each `CREATE TABLE` statement and select the orange arrow on the left. Selecting the orange document icon on the left will run the entire script.
 1. MySQl is ready for data ingestion

@@ -7,7 +7,7 @@ CREATE TABLE customer (
     City VARCHAR(255) NOT NULL,
     CountyName VARCHAR(255) NOT NULL,
     State VARCHAR(255) NOT NULL,
-    ZipCode TINYINT NOT NULL,
+    ZipCode MEDIUMINT NOT NULL,
     PRIMARY KEY (StoreNumber)
 );
 

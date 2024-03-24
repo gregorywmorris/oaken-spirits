@@ -6,4 +6,4 @@
 source env_variables.sh
 
 # Run Python script
-python /app/mysql-api/mysql-api.py
+python /app/mysql-api.py

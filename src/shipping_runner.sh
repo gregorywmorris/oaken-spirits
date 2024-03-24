@@ -6,4 +6,4 @@
 source env_variables.sh
 
 # Run Python script
-python /app/shipping/shipping.py
+python /app/shipping.py

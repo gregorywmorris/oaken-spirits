@@ -6,4 +6,4 @@
 source env_variables.sh
 
 # Run Python script
-python /app/accounting/accounting.py
+python /app/accounting.py
