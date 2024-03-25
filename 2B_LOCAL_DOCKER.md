@@ -1,6 +1,6 @@
 # Local Docker
 
-1. Navigate to `/src/oaken-services/`
+1. Navigate to `/src`
 1. Create `docker.env` using `docker.env.template`. Update variables accordingly.
 1. Run `chmod +x create-topics.sh`
 1. build images

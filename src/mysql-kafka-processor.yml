@@ -1,11 +1,8 @@
 FROM python:3.11
 
-COPY mysql_api_runner.sh /usr/local/bin/
-COPY env_variables.sh /usr/local/bin/
-
 RUN apt-get update && \
     apt-get install -y pkg-config && \
-    pip install kafka-python mysql-connector-python s3fs boto3 && \
+    pip install kafka-python mysql-connector-python && \
     mkdir -p /app && \
     apt-get clean
 
@@ -13,4 +10,4 @@ COPY app/mysql-api/mysql-api.py /app
 
 WORKDIR /app
 
-CMD ["/bin/bash", "/usr/local/bin/mysql_api_runner.sh"]
+CMD ["python", "mysql-api.py"]
