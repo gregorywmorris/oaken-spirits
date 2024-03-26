@@ -35,7 +35,7 @@ mysql_cursor = mysql_conn.cursor()
 # Create a consumer instance
 consumer = KafkaConsumer(
     'mysql',
-    bootstrap_servers=['kafka1:19092'],
+    bootstrap_servers=['kafka1:19092','kafka2:19093','kafka3:19094'],
     auto_offset_reset='earliest',  # Start consuming from the earliest offset
     enable_auto_commit=True,       # Automatically commit offsets
     group_id='oaken_mysql_group',  # Specify a consumer group
@@ -43,7 +43,7 @@ consumer = KafkaConsumer(
 
 consumer.subscribe(topics=['mysql'])
 
-invoice_producer = KafkaProducer(bootstrap_servers=['kafka1:19092'],
+invoice_producer = KafkaProducer(bootstrap_servers=['kafka1:19092','kafka2:19093','kafka3:19094'],
                         value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
 print('set up complete')

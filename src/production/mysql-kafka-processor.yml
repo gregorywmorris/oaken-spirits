@@ -6,7 +6,7 @@ RUN apt-get update && \
     mkdir -p /app && \
     apt-get clean
 
-COPY app/mysql-api/mysql-api.py /app
+COPY /app/mysql-api/mysql-api.py /app
 
 WORKDIR /app
 
