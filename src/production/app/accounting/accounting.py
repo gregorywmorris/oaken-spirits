@@ -33,11 +33,13 @@ mysql_cursor = mysql_conn.cursor()
 # Kafka consumers
 shipping_consumer = KafkaConsumer(
     'shipping',
-    bootstrap_servers=['kafka1:19092','kafka2:19093','kafka3:19094'],
+    bootstrap_servers=['kafka1:19092'],
     auto_offset_reset='earliest',  # Start consuming from the earliest offset
     enable_auto_commit=True,       # Automatically commit offsets
     group_id='oaken_accounting_group',  # Specify a consumer group
-    value_deserializer=lambda x: loads(x.decode('utf-8')))
+    value_deserializer=lambda x: loads(x.decode('utf-8')),
+    connections_max_idle_ms=10000000,
+    request_timeout_ms=1000000, api_version_auto_timeout_ms=1000000)
 
 shipping_consumer.subscribe(topics='shipping')
 

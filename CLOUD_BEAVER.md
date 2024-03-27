@@ -7,7 +7,7 @@ The GitHub repository is [here](https://github.com/dbeaver/cloudbeaver) and you 
 1. In your browser go to `localhost:8978`
 1. Select the **Next** button
 1. Internal Server Configuration page
-    - In the bottom right, enter desired login credentials
+    - In **ADMINISTRATOR CREDENTIALS** enter desired login credentials
 1. Select **Next** and then **Finish**
 1. Login
 1. Select the cbeaver icon in the upper left

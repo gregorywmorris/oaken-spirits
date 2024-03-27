@@ -7,7 +7,7 @@ import logging
 from kafka import KafkaConsumer, KafkaProducer
 from json import loads
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 import mysql.connector
 from logging.handlers import RotatingFileHandler
 from time import sleep
@@ -22,7 +22,7 @@ MYSQL_DATABASE = os.getenv('MYSQL_DATABASE')
 
 # MySQL connection
 mysql_conn = mysql.connector.connect(
-    host='oaken-mysql',
+    host='localhost',
     user='mysql',
     password='mysql',
     database='oaken'
@@ -33,7 +33,7 @@ mysql_cursor = mysql_conn.cursor()
 # Kafka
 invoice_consumer = KafkaConsumer(
     'invoices',
-    bootstrap_servers=['kafka1:19092','kafka2:19093','kafka3:19094'],
+    bootstrap_servers=['kafka1:19092'],
     auto_offset_reset='earliest',  # Start consuming from the earliest offset
     enable_auto_commit=True,       # Automatically commit offsets
     group_id='oaken_shipping_group',  # Specify a consumer group
@@ -41,7 +41,8 @@ invoice_consumer = KafkaConsumer(
 
 invoice_consumer.subscribe(topics='invoices')
 
-shipping_producer = KafkaProducer(bootstrap_servers=['kafka1:19092','kafka2:19093','kafka3:19094'],
+shipping_producer = KafkaProducer(
+                        bootstrap_servers=['kafka1:19092'],
                         value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
 # Poll for messages
@@ -52,7 +53,7 @@ try:
             invoice = data.get('Invoice', '')
 
             date_str = data.get('SaleDate','')
-            sales_date = datetime.datetime.strptime(date_str, '%Y-%m-%d').date()
+            sales_date = datetime.strptime(date_str, '%Y-%m-%d').date()
 
             sales = data.get('saleDollars','')
 
@@ -60,7 +61,7 @@ try:
             shipping_cost_str = str(shipping_cost)
 
             random_days = random.randint(0, 4)
-            shipping_date = sales_date + datetime.timedelta(days=random_days)
+            shipping_date = sales_date + timedelta(days=random_days)
             shipping_date_str = str(shipping_date)
 
             invoice_consumer.commit()

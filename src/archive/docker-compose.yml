@@ -120,13 +120,11 @@ services:
     depends_on:
       - zoo1
 
-
   setup-topics:
     image: confluentinc/cp-kafka:7.3.2
     command: /bin/bash -c "/app/create-topics.sh"
     depends_on:
       - kafka1
-
     networks:
       - OakenSpirits
 
