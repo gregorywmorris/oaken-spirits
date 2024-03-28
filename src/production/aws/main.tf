@@ -1,6 +1,8 @@
 # Oaken Spirits
 /*
+Providers listed in provider.tf
 Variable set in variables.tf
+Security settings in security.tf
 
 EC2 Instances
 1. Database
@@ -10,7 +12,6 @@ EC2 Instances
 1. MySQL API
 1. Shipping
 1. Accounting
-}
 */
 
 terraform {
@@ -37,9 +38,11 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+#################
+# EC2 instances #
+#################
 
-# EC2 instances
-
+# Database
 resource "aws_instance" "database" {
   ami                     = data.aws_ami.ubuntu.id
   instance_type           = var.environment == "development" ? "t2.micro" : "t2.small"
@@ -47,16 +50,22 @@ resource "aws_instance" "database" {
                               aws_security_group.default_sg.id,
                               aws_security_group.rds_sg.id
                             ]
-  key_name               = "oaken-pair"
+  key_name                = "oaken-pair"
   user_data = <<-EOF
               #!/bin/bash
               apt-get update
               apt-get install -y mysql-server
 
-              # Start the MySQL service
-              systemctl start mysql
+              # Mount the EBS volume
+              mkfs.ext4 /data
+              mkdir /mnt/mysql_data
+              mount /data /mnt/mysql_data
 
-              # Enable MySQL service to start on boot
+              # Configure MySQL to use the mounted directory
+              sed -i 's|datadir.*|datadir = /mnt/mysql_data|' /etc/mysql/mysql.conf.d/mysqld.cnf
+
+              # Start MySQL service
+              systemctl start mysql
               systemctl enable mysql
 
               # Execute MySQL commands to create user and grant privileges
@@ -72,11 +81,24 @@ resource "aws_instance" "database" {
               EOF
 
   tags = {
-    Name = "oaken-database"
+    Name        = "oaken-database"
     Environment = var.environment
   }
 }
 
+resource "aws_ebs_volume" "database_volume" {
+  availability_zone = aws_instance.database.availability_zone
+  size              = 20  # Size of the volume in GB
+}
+
+resource "aws_volume_attachment" "database_attachment" {
+  device_name = "/data"  # Device name on the EC2 instance
+  volume_id   = aws_ebs_volume.database_volume.id
+  instance_id = aws_instance.database.id
+}
+
+
+# Kafka
 resource "aws_instance" "kafka" {
   ami                     = data.aws_ami.ubuntu.id
   instance_type           = var.environment == "development" ? "t2.micro" : "t2.small"
@@ -103,7 +125,7 @@ resource "aws_instance" "kafka" {
   }
 }
 
-
+# Services
 resource "aws_instance" "api" {
   ami                     = data.aws_ami.ubuntu.id
   instance_type           = var.environment == "development" ? "t2.micro" : "t2.small"
@@ -155,7 +177,7 @@ resource "aws_instance" "accounting" {
                 mkdir -p /app
                 apt-get clean
               EOF
-  tags = {
+    tags = {
     Name = "oaken-accounting"
     Environment = var.environment
   }

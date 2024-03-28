@@ -9,6 +9,5 @@
     - `terraform plan`
     - `terraform apply`
 1. Export private key
-    - `terraform output private_key_pem > ~/.ssh/oaken-key.pem`
-    - `chmod 600 ~/.ssh/oaken-key.pem`
-1. 
+    - `terraform output private_key_pem > oaken-pair.pem`
+    - `chmod 600 ~/.ssh/oaken-pair.pem`

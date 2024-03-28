@@ -2,6 +2,7 @@ data/
 env_variables.sh
 .terraform
 terraform.tfstate
+.pem
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
