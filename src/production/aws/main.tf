@@ -37,6 +37,16 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+resource "aws_security_group" "default" {
+  name        = "default"
+  description = "Default security group"
+}
+
+resource "aws_security_group" "rds_sg" {
+  name        = "rds_sg"
+  description = "RDS security group"
+}
+
 # Allow inbound SSH for EC2 instances
 resource "aws_security_group_rule" "allow_ssh_in" {
   description       = "Allow SSH"
@@ -55,7 +65,7 @@ resource "aws_security_group_rule" "allow_all_out" {
   from_port         = "0"
   to_port           = "0"
   protocol          = "-1"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = ["0.0.0./0"]
   security_group_id = aws_security_group.default.id
 }
 
@@ -76,6 +86,10 @@ resource "aws_security_group_rule" "allow_mysql_in" {
 resource "aws_instance" "database" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.environment == "development" ? "t2.micro" : "t2.small"
+    vpc_security_group_ids = [
+    aws_security_group.default.id,
+    aws_security_group.rds_sg.id
+  ]
   user_data = <<-EOF
               #!/bin/bash
               apt-get update
@@ -107,6 +121,7 @@ resource "aws_instance" "database" {
 resource "aws_instance" "kafka" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.environment == "development" ? "t2.micro" : "t2.small"
+  vpc_security_group_ids = [aws_security_group.default.id]
   user_data = <<-EOF
               #!/bin/bash
               apt-get update
@@ -131,6 +146,7 @@ resource "aws_instance" "kafka" {
 resource "aws_instance" "api" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.environment == "development" ? "t2.micro" : "t2.small"
+  vpc_security_group_ids = [aws_security_group.default.id]
   user_data = <<-EOF
               #!/bin/bash
                 apt-get update
@@ -152,6 +168,7 @@ resource "aws_instance" "api" {
 resource "aws_instance" "shipping" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.environment == "development" ? "t2.micro" : "t2.small"
+  vpc_security_group_ids = [aws_security_group.default.id]
   user_data = <<-EOF
               #!/bin/bash
                 apt-get update
@@ -173,6 +190,7 @@ resource "aws_instance" "shipping" {
 resource "aws_instance" "accounting" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.environment == "development" ? "t2.micro" : "t2.small"
+  vpc_security_group_ids = [aws_security_group.default.id]
   user_data = <<-EOF
               #!/bin/bash
                 apt-get update
