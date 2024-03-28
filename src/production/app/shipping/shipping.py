@@ -22,10 +22,10 @@ MYSQL_DATABASE = os.getenv('MYSQL_DATABASE')
 
 # MySQL connection
 mysql_conn = mysql.connector.connect(
-    host='localhost',
-    user='mysql',
-    password='mysql',
-    database='oaken'
+    host=MYSQL_HOST,
+    user=MYSQL_USER,
+    password=MYSQL_PASSWORD,
+    database=MYSQL_DATABASE
 )
 
 mysql_cursor = mysql_conn.cursor()
