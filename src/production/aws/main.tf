@@ -37,14 +37,27 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-resource "aws_security_group" "default" {
-  name        = "default"
+resource "aws_security_group" "default_sg" {
+  name        = "default_sg"
   description = "Default security group"
 }
 
 resource "aws_security_group" "rds_sg" {
   name        = "rds_sg"
   description = "RDS security group"
+}
+
+resource "tls_private_key" "oaken-key" {
+  algorithm = "RSA"
+  rsa_bits  = 2048
+}
+
+output "private_key_pem" {
+  value = tls_private_key.oaken-key.private_key_pem
+}
+
+output "public_key_openssh" {
+  value = tls_private_key.oaken-key.public_key_openssh
 }
 
 # Allow inbound SSH for EC2 instances
@@ -55,7 +68,7 @@ resource "aws_security_group_rule" "allow_ssh_in" {
   to_port           = 22
   protocol          = "tcp"
   cidr_blocks       = ["98.25.41.64/32"]
-  security_group_id = aws_security_group.default.id
+  security_group_id = aws_security_group.default_sg.id
 }
 
 # Allow all outbound traffic
@@ -65,8 +78,8 @@ resource "aws_security_group_rule" "allow_all_out" {
   from_port         = "0"
   to_port           = "0"
   protocol          = "-1"
-  cidr_blocks       = ["0.0.0./0"]
-  security_group_id = aws_security_group.default.id
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.default_sg.id
 }
 
 # Allow inbound MySQL connections
@@ -76,7 +89,7 @@ resource "aws_security_group_rule" "allow_mysql_in" {
   from_port                = "3306"
   to_port                  = "3306"
   protocol                 = "tcp"
-  source_security_group_id = aws_security_group.default.id
+  source_security_group_id = aws_security_group.default_sg.id
   security_group_id        = aws_security_group.rds_sg.id
 }
 
@@ -84,12 +97,14 @@ resource "aws_security_group_rule" "allow_mysql_in" {
 # EC2 instances
 
 resource "aws_instance" "database" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.environment == "development" ? "t2.micro" : "t2.small"
-    vpc_security_group_ids = [
-    aws_security_group.default.id,
-    aws_security_group.rds_sg.id
-  ]
+  ami                     = data.aws_ami.ubuntu.id
+  instance_type           = var.environment == "development" ? "t2.micro" : "t2.small"
+  vpc_security_group_ids  = [
+                              aws_security_group.default_sg.id,
+                              aws_security_group.rds_sg.id
+                            ]
+  key_name               = tls_private_key.oaken-key.public_key_openssh
+
   user_data = <<-EOF
               #!/bin/bash
               apt-get update
@@ -115,13 +130,15 @@ resource "aws_instance" "database" {
 
   tags = {
     Name = "oaken-database"
+    Environment = var.environment
   }
 }
 
 resource "aws_instance" "kafka" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.environment == "development" ? "t2.micro" : "t2.small"
-  vpc_security_group_ids = [aws_security_group.default.id]
+  ami                     = data.aws_ami.ubuntu.id
+  instance_type           = var.environment == "development" ? "t2.micro" : "t2.small"
+  vpc_security_group_ids  = [aws_security_group.default_sg.id]
+  key_name                = tls_private_key.oaken-key.public_key_openssh
   user_data = <<-EOF
               #!/bin/bash
               apt-get update
@@ -139,14 +156,16 @@ resource "aws_instance" "kafka" {
 
   tags = {
     Name = "oaken-kafka"
+    Environment = var.environment
   }
 }
 
 
 resource "aws_instance" "api" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.environment == "development" ? "t2.micro" : "t2.small"
-  vpc_security_group_ids = [aws_security_group.default.id]
+  ami                     = data.aws_ami.ubuntu.id
+  instance_type           = var.environment == "development" ? "t2.micro" : "t2.small"
+  vpc_security_group_ids  = [aws_security_group.default_sg.id]
+  key_name                = tls_private_key.oaken-key.public_key_openssh
   user_data = <<-EOF
               #!/bin/bash
                 apt-get update
@@ -157,18 +176,15 @@ resource "aws_instance" "api" {
               EOF
   tags = {
     Name = "oaken-mysql-api"
-  }
-
-  provisioner "file" {
-    source      = "app/mysql-api/"
-    destination = "/usr/lib/oaken"
+    Environment = var.environment
   }
 }
 
 resource "aws_instance" "shipping" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.environment == "development" ? "t2.micro" : "t2.small"
-  vpc_security_group_ids = [aws_security_group.default.id]
+  ami                     = data.aws_ami.ubuntu.id
+  instance_type           = var.environment == "development" ? "t2.micro" : "t2.small"
+  vpc_security_group_ids  = [aws_security_group.default_sg.id]
+  key_name                = tls_private_key.oaken-key.public_key_openssh
   user_data = <<-EOF
               #!/bin/bash
                 apt-get update
@@ -179,18 +195,15 @@ resource "aws_instance" "shipping" {
               EOF
   tags = {
     Name = "oaken-shipping"
-  }
-
-    provisioner "file" {
-    source      = "app/shipping/"
-    destination = "/usr/lib/oaken"
+    Environment = var.environment
   }
 }
 
 resource "aws_instance" "accounting" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.environment == "development" ? "t2.micro" : "t2.small"
-  vpc_security_group_ids = [aws_security_group.default.id]
+  ami                     = data.aws_ami.ubuntu.id
+  instance_type           = var.environment == "development" ? "t2.micro" : "t2.small"
+  vpc_security_group_ids  = [aws_security_group.default_sg.id]
+  key_name                = tls_private_key.oaken-key.public_key_openssh
   user_data = <<-EOF
               #!/bin/bash
                 apt-get update
@@ -201,10 +214,6 @@ resource "aws_instance" "accounting" {
               EOF
   tags = {
     Name = "oaken-accounting"
-  }
-
-    provisioner "file" {
-    source      = "app/accounting/"
-    destination = "/usr/lib/oaken"
+    Environment = var.environment
   }
 }
