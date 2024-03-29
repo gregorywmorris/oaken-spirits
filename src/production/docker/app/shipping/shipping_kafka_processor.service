@@ -1,0 +1,13 @@
+[Unit]
+Description=Shipping Kafka Processor
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+ExecStart=/usr/bin/python3 /app/shipping.py
+WorkingDirectory=/app/
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
