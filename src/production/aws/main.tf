@@ -135,7 +135,7 @@ resource "aws_instance" "api" {
               #!/bin/bash
                 apt-get update
                 apt-get install -y pkg-config
-                pip install kafka-python mysql-connector-python
+                pip install kafka-python mysql-connector-python boto3
                 mkdir -p /app
                 apt-get clean
               EOF
@@ -154,7 +154,7 @@ resource "aws_instance" "shipping" {
               #!/bin/bash
                 apt-get update
                 apt-get install -y pkg-config
-                pip install kafka-python mysql-connector-python
+                pip install kafka-python mysql-connector-python boto3
                 mkdir -p /app
                 apt-get clean
               EOF
@@ -173,7 +173,7 @@ resource "aws_instance" "accounting" {
               #!/bin/bash
                 apt-get update
                 apt-get install -y pkg-config
-                pip install kafka-python mysql-connector-python
+                pip install kafka-python mysql-connector-python boto3
                 mkdir -p /app
                 apt-get clean
               EOF

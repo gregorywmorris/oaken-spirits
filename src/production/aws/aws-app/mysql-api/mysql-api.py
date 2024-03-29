@@ -1,7 +1,6 @@
 import sys
 sys.path.append('..')
 
-import sys
 import os
 import json
 import logging
@@ -12,21 +11,22 @@ from datetime import datetime
 import mysql.connector
 from logging.handlers import RotatingFileHandler
 from time import sleep
+import boto 3
 
 
 # env
-KAFKA_SERVER = os.getenv('KAFKA_SERVER')
-MYSQL_HOST = os.getenv('MYSQL_HOST')
-MYSQL_USER = os.getenv('MYSQL_USER')
-MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')
-MYSQL_DATABASE = os.getenv('MYSQL_DATABASE')
-
+client = boto3.client('ssm')
+KAFKA_SERVER = client.get_parameter('KAFKA_SERVER',WithDecryption=True)
+MYSQL_HOST = client.get_parameter('MYSQL_HOST',WithDecryption=True)
+MYSQL_USER = client.get_parameter('MYSQL_USER',WithDecryption=True)
+MYSQL_PASSWORD = client.get_parameter('MYSQL_PASSWORD',WithDecryption=True)
+MYSQL_DATABASE = client.get_parameter('MYSQL_DATABASE',WithDecryption=True)
 
 # MySQL connection
 mysql_conn = mysql.connector.connect(
     host=MYSQL_HOST,
     user=MYSQL_USER,
-    password=MYSQL_USER,
+    password=MYSQL_PASSWORD,
     database=MYSQL_DATABASE
 )
 
@@ -35,7 +35,7 @@ mysql_cursor = mysql_conn.cursor()
 # Create a consumer instance
 consumer = KafkaConsumer(
     'mysql',
-    bootstrap_servers=['kafka1:19092'],
+    bootstrap_servers=[KAFKA_SERVER],
     auto_offset_reset='earliest',  # Start consuming from the earliest offset
     enable_auto_commit=True,       # Automatically commit offsets
     group_id='oaken_mysql_group',  # Specify a consumer group
@@ -46,7 +46,7 @@ consumer = KafkaConsumer(
 consumer.subscribe(topics=['mysql'])
 
 invoice_producer = KafkaProducer(
-                        bootstrap_servers=['kafka1:19092'],
+                        bootstrap_servers=[KAFKA_SERVER],
                         value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
 print('set up complete')

@@ -1,7 +1,6 @@
 import sys
 sys.path.append('..')
 
-import sys
 import os
 import json
 import logging
@@ -16,11 +15,12 @@ import boto 3
 
 
 # env
-KAFKA_SERVER = os.getenv('KAFKA_SERVER')
-MYSQL_HOST = os.getenv('MYSQL_HOST')
-MYSQL_USER = os.getenv('MYSQL_USER')
-MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')
-MYSQL_DATABASE = os.getenv('MYSQL_DATABASE')
+client = boto3.client('ssm')
+KAFKA_SERVER = client.get_parameter('KAFKA_SERVER',WithDecryption=True)
+MYSQL_HOST = client.get_parameter('MYSQL_HOST',WithDecryption=True)
+MYSQL_USER = client.get_parameter('MYSQL_USER',WithDecryption=True)
+MYSQL_PASSWORD = client.get_parameter('MYSQL_PASSWORD',WithDecryption=True)
+MYSQL_DATABASE = client.get_parameter('MYSQL_DATABASE',WithDecryption=True)
 
 # MySQL connection
 mysql_conn = mysql.connector.connect(
@@ -29,12 +29,13 @@ mysql_conn = mysql.connector.connect(
     password=MYSQL_PASSWORD,
     database=MYSQL_DATABASE
 )
+
 mysql_cursor = mysql_conn.cursor()
 
 # Kafka consumers
 shipping_consumer = KafkaConsumer(
     'shipping',
-    bootstrap_servers=['kafka1:19092'],
+    bootstrap_servers=[KAFKA_SERVER],
     auto_offset_reset='earliest',  # Start consuming from the earliest offset
     enable_auto_commit=True,       # Automatically commit offsets
     group_id='oaken_accounting_group',  # Specify a consumer group
