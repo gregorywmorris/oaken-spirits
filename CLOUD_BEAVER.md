@@ -25,5 +25,5 @@ The GitHub repository is [here](https://github.com/dbeaver/cloudbeaver) and you 
     - Select **SQL** button above.
     - Note: You must select the connection on the left and the database else the SQL editor will not associate with the connection. The tool is designed for multiple connections, so one must be selected. Alternatively the database can be chose from the option above.
     - From `app/mysql/` open `init.sql` and copy into the SQL editor
-    - In the SQL editor highlight each `CREATE TABLE` statement and select the orange arrow on the left. Selecting the orange document icon on the left will run the entire script.
+    - In the SQL editor highlight each `CREATE TABLE` statement and select the orange arrow on the left or selecting the orange document icon on the left will run the entire script.
 1. MySQl is ready for data ingestion
