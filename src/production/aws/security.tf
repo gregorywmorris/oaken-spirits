@@ -92,9 +92,9 @@ resource "aws_security_group_rule" "allow_mysql_in" {
   security_group_id        = aws_security_group.rds_sg.id
 }
 
-######################
+#######################
 # IAM Role and Policy #
-######################
+#######################
 
 resource "aws_iam_role" "oaken_ec2_role" {
   name = "oaken_ec2_role"
@@ -130,4 +130,10 @@ resource "aws_iam_policy" "ssm_read_policy" {
 resource "aws_iam_role_policy_attachment" "ssm_read_attachment" {
   role       = aws_iam_role.oaken_ec2_role.name
   policy_arn = aws_iam_policy.ssm_read_policy.arn
+}
+
+
+resource "aws_iam_instance_profile" "oaken_ec2_instance_profile" {
+  name = "oaken_ec2_instance_profile"
+  role = aws_iam_role.oaken_ec2_role.name
 }

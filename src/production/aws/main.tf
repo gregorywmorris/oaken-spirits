@@ -57,9 +57,9 @@ resource "aws_instance" "database" {
               apt-get install -y mysql-server
 
               # Mount the EBS volume
-              mkfs.ext4 /data
+              mkfs.ext4 /dev/xvdf
               mkdir /mnt/mysql_data
-              mount /data /mnt/mysql_data
+              mount /dev/xvdf /mnt/mysql_data
 
               # Configure MySQL to use the mounted directory
               sed -i 's|datadir.*|datadir = /mnt/mysql_data|' /etc/mysql/mysql.conf.d/mysqld.cnf
@@ -84,7 +84,8 @@ resource "aws_instance" "database" {
     Name        = "oaken-database"
     Environment = var.environment
   }
-  iam_instance_profile = aws_iam_role.oaken_ec2_role.name
+  iam_instance_profile   = aws_iam_instance_profile.oaken_ec2_instance_profile.name
+
 }
 
 resource "aws_ebs_volume" "database_volume" {
@@ -93,7 +94,7 @@ resource "aws_ebs_volume" "database_volume" {
 }
 
 resource "aws_volume_attachment" "database_attachment" {
-  device_name = "/data"  # Device name on the EC2 instance
+  device_name = "/dev/xvdf"  # Device name on the EC2 instance
   volume_id   = aws_ebs_volume.database_volume.id
   instance_id = aws_instance.database.id
 }
@@ -124,7 +125,8 @@ resource "aws_instance" "kafka" {
     Name = "oaken-kafka"
     Environment = var.environment
   }
-  iam_instance_profile = aws_iam_role.oaken_ec2_role.name
+  iam_instance_profile   = aws_iam_instance_profile.oaken_ec2_instance_profile.name
+
 }
 
 # Services
@@ -145,7 +147,8 @@ resource "aws_instance" "api" {
     Name = "oaken-mysql-api"
     Environment = var.environment
   }
-  iam_instance_profile = aws_iam_role.oaken_ec2_role.name
+  iam_instance_profile   = aws_iam_instance_profile.oaken_ec2_instance_profile.name
+
 }
 
 resource "aws_instance" "shipping" {
@@ -165,7 +168,8 @@ resource "aws_instance" "shipping" {
     Name = "oaken-shipping"
     Environment = var.environment
   }
-  iam_instance_profile = aws_iam_role.oaken_ec2_role.name
+  iam_instance_profile   = aws_iam_instance_profile.oaken_ec2_instance_profile.name
+
 }
 
 resource "aws_instance" "accounting" {
@@ -185,5 +189,6 @@ resource "aws_instance" "accounting" {
     Name = "oaken-accounting"
     Environment = var.environment
   }
-  iam_instance_profile = aws_iam_role.oaken_ec2_role.name
+  iam_instance_profile   = aws_iam_instance_profile.oaken_ec2_instance_profile.name
+
 }
