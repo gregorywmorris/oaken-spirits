@@ -32,8 +32,8 @@
     - Connect (upper right).
     - SSH, copy and run command.
 
-> [!NOTE]
-> These are from my repository, you could also get them from the forked repository.
+    > [!NOTE]
+    > These are from my repository, you could also get them from the forked repository.
 
 1. Implement for each of the non-database instances (once SSH in)
     - `mkdir app`
