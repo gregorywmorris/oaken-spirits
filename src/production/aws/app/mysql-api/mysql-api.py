@@ -12,7 +12,7 @@ from datetime import datetime
 import mysql.connector
 from logging.handlers import RotatingFileHandler
 from time import sleep
-import boto 3
+import boto3
 
 
 # env
