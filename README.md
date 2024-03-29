@@ -4,7 +4,7 @@
 
 ## Project Prompt
 
-### Data Engineering Zoomcamp:
+### Data Engineering Zoomcamp
 
 Format: **Requirement**: My solution
 
