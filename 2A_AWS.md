@@ -26,13 +26,13 @@
         These are from my repository, you could also get them from the forked repository.
 
         - Application application, `wget` based on the VM instance you are logged into.
-            - :red[mysql-api.py]: `wget https://raw.githubusercontent.com/gregorywmorris/oaken-spirits/main/src/production/aws/aws-app/mysql-api/mysql-api.py`
-            - **shipping.py**: `wget https://raw.githubusercontent.com/gregorywmorris/oaken-spirits/main/src/production/aws/aws-app/shipping/shipping.py`
-            - **accounting.py**: `wget https://raw.githubusercontent.com/gregorywmorris/oaken-spirits/main/src/production/aws/aws-app/accounting/accounting.py`
+            - *mysql-api.py*: `wget https://raw.githubusercontent.com/gregorywmorris/oaken-spirits/main/src/production/aws/aws-app/mysql-api/mysql-api.py`
+            - *shipping.py*: `wget https://raw.githubusercontent.com/gregorywmorris/oaken-spirits/main/src/production/aws/aws-app/shipping/shipping.py`
+            - *accounting.py*: `wget https://raw.githubusercontent.com/gregorywmorris/oaken-spirits/main/src/production/aws/aws-app/accounting/accounting.py`
         - Service file, `wget` based on the VM instance you are logged into.
-            - **oaken-mysql-api.service**: `wget https://raw.githubusercontent.com/gregorywmorris/oaken-spirits/main/src/production/aws/aws-app/mysql-api/oaken-mysql-api.service`
-            - **oaken-shipping.service**: `wget https://raw.githubusercontent.com/gregorywmorris/oaken-spirits/main/src/production/aws/aws-app/shipping/oaken-shippping.service`
-            - **oaken-accounting.service**: `wget https://raw.githubusercontent.com/gregorywmorris/oaken-spirits/main/src/production/aws/aws-app/accounting/oaken-accounting.service`
+            - *oaken-mysql-api.service*: `wget https://raw.githubusercontent.com/gregorywmorris/oaken-spirits/main/src/production/aws/aws-app/mysql-api/oaken-mysql-api.service`
+            - *oaken-shipping.service*: `wget https://raw.githubusercontent.com/gregorywmorris/oaken-spirits/main/src/production/aws/aws-app/shipping/oaken-shippping.service`
+            - *oaken-accounting.service*: `wget https://raw.githubusercontent.com/gregorywmorris/oaken-spirits/main/src/production/aws/aws-app/accounting/oaken-accounting.service`
     - set up service
         - Replace `<insert-your-service-file.service>` with service file name for given instance.
         - Copy: `sudo cp <insert-your-service-file.service> /etc/systemd/system/`
