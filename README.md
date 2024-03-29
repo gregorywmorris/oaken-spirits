@@ -6,18 +6,18 @@
 
 ### Data Engineering Zoomcamp:
 
-**Requirement**: My solution
+Format: **Requirement**: My solution
 
-- **Problem description:** See below
-- **Cloud:** AWS
+- **Problem description:** [Overview section](#overview)
+- **Cloud:** AWS, site link [here](https://aws.amazon.com/)
 - **Data ingestion:**
-    - Stream with Apache Kafka
+  - Stream with Apache Kafka, site link [here](https://kafka.apache.org/)
 - **Data warehouse:** TBD
 - **Transformations:** TBD
 - **Dashboard:** TBD
-- **Reproducibility:** Instructions below, see linked documents. Docker will provide the quickest reproduction for testing purposes.
+- **Reproducibility:** Instructions [start at this section](#technical-design).
 
-### Overview
+## Overview
 
 Oaken Spirits is an alcohol distributor that gets its name from its popular private selection of whiskey. Its popularity has spurred growth and the company has recently signed a deal to expand at a national level with several large vendors. Currently, the applications supporting the business are for Iowa sales only and the CEO is concerned that they will not support future growth and would like a system that can handle national-level sales.
 
