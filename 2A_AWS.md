@@ -31,12 +31,13 @@
     - select EC2 instance.
     - Connect (upper right).
     - SSH, copy and run command.
-1. Implement for each of the non-database instances (once SSH in)
-    - `mkdir app`
-    - `cd app`
+
 > [!NOTE]
 > These are from my repository, you could also get them from the forked repository.
 
+1. Implement for each of the non-database instances (once SSH in)
+    - `mkdir app`
+    - `cd app`
     - Application application, `wget` based on the VM instance you are logged into.
         - *mysql-api.py*: `wget https://raw.githubusercontent.com/gregorywmorris/oaken-spirits/main/src/production/aws/app/mysql-api/mysql-api.py`
         - *shipping.py*: `wget https://raw.githubusercontent.com/gregorywmorris/oaken-spirits/main/src/production/aws/app/shipping/shipping.py`
