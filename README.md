@@ -59,9 +59,8 @@ See [OAKEN_TECHNICAL_DESIGN](OAKEN_TECHNICAL_DESIGN.md)
 ### Instructions order
 
 1. Fork, then clone repository
-1. AWS S3
 1. Environment Variables
-1. Choose either AWS or local Docker for Business Services
+1. Choose AWS (local docker option incomplete)
 1. Analytics
 
 ### AWS S3
@@ -83,8 +82,8 @@ See [OAKEN_TECHNICAL_DESIGN](OAKEN_TECHNICAL_DESIGN.md)
 or
 
 - Development/testing environment on local Docker
+![Under Construction](images/under-construction.jpg)
 
-1. Run business: see [**2B_LOCAL_DOCKER.md**](2B_LOCAL_DOCKER.md)
 
 ### Analytics</span>
 

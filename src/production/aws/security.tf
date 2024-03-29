@@ -1,4 +1,3 @@
-
 # ###################
 # Generate key pair #
 #####################
@@ -22,9 +21,9 @@ resource "aws_key_pair" "oaken_pair" {
   public_key = tls_private_key.oaken-key.public_key_openssh
 }
 
-##################
-# Access control #
-##################
+############################
+# Security Group and Rules #
+############################
 
 ## Security groups
 resource "aws_security_group" "default_sg" {
@@ -37,7 +36,7 @@ resource "aws_security_group" "rds_sg" {
   description = "RDS security group"
 }
 
-## Seccurity rules
+## Security group rules
 
 # Allow inbound SSH for EC2 instances
 resource "aws_security_group_rule" "allow_ssh_in" {
@@ -93,3 +92,42 @@ resource "aws_security_group_rule" "allow_mysql_in" {
   security_group_id        = aws_security_group.rds_sg.id
 }
 
+######################
+# IAM Role and Policy #
+######################
+
+resource "aws_iam_role" "oaken_ec2_role" {
+  name = "oaken_ec2_role"
+  assume_role_policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Principal" : {
+          "Service" : "ec2.amazonaws.com"
+        },
+        "Action" : "sts:AssumeRole"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_policy" "ssm_read_policy" {
+  name        = "SSMReadPolicy"
+  description = "Allows read access to Systems Manager Parameter Store"
+  policy      = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect   = "Allow",
+        Action   = "ssm:GetParameters",
+        Resource = "*",
+      },
+    ],
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "ssm_read_attachment" {
+  role       = aws_iam_role.oaken_ec2_role.name
+  policy_arn = aws_iam_policy.ssm_read_policy.arn
+}

@@ -84,6 +84,7 @@ resource "aws_instance" "database" {
     Name        = "oaken-database"
     Environment = var.environment
   }
+  iam_instance_profile = aws_iam_role.oaken_ec2_role.name
 }
 
 resource "aws_ebs_volume" "database_volume" {
@@ -123,6 +124,7 @@ resource "aws_instance" "kafka" {
     Name = "oaken-kafka"
     Environment = var.environment
   }
+  iam_instance_profile = aws_iam_role.oaken_ec2_role.name
 }
 
 # Services
@@ -143,6 +145,7 @@ resource "aws_instance" "api" {
     Name = "oaken-mysql-api"
     Environment = var.environment
   }
+  iam_instance_profile = aws_iam_role.oaken_ec2_role.name
 }
 
 resource "aws_instance" "shipping" {
@@ -162,6 +165,7 @@ resource "aws_instance" "shipping" {
     Name = "oaken-shipping"
     Environment = var.environment
   }
+  iam_instance_profile = aws_iam_role.oaken_ec2_role.name
 }
 
 resource "aws_instance" "accounting" {
@@ -181,4 +185,5 @@ resource "aws_instance" "accounting" {
     Name = "oaken-accounting"
     Environment = var.environment
   }
+  iam_instance_profile = aws_iam_role.oaken_ec2_role.name
 }
