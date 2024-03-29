@@ -13,7 +13,8 @@ The GitHub repository is [here](https://github.com/dbeaver/cloudbeaver) and you 
 1. Select the cbeaver icon in the upper left
 1. Select the **+** icon and choose MySQL from the list
 1. Enter the information shown here
-    - Note: User name and User password have been defined in the .env file. You would have to change them there before running docker-compose to change them here.
+    - Enter either **Host** name or IP address)
+    - Enter **Port** 3306
     - Select **DRIVER PROPERTIES** from the top menu
         - for **allowPublicKeyRetrieval** select **TRUE** from the drop down list
     - Select **Test** and in the bottom right you should get pop up with a green check and **Connection is Established**

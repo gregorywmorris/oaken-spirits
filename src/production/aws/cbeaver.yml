@@ -1,0 +1,14 @@
+services:
+  cloudbeaver:
+      image: dbeaver/cloudbeaver:latest
+      container_name: dbeaver
+      hostname: dbeaver
+      restart: on-failure:5
+      ports:
+        - 8978:8978
+      volumes: 
+        - cloudbeaver:/opt/cloudbeaver/workspace
+
+volumes:
+  cloudbeaver:
+    name: oakland-cloudbeaver

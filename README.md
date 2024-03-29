@@ -74,13 +74,12 @@ See [OAKEN_TECHNICAL_DESIGN](OAKEN_TECHNICAL_DESIGN.md)
 
 - AWS
 
-1. Create EC2: see [**EC2.md**](EC2.md)
 1. Kafka: see [**1A_Kafka_AWS.md**](1A_Kafka_AWS.md)
 1. Run business services: see [**2A_AWS.md**](2A_AWS.md)
 
 or
 
-- Local Docker
+- Local Docker Only
 ![Under Construction](images/under-construction.jpg)
 
 ### Analytics
