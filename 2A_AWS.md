@@ -39,4 +39,3 @@
         - Enable: `sudo systemctl enable <insert-your-service-file.service>`
         - Start: `sudo systemctl start <insert-your-service-file.service>`
         - Verify: `sudo systemctl status <insert-your-service-file.service>`
-

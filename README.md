@@ -59,8 +59,7 @@ See [OAKEN_TECHNICAL_DESIGN](OAKEN_TECHNICAL_DESIGN.md)
 ### Instructions order
 
 1. Fork, then clone repository
-1. Environment Variables
-1. Choose AWS (local docker option incomplete)
+1. Choose AWS (local docker option in development)
 1. Analytics
 
 ### AWS S3
@@ -81,10 +80,9 @@ See [OAKEN_TECHNICAL_DESIGN](OAKEN_TECHNICAL_DESIGN.md)
 
 or
 
-- Development/testing environment on local Docker
+- Local Docker
 ![Under Construction](images/under-construction.jpg)
 
-
-### Analytics</span>
+### Analytics
 
 1. Run analytics services: see [**3_ANALYTICS.md**](3_ANALYTICS.md)
