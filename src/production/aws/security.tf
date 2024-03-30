@@ -92,6 +92,16 @@ resource "aws_security_group_rule" "allow_mysql_in" {
   security_group_id        = aws_security_group.rds_sg.id
 }
 
+resource "aws_security_group_rule" "allow_mysql_in_onsite" {
+  description              = "Allow inbound MySQL connections from on site"
+  type                     = "ingress"
+  from_port                = "3306"
+  to_port                  = "3306"
+  protocol                 = "tcp"
+  cidr_blocks              = ["98.25.41.64/32"]
+  security_group_id        = aws_security_group.rds_sg.id
+}
+
 #######################
 # IAM Role and Policy #
 #######################

@@ -51,7 +51,7 @@ resource "aws_instance" "database" {
                               aws_security_group.rds_sg.id
                             ]
   key_name                = "oaken-pair"
-  user_data = <<-EOF
+  user_data = user_data = <<-EOF
               #!/bin/bash
               apt-get update
               apt-get install -y mysql-server
@@ -72,7 +72,9 @@ resource "aws_instance" "database" {
               mysql <<EOF_MYSQL
               CREATE DATABASE IF NOT EXISTS oaken;
               CREATE USER 'mysql'@'localhost' IDENTIFIED BY 'mysql';
-              GRANT ALL PRIVILEGES ON *.* TO 'mysql'@'localhost';
+              CREATE USER 'mysql'@'%' IDENTIFIED BY 'mysql';
+              GRANT ALL PRIVILEGES ON *.* TO 'mysql'@'localhost' WITH GRANT OPTION;
+              GRANT ALL PRIVILEGES ON *.* TO 'mysql'@'%' WITH GRANT OPTION;
               FLUSH PRIVILEGES;
               EOF_MYSQL
 

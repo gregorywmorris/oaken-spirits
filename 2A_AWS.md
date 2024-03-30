@@ -5,7 +5,9 @@
 
 1. Open your CLI
 1. `cd oaken-spirits/src/production/aws` <- continue to work from this directory.
-1. Edit `provider.tf`**profile** with the profile in your `.aws/config` file.
+1. Edit `provider.tf`**profile** with the profile in your `.aws/config` file.3
+    - Ensure the profile has the following access
+    ![AWS Policies](images/aws-policies.png)
 1. Terraform (each run will create a new public/private key pair).
     - `terraform init`
     - `terraform plan`
