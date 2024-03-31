@@ -53,8 +53,8 @@ resource "aws_security_group_rule" "allow_ssh_in" {
 resource "aws_security_group_rule" "kafka_rule" {
   description       = "kafka_rule"
   type              = "ingress"
-  from_port         = 9092
-  to_port           = 9092
+  from_port         = 19092
+  to_port           = 19092
   protocol          = "tcp"
   cidr_blocks       = ["98.25.41.64/32"]
   security_group_id = aws_security_group.default_sg.id

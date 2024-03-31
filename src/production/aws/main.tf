@@ -45,7 +45,7 @@ data "aws_ami" "ubuntu" {
 # Database
 resource "aws_instance" "database" {
   ami                     = data.aws_ami.ubuntu.id
-  instance_type           = var.environment == "development" ? "t2.micro" : "t2.small"
+  instance_type           = var.environment == "development" ? "t2.medium" : "t2.large"
   vpc_security_group_ids  = [
                               aws_security_group.default_sg.id,
                               aws_security_group.rds_sg.id
@@ -106,7 +106,7 @@ resource "aws_volume_attachment" "database_attachment" {
 # Kafka
 resource "aws_instance" "kafka" {
   ami                     = data.aws_ami.ubuntu.id
-  instance_type           = var.environment == "development" ? "t2.micro" : "t2.small"
+  instance_type           = var.environment == "development" ? "t2.medium" : "t2.large"
   vpc_security_group_ids  = [aws_security_group.default_sg.id]
   key_name                = "oaken-pair"
   user_data = <<-EOF
@@ -135,7 +135,7 @@ resource "aws_instance" "kafka" {
 # Services
 resource "aws_instance" "api" {
   ami                     = data.aws_ami.ubuntu.id
-  instance_type           = var.environment == "development" ? "t2.micro" : "t2.small"
+  instance_type           = var.environment == "development" ? "t2.medium" : "t2.large"
   vpc_security_group_ids  = [aws_security_group.default_sg.id]
   key_name                = "oaken-pair"
   user_data = <<-EOF
@@ -156,7 +156,7 @@ resource "aws_instance" "api" {
 
 resource "aws_instance" "shipping" {
   ami                     = data.aws_ami.ubuntu.id
-  instance_type           = var.environment == "development" ? "t2.micro" : "t2.small"
+  instance_type           = var.environment == "development" ? "t2.medium" : "t2.large"
   vpc_security_group_ids  = [aws_security_group.default_sg.id]
   key_name                = "oaken-pair"
   user_data = <<-EOF
@@ -177,7 +177,7 @@ resource "aws_instance" "shipping" {
 
 resource "aws_instance" "accounting" {
   ami                     = data.aws_ami.ubuntu.id
-  instance_type           = var.environment == "development" ? "t2.micro" : "t2.small"
+  instance_type           = var.environment == "development" ? "t2.medium" : "t2.large"
   vpc_security_group_ids  = [aws_security_group.default_sg.id]
   key_name                = "oaken-pair"
   user_data = <<-EOF

@@ -1,0 +1,9 @@
+export KAFKA_SERVER=Replace-With-Private-IP
+export MYSQL_TOPIC=mysql
+export SHIPPING_TOPIC=shipping
+export INVOICES_TOPIC=invoices
+
+export MYSQL_HOST=172.31.85.27
+export MYSQL_USER=mysql
+export MYSQL_PASSWORD=mysql
+export MYSQL_DATABASE=oaken

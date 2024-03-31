@@ -25,17 +25,26 @@
 1. Export private key
     - `terraform output private_key_pem > oaken-pair.pem` <- note where this key is stored (oaken-spirits/src/production/aws).
     - `chmod 600 ~/.ssh/oaken-pair.pem`
-1. Set up Cloud Beaver
-    - `docker-compose -f cbeaver.yml up -d`
-    - See **CLOUD_BEAVER.md**
-    - MySQL server public IP can be retrieved from AWS from the virtual machine details.
-1. SSH into each EC2, except MySQL instance.
+
+1. SSH into each EC2 instance.
     - In a new command window, `cd oaken-spirits/src/production/aws`
     - select EC2 instance.
     - Connect (upper right).
     - SSH, copy and run command.
 
-1. Implement for each of the non-database instances (once SSH in)
+1. Database setup
+    - `sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf`
+    - update bind address to 0.0.0.0
+    - `sudo systemctl restart mysql`
+
+1. Set up Cloud Beaver locally on docker
+    - `docker-compose -f cbeaver.yml up -d`
+    - MySQL server public IP can be retrieved from AWS from the virtual machine details.
+    - See **CLOUD_BEAVER.md**
+
+1. Kafka set up: see **[1A_KAFKA_AWS.md](1A_KAFKA_AWS.md)**
+
+1. Implement for each of the non-database/kafka instances (SSH in)
 
 > [!NOTE]
 > These are from my repository, you could also get them from the forked repository.

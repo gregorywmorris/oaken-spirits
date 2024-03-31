@@ -12,6 +12,7 @@
 1. Install Kafka
     -`wget https://downloads.apache.org/kafka/3.7.0/kafka_2.12-3.7.0.tgz`
     - `tar -xvf kafka_2.12-3.7.0.tgz`
+    - `rm kafka_2.12-3.7.0.tgz`
 1. Install java
     - For Ubuntu
     1. `sudo sudo apt install default-jre`
@@ -28,27 +29,38 @@
     - See top answer here for [heap explanation](https://stackoverflow.com/questions/21448907/kafka-8-and-memory-there-is-insufficient-memory-for-the-java-runtime-environme)
 1. `source /etc/profile.d/jdk11.sh`
 1. `java --version`
-1. `echo JAVA_HOME`
+1. `echo $JAVA_HOME`
 
 1. kafka is pointing to private server IP, change server.properties so that it can run in public IP. Update advertized.listeners to be active (remove '#' with current host name.
 1. `sudo vi kafka_2.12-3.7.0/config/server.properties`
+    - Scroll down, then remove the # and update the following lines below
 
     ```bash
-    advertised.listeners=PLAINTEXT://<Enter Public IP Here>:9092
+    listeners=PLAINTEXT://<Enter Private IP Here>,EXTERNAL://<Enter Public IP Here>:19092
+    advertised.listeners=PLAINTEXT://<Enter Private IP Here>:9092,EXTERNAL://<Enter Public IP Here>:19092
+    listener.security.protocol.map=PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
     ```
+
+1. Confirm services are running
+    - ps aux | grep kafka
+    - ps aux | grep zookeeper
 
 ## 3 Start Zoo-keeper
 
 1. SSh into instance in a new window
-1. `kafka_2.12-3.7.0/bin/zookeeper-server-start.sh kafka_2.12-3.7.0/config/zookeeper.properties`
+1. `kafka_2.12-3.7.0/bin/zookeeper-server-start.sh kafka_2.12-3.7.0/config/zookeeper.properties &`
 
 ## 4 Start Kafka-server
 
 1. SSh into instance in a new window
-1. `kafka_2.12-3.7.0/bin/kafka-server-start.sh kafka_2.12-3.7.0/config/server.properties`
+1. `kafka_2.12-3.7.0/bin/kafka-server-start.sh kafka_2.12-3.7.0/config/server.properties &`
 
 ## 5 Create the topic
 
-1. SSh into instance in a new window
-1. `kafka_2.12-3.7.0/bin/kafka-topics.sh --create --topic invoices --bootstrap-server <Enter Public IP Here>:9092 --replication-factor 1 --partitions 1`
-1. `kafka_2.12-3.7.0/bin/kafka-topics.sh --create --topic shipping --bootstrap-server <Enter Public IP Here>:9092 --replication-factor 1 --partitions 1`
+1. Create topics with these commands:
+127.0.0.1
+    - `cd kafka_2.12-3.7.0/bin`
+    - `chmod +x kafka-topics.sh`
+    - `./kafka-topics.sh --create --topic mysql --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1`
+    - `kafka-topics.sh --create --topic invoices --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1`
+    - `kafka-topics.sh --create --topic shipping --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1`
