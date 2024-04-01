@@ -9,14 +9,12 @@ services:
     hostname: oaken-mysql
     container_name: oaken-mysql
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_DATABASE: oaken
     ports:
       - 3306:3306
-    expose:
-      - 3306
     volumes: 
       - oaken-mysql:/var/lib/mysql
       - ./app/mysql:/docker-entrypoint-initdb.d

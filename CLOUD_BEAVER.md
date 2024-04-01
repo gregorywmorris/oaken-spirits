@@ -13,7 +13,7 @@ The GitHub repository is [here](https://github.com/dbeaver/cloudbeaver) and you 
 1. Select the cbeaver icon in the upper left
 1. Select the **+** icon and choose MySQL from the list
 1. Enter the information shown here
-    - Enter either **Host** name or IP address)
+    - Enter either **Host** name or IP address
     - Enter **Port** 3306
     - Select **DRIVER PROPERTIES** from the top menu
         - for **allowPublicKeyRetrieval** select **TRUE** from the drop down list
