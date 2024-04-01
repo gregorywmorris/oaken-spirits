@@ -36,31 +36,31 @@
     - Scroll down, then remove the # and update the following lines below
 
     ```bash
-    listeners=PLAINTEXT://<Enter Private IP Here>,EXTERNAL://<Enter Public IP Here>:19092
-    advertised.listeners=PLAINTEXT://<Enter Private IP Here>:9092,EXTERNAL://<Enter Public IP Here>:19092
+    listeners=PLAINTEXT://127.0.0.1:9092,EXTERNAL://<Enter Public IP Here>:19092
+    advertised.listeners=PLAINTEXT://127.0.0.1:9092,EXTERNAL://<Enter Public IP Here>:19092
     listener.security.protocol.map=PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
     ```
 
-1. Confirm services are running
+1. Confirm services are running (kafka service might not be running, that is ok)
     - ps aux | grep kafka
     - ps aux | grep zookeeper
 
 ## 3 Start Zoo-keeper
 
 1. SSh into instance in a new window
+1. `sudo kafka_2.12-3.7.0/bin/zkServer.sh stop`
 1. `kafka_2.12-3.7.0/bin/zookeeper-server-start.sh kafka_2.12-3.7.0/config/zookeeper.properties &`
 
 ## 4 Start Kafka-server
 
 1. SSh into instance in a new window
-1. `kafka_2.12-3.7.0/bin/kafka-server-start.sh kafka_2.12-3.7.0/config/server.properties &`
+1. If kafka is running
+    - `sudo kafka_2.12-3.7.0/bin/kafka-server-stop.sh`
+1. Start Kafka: `kafka_2.12-3.7.0/bin/kafka-server-start.sh kafka_2.12-3.7.0/config/server.properties &`
 
 ## 5 Create the topic
 
 1. Create topics with these commands:
-127.0.0.1
-    - `cd kafka_2.12-3.7.0/bin`
-    - `chmod +x kafka-topics.sh`
-    - `./kafka-topics.sh --create --topic mysql --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1`
-    - `kafka-topics.sh --create --topic invoices --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1`
-    - `kafka-topics.sh --create --topic shipping --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1`
+    - `kafka_2.12-3.7.0/bin/kafka-topics.sh --create --topic mysql --bootstrap-server 172.31.95.3:9092,54.208.19.136:19092 --partitions 1 --replication-factor 1`
+    - `kafka_2.12-3.7.0/bin/kafka-topics.sh --create --topic invoices --bootstrap-server 172.31.95.3:9092,54.208.19.136:19092 --partitions 1 --replication-factor 1`
+    - `kafka_2.12-3.7.0/bin/kafka-topics.sh --create --topic shipping --bootstrap-server 172.31.95.3:9092,54.208.19.136:19092 --partitions 1 --replication-factor 1`

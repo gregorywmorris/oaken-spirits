@@ -14,20 +14,12 @@ from logging.handlers import RotatingFileHandler
 from time import sleep
 
 
-# env
-KAFKA_SERVER = os.getenv('KAFKA_SERVER')
-MYSQL_HOST = os.getenv('MYSQL_HOST')
-MYSQL_USER = os.getenv('MYSQL_USER')
-MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')
-MYSQL_DATABASE = os.getenv('MYSQL_DATABASE')
-
-
 # MySQL connection
 mysql_conn = mysql.connector.connect(
-    host=MYSQL_HOST,
-    user=MYSQL_USER,
-    password=MYSQL_USER,
-    database=MYSQL_DATABASE
+    host='oaken-mysql',
+    user='mysql',
+    password='mysql',
+    database='oaken'
 )
 
 mysql_cursor = mysql_conn.cursor()
@@ -35,7 +27,7 @@ mysql_cursor = mysql_conn.cursor()
 # Create a consumer instance
 consumer = KafkaConsumer(
     'mysql',
-    bootstrap_servers=['kafka1:19092'],
+    bootstrap_servers=['kafka1:9092'],
     auto_offset_reset='earliest',  # Start consuming from the earliest offset
     enable_auto_commit=True,       # Automatically commit offsets
     group_id='oaken_mysql_group',  # Specify a consumer group
