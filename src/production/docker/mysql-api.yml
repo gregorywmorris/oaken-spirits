@@ -6,8 +6,8 @@ RUN apt-get update && \
     mkdir -p /app && \
     apt-get clean
 
-COPY /app/mysql-api/mysql-api.py /app
+COPY /app/mysql-api/mysql-api-docker.py /app
 
 WORKDIR /app
 
-CMD ["python", "mysql-api.py"]
+CMD ["python", "mysql-api-docker.py"]

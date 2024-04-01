@@ -6,8 +6,8 @@ RUN apt-get update && \
     mkdir -p /app && \
     apt-get clean
 
-COPY app/shipping/shipping.py /app
+COPY app/shipping/shipping-docker.py /app
 
 WORKDIR /app
 
-CMD ["python", "shipping.py"]
+CMD ["python", "shipping-docker.py"]
