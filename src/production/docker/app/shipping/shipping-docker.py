@@ -26,7 +26,7 @@ mysql_cursor = mysql_conn.cursor()
 # Kafka
 invoice_consumer = KafkaConsumer(
     'invoices',
-    bootstrap_servers=['kafka1:9092'],
+    bootstrap_servers=['kafka1:9092','kafka2:9093','kafka3:9094'],
     auto_offset_reset='earliest',  # Start consuming from the earliest offset
     enable_auto_commit=True,       # Automatically commit offsets
     group_id='oaken_shipping_group',  # Specify a consumer group
@@ -35,7 +35,7 @@ invoice_consumer = KafkaConsumer(
 invoice_consumer.subscribe(topics='invoices')
 
 shipping_producer = KafkaProducer(
-                        bootstrap_servers=['kafka1:9092'],
+                        bootstrap_servers=['kafka1:9092','kafka2:9093','kafka3:9094'],
                         value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
 # Poll for messages

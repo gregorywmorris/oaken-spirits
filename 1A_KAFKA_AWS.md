@@ -57,6 +57,9 @@
 1. If kafka is running
     - `sudo kafka_2.12-3.7.0/bin/kafka-server-stop.sh`
 1. Start Kafka: `kafka_2.12-3.7.0/bin/kafka-server-start.sh kafka_2.12-3.7.0/config/server.properties &`
+1. Confirm service
+    - `sudo netstat -tuln | grep 9092`
+    - `sudo netstat -tuln | grep 19092`
 
 ## 5 Create the topic
 
