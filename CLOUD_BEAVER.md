@@ -1,6 +1,6 @@
 # Cloud Beaver
 
-Cloud Beaver community edition is a free product from [DBeaver](https://dbeaver.com/download/cloudbeaver/). DBeaver allows connection to multiple databases though one interface.
+Cloud Beaver community edition is the free version of [DBeaver](https://dbeaver.com/download/cloudbeaver/). DBeaver allows connection to multiple databases though one interface.
 
 The GitHub repository is [here](https://github.com/dbeaver/cloudbeaver) and you can find the docker image [cloud-beaver/here](https://hub.docker.com/r/dbeaver/cloudbeaver).
 
@@ -33,7 +33,7 @@ The GitHub repository is [here](https://github.com/dbeaver/cloudbeaver) and you 
 1. Connect
     - Select the connection from the top drop down or double click the connection on the left.
     - Select the **oaken** database
-    - Note: You must select the connection on the left and the database else the SQL editor will not associate with the connection. The tool is designed for multiple connections, so one must be selected.
+    - **Note:** You must select the connection on the left and the database else the SQL editor will not associate with the connection. The tool is designed for multiple connections, so one must be selected.
 1. Confirm database
     - Using the down arrows on the left opne the connection, Databases, oaken, Tables and you should see a list of tables.
 

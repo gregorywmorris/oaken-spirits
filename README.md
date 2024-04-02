@@ -19,23 +19,24 @@ Format: **Requirement**: My solution
 
 #### Assumptions and Limitations
 
-Assumptions
+##### **Assumptions**
 
 - Instructions completed in VS Code, ability to convert to your IDE if different
 - Access to a bash command line
 - Basic familiarity with github
 - Ability to access cloud service providers
 
-Limitations
-  For grader reproducibility some things were hard coded that normally would not be. Host names, secrets, etc. best practices would be to define these either in environment variables or in an encrypted manner.
+##### **Limitations**
+
+> For grader reproducibility, some things were hard coded that normally would not be. Host names, secrets, etc. best practices would be to define these either in environment variables or in an encrypted manner.
 
 ## Overview
 
-Oaken Spirits is an alcohol distributor that gets its name from its popular private selection of whiskey. Its popularity has spurred growth and the company has recently signed a deal to expand at a national level with several large vendors. Currently, the applications supporting the business are for Iowa sales only and the CEO is concerned that they will not support future growth and would like a system that can handle national-level sales.
+> Oaken Spirits is an alcohol distributor that gets its name from its popular private selection of whiskey. Its popularity has spurred growth and the company has recently signed a deal to expand at a national level with several large vendors. Currently, the applications supporting the business are for Iowa sales only and the CEO is concerned that they will not support future growth and would like a system that can handle national-level sales.
 
 ### Scenario
 
-Oaken Spirit management does not want to spend money on more modern, but expensive, applications. You have been directed to work with the vendors to find a solution. The sales application stores data locally and does not integrate with external databases. Working with the vendors we can get a JSON message from each application. The shipping and accounting applications can integrate with an external database.
+> Oaken Spirit management does not want to spend money on more modern, but expensive, applications. You have been directed to work with the vendors to find a solution. The sales application stores data locally and does not integrate with external databases. Working with the vendors we can get a JSON message from each application. The shipping and accounting applications can integrate with an external database.
 
 ### Concern
 
@@ -70,27 +71,23 @@ See [OAKEN_TECHNICAL_DESIGN](OAKEN_TECHNICAL_DESIGN.md)
 
 ### Instructions order
 
-1. Fork, then clone repository
-1. Choose AWS (local docker option in development)
-1. Analytics
-
-### Environment Variables
-
-1. See [**ENV_VARIABLES.md**](ENV_VARIABLES.md)
+1. Fork, then clone the repository locally
+1. Choose Local
+1. Cloud Analytics
 
 ### Business Services
+
+- Local
+
+1. See [**2B_LOCAL_DOCKER.md**](2B_LOCAL_DOCKER.md)
+
+or
 
 - Full Cloud - not available yet
 ![Under Construction](images/under-construction.jpg)
 
-1. Kafka: see [**1A_Kafka_AWS.md**](1A_Kafka_AWS.md)
-1. Run business services: see [**2A_AWS.md**](2A_AWS.md)
-
-or
-
-- Local and Cloud Analytics
-
-1. See [**2B_LOCAL_DOCKER.md**](2B_LOCAL_DOCKER.md)
+<!-- 1. Kafka: see [**1A_Kafka_AWS.md**](1A_Kafka_AWS.md)
+1. Run business services: see [**2A_AWS.md**](2A_AWS.md)-->
 
 ### Cloud Analytics
 
