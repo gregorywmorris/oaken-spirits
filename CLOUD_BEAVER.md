@@ -2,28 +2,46 @@
 
 Cloud Beaver community edition is a free product from [DBeaver](https://dbeaver.com/download/cloudbeaver/). DBeaver allows connection to multiple databases though one interface.
 
-The GitHub repository is [here](https://github.com/dbeaver/cloudbeaver) and you can find the docker image [here](https://hub.docker.com/r/dbeaver/cloudbeaver).
+The GitHub repository is [here](https://github.com/dbeaver/cloudbeaver) and you can find the docker image [cloud-beaver/here](https://hub.docker.com/r/dbeaver/cloudbeaver).
 
+1. Verify oaken-dbeaver docker container is running
 1. In your browser go to `localhost:8978`
 1. Select the **Next** button
 1. Internal Server Configuration page
     - In **ADMINISTRATOR CREDENTIALS** enter desired login credentials
+![cbeaver config](images/cloud-beaver/cbeaver-config.png)
 1. Select **Next** and then **Finish**
 1. Login
+![cbeaver first login](images/cloud-beaver/cbeaver-first-login.png)
 1. Select the cbeaver icon in the upper left
-1. Select the **+** icon and choose MySQL from the list
+![cbeaver config](images/cloud-beaver/cbeaver-admin.png)
+1. Select the **"+"** icon, **New Connection** and choose MySQL from the list
+![cbeaver new connection](images/cloud-beaver/cbeaver-new-connection.png)
+![cbeaver new connection](images/cloud-beaver/cbeaver-mysql-selection.png)
 1. Enter the information shown here
-    - Enter either **Host** name or IP address
+![cbeaver mysql admin](images/cloud-beaver/cbeaver-mysql-admin.png)
+    - Enter either **Host** name (**oaken-mysql** for docker) or public IP address for cloud solutions
     - Enter **Port** 3306
+    - Enter User name = mysql and User password = mysql
+    - Enter Database = oaken
     - Select **DRIVER PROPERTIES** from the top menu
         - for **allowPublicKeyRetrieval** select **TRUE** from the drop down list
+![cbeaver public key](images/cloud-beaver/cbeaver-public-key.png)
     - Select **Test** and in the bottom right you should get pop up with a green check and **Connection is Established**
+![cbeaver connection established](images/cloud-beaver/cbeaver-connection-established.png)
     - Select **Create**
-1. create tables
-    - Select the connection on the left
+1. Connect
+    - Select the connection from the top drop down or double click the connection on the left.
     - Select the **oaken** database
-    - Select **SQL** button above.
-    - Note: You must select the connection on the left and the database else the SQL editor will not associate with the connection. The tool is designed for multiple connections, so one must be selected. Alternatively the database can be chose from the option above.
-    - From `app/mysql/` open `init.sql` and copy into the SQL editor
-    - In the SQL editor highlight each `CREATE TABLE` statement and select the orange arrow on the left or selecting the orange document icon on the left will run the entire script.
+    - Note: You must select the connection on the left and the database else the SQL editor will not associate with the connection. The tool is designed for multiple connections, so one must be selected.
+1. Confirm database
+    - Using the down arrows on the left opne the connection, Databases, oaken, Tables and you should see a list of tables.
+
+        ![cbeaver mysql tables](images/cloud-beaver/cbeaver-mysql-tables.png)
+    - Verify a table
+        - Select the **SQL** icon from above
+        - Insert `select * from sales;`
+        - From the left click the **orange arrow**
+        - Alternatively you can select the **orange list** icon to run a script if it had multiple statements.
 1. MySQl is ready for data ingestion
+1. To login normally see bellow

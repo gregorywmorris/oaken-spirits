@@ -80,16 +80,18 @@ See [OAKEN_TECHNICAL_DESIGN](OAKEN_TECHNICAL_DESIGN.md)
 
 ### Business Services
 
-- Full Cloud
+- Full Cloud - not available yet
+![Under Construction](images/under-construction.jpg)
 
 1. Kafka: see [**1A_Kafka_AWS.md**](1A_Kafka_AWS.md)
 1. Run business services: see [**2A_AWS.md**](2A_AWS.md)
 
 or
 
-- Local and Cloud
-![Under Construction](images/under-construction.jpg)
+- Local and Cloud Analytics
 
-### Analytics
+1. See [**2B_LOCAL_DOCKER.md**](2B_LOCAL_DOCKER.md)
+
+### Cloud Analytics
 
 1. Run analytics services: see [**3_ANALYTICS.md**](3_ANALYTICS.md)

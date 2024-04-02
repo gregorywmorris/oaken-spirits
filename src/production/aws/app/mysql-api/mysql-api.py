@@ -1,7 +1,7 @@
-#!/usr/bin/env python3
 import sys
 sys.path.append('..')
 
+import sys
 import os
 import json
 import logging
@@ -107,8 +107,6 @@ try:
                 print("Date is null or invalid. Skipping insertion.")
                 pass
 
-            sales_date = datetime.strptime(date_str, '%m/%d/%Y').date()
-
             amountSold = int(data.get('BottlesSold', ''))
             totalLiters = float(data.get('VolumeSoldLiters', ''))
 
@@ -187,7 +185,7 @@ try:
                 ItemNumber,VolumeSoldLiters,BottlesSold)
                 VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
                 '''
-                sales_data = (invoice,storNumber,vendorNumber,sales_date,sales,itemNumber,
+                sales_data = (invoice,storNumber,vendorNumber,date_str,sales,itemNumber,
                                 totalLiters,amountSold)
                 mysql_cursor.execute(SALES_QUERY, sales_data)
                 mysql_conn.commit()
@@ -198,10 +196,9 @@ try:
             print('topic')
             # Topic should post after MySQL processing to ensure data is in the database.
             try:
-                sales_date_str = str(sales_date)
                 INVOICES_info = {
                     "Invoice": invoice,
-                    "SaleDate": sales_date_str,
+                    "SaleDate": date_str,
                     "saleDollars": sales_str
                 }
 
