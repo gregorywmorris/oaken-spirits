@@ -16,7 +16,7 @@ from time import sleep
 
 # MySQL connection
 mysql_conn = mysql.connector.connect(
-    host='oaken-mysql',
+    host='127.0.0.1',
     user='mysql',
     password='mysql',
     database='oaken'
@@ -27,7 +27,7 @@ mysql_cursor = mysql_conn.cursor()
 # Create a consumer instance
 consumer = KafkaConsumer(
     'mysql',
-    bootstrap_servers=['kafka1:9092','kafka2:9093','kafka3:9094'],
+    bootstrap_servers=['127.0.0.1:9092','127.0.0.1:9093','127.0.0.1:9094'],
     auto_offset_reset='earliest',  # Start consuming from the earliest offset
     enable_auto_commit=True,       # Automatically commit offsets
     group_id='oaken_mysql_group',  # Specify a consumer group
@@ -38,7 +38,7 @@ consumer = KafkaConsumer(
 consumer.subscribe(topics=['mysql'])
 
 invoice_producer = KafkaProducer(
-                        bootstrap_servers=['kafka1:9092','kafka2:9093','kafka3:9094'],
+                        bootstrap_servers=['127.0.0.1:9092','127.0.0.1:9093','127.0.0.1:9094'],
                         value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
 print('set up complete')
@@ -98,7 +98,7 @@ try:
                 print("Date is null or invalid. Skipping insertion.")
                 pass
 
-            sales_date = datetime.strptime(date_str, '%Y/%m/%d').date()
+            sales_date = datetime.strptime(date_str, '%m/%d/%Y').date()
 
             amountSold = int(data.get('BottlesSold', ''))
             totalLiters = float(data.get('VolumeSoldLiters', ''))

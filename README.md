@@ -1,6 +1,6 @@
 ![Oaken Spirirts Logo](images/oaken-spirits-logo.png)
 
-![Python](https://img.shields.io/badge/Python-red)![Kafka](https://img.shields.io/badge/kafka-black)![MySQL](https://img.shields.io/badge/MySQL-lightblue)![Ubuntu](https://img.shields.io/badge/Ubuntu-green)![Airflow](https://img.shields.io/badge/Airflow-red)![Static Badge](https://img.shields.io/badge/AWS-yellow)![Static Badge](https://img.shields.io/badge/docker-purple)
+![Python](https://img.shields.io/badge/Python-darkblue)![Kafka](https://img.shields.io/badge/kafka-black)![MySQL](https://img.shields.io/badge/MySQL-lightblue)![Ubuntu](https://img.shields.io/badge/Ubuntu-green)![Airflow](https://img.shields.io/badge/Airflow-red)![Static Badge](https://img.shields.io/badge/AWS-yellow)![Static Badge](https://img.shields.io/badge/docker-purple)
 
 ## Project Prompt
 
@@ -15,7 +15,19 @@ Format: **Requirement**: My solution
 - **Data warehouse:** TBD
 - **Transformations:** TBD
 - **Dashboard:** TBD
-- **Reproducibility:** Instructions [start at this section](#technical-design).
+- **Reproducibility:** Instructions [start at this section](#technical-design)
+
+#### Assumptions and Limitations
+
+Assumptions
+
+- Instructions completed in VS Code, ability to convert to your IDE if different
+- Access to a bash command line
+- Basic familiarity with github
+- Ability to access cloud service providers
+
+Limitations
+  For grader reproducibility some things were hard coded that normally would not be. Host names, secrets, etc. best practices would be to define these either in environment variables or in an encrypted manner.
 
 ## Overview
 
@@ -27,11 +39,11 @@ Oaken Spirit management does not want to spend money on more modern, but expensi
 
 ### Concern
 
-1. Not scalable - some manual data entry and transfers
-1. Does not deliver real-time updates
-1. Has data in multiple locations; sometimes duplicated
-1. Lacks a consolidated analytics solutions
-1. Lacks integration options making replacement or adding applications difficult
+1. Not scalable, some manual data entry and transfers. This could cause delays or errors, more so as we scale nationally. The current processes may not be practical.
+1. Does not integrate or deliver real-time updates between the applications. This can lead to delays in shipping and accounting.
+1. Has data in multiple locations; sometimes duplicated. Lack of integration and centralization has led to departments such as sales and shipping recording duplicate data.
+1. Lacks an analytics solution. There are no options for leadership to make data-informed decisions.
+1. Lacks integration options making replacement or adding applications difficult. As the business grows and technology improves, new applications may be added and current applications replaced.
 
 ### Objectives
 
@@ -62,24 +74,20 @@ See [OAKEN_TECHNICAL_DESIGN](OAKEN_TECHNICAL_DESIGN.md)
 1. Choose AWS (local docker option in development)
 1. Analytics
 
-### AWS S3
-
-1. See [**AWS_S3.md**](AWS_S3.md)
-
 ### Environment Variables
 
 1. See [**ENV_VARIABLES.md**](ENV_VARIABLES.md)
 
 ### Business Services
 
-- AWS
+- Full Cloud
 
 1. Kafka: see [**1A_Kafka_AWS.md**](1A_Kafka_AWS.md)
 1. Run business services: see [**2A_AWS.md**](2A_AWS.md)
 
 or
 
-- Local Docker Only
+- Local and Cloud
 ![Under Construction](images/under-construction.jpg)
 
 ### Analytics

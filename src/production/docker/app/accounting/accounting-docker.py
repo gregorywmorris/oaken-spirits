@@ -54,8 +54,9 @@ try:
                 LEDGER_CREDIT = """
                     INSERT INTO salesLedger (Invoice, Credit, Note)
                     VALUES (%s, %s, 'Sale')
+                    ON DUPLICATE KEY UPDATE Credit = %s
                 """
-                credit_data = (invoice, sales)
+                credit_data = (invoice, sales, sales)
                 mysql_cursor.execute(LEDGER_CREDIT, credit_data)
                 mysql_conn.commit()
             except Exception as e:
@@ -66,8 +67,9 @@ try:
                 LEDGER_DEBIT = """
                     INSERT INTO salesLedger (Invoice, Debit, Note)
                     VALUES (%s, %s, 'Shipping')
+                    ON DUPLICATE KEY UPDATE Credit = %s
                 """
-                debit_data = (invoice, shipping_expense)
+                debit_data = (invoice, shipping_expense, shipping_expense)
                 mysql_cursor.execute(LEDGER_DEBIT, debit_data)
                 mysql_conn.commit()
             except Exception as e:

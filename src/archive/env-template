@@ -1,0 +1,10 @@
+KAFKA_SERVER=kafka1:9092,kafka2,kafka3
+MYSQL_TOPIC=mysql
+SHIPPING_TOPIC=shipping
+INVOICES_TOPIC=invoices
+
+MYSQL_HOST=oaken-mysql
+MYSQL_ROOT_PASSWORD=mysql
+MYSQL_USER=mysql
+MYSQL_PASSWORD=mysql
+MYSQL_DATABASE=oaken
