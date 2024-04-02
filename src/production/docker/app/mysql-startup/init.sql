@@ -53,11 +53,10 @@ CREATE TABLE sales (
 );
 
 CREATE TABLE salesLedger (
-    ID MEDIUMINT NOT NULL AUTO_INCREMENT,
     Invoice VARCHAR(255) NOT NULL,
     Credit DECIMAL(11,2),
     Debit DECIMAL(11,2),
     Note VARCHAR(255),
-    PRIMARY KEY (ID),
+    PRIMARY KEY (Invoice, Note),
     FOREIGN KEY (Invoice) REFERENCES sales(Invoice)
 );
