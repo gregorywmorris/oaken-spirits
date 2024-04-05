@@ -1,0 +1,34 @@
+{
+  "type": ["null", "object"],
+  "properties": {
+    "name": {
+      "type": ["null", "string"]
+    },
+    "created_at": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "url": {
+      "type": ["null", "string"]
+    },
+    "updated_at": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "default": {
+      "type": ["null", "boolean"]
+    },
+    "deleted": {
+      "type": ["null", "boolean"]
+    },
+    "description": {
+      "type": ["null", "string"]
+    },
+    "id": {
+      "type": ["null", "integer"]
+    },
+    "is_public": {
+      "type": ["null", "boolean"]
+    }
+  }
+}

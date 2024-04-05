@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "properties": {
+    "business_account_id": {
+      "type": ["null", "string"]
+    },
+    "page_id": {
+      "type": ["null", "string"]
+    },
+    "id": {
+      "type": ["null", "string"]
+    },
+    "ig_reels_avg_watch_time": {
+      "type": ["null", "number"]
+    },
+    "ig_reels_video_view_total_time": {
+      "type": ["null", "number"]
+    },
+    "impressions": {
+      "type": ["null", "integer"]
+    },
+    "reach": {
+      "type": ["null", "integer"]
+    },
+    "saved": {
+      "type": ["null", "integer"]
+    },
+    "video_views": {
+      "type": ["null", "integer"]
+    },
+    "comments": {
+      "type": ["null", "integer"]
+    },
+    "likes": {
+      "type": ["null", "integer"]
+    },
+    "shares": {
+      "type": ["null", "integer"]
+    },
+    "total_interactions": {
+      "type": ["null", "integer"]
+    },
+    "plays": {
+      "type": ["null", "integer"]
+    }
+  }
+}

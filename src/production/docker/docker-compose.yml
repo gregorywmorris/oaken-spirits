@@ -15,11 +15,13 @@ services:
       MYSQL_DATABASE: oaken
     ports:
       - 3306:3306
+    expose:
+      - 3306
     volumes: 
       - oaken-mysql:/var/lib/mysql
       - ./app/mysql-startup:/docker-entrypoint-initdb.d
     networks:
-      - OakenSpirits
+      - oaken
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h localhost"]
       interval: 10s
@@ -36,7 +38,7 @@ services:
     volumes: 
       - oaken-api:/app
     networks:
-      - OakenSpirits
+      - oaken
     depends_on:
       database-mysql:
         condition: service_healthy
@@ -51,7 +53,7 @@ services:
     volumes: 
       - oaken-shipping:/app
     networks:
-      - OakenSpirits
+      - oaken
     depends_on:
       database-mysql:
         condition: service_healthy
@@ -66,7 +68,7 @@ services:
     volumes: 
       - oaken-accounting:/app
     networks:
-      - OakenSpirits
+      - oaken
     depends_on:
       database-mysql:
         condition: service_healthy
@@ -81,7 +83,7 @@ services:
     volumes: 
       - oaken-cloudbeaver:/opt/cloudbeaver/workspace
     networks:
-      - OakenSpirits
+      - oaken
     depends_on:
       database-mysql:
         condition: service_healthy
@@ -97,7 +99,7 @@ services:
       ZOOKEEPER_SERVER_ID: 1
       ZOOKEEPER_SERVERS: zoo1:2888:3888
     networks:
-      - OakenSpirits
+      - oaken
 
   kafka1:
     image: confluentinc/cp-kafka:7.3.2
@@ -118,7 +120,7 @@ services:
     depends_on:
       - zoo1
     networks:
-      - OakenSpirits
+      - oaken
 
   kafka2:
     image: confluentinc/cp-kafka:7.3.2
@@ -139,7 +141,7 @@ services:
     depends_on:
       - zoo1
     networks:
-      - OakenSpirits
+      - oaken
 
   kafka3:
     image: confluentinc/cp-kafka:7.3.2
@@ -160,7 +162,7 @@ services:
     depends_on:
       - zoo1
     networks:
-      - OakenSpirits
+      - oaken
 
   setup-topics:
     image: confluentinc/cp-kafka:7.3.2
@@ -173,11 +175,11 @@ services:
     volumes:
       - ./create-topics.sh:/scripts/create-topics.sh:ro
     networks:
-      - OakenSpirits
+      - oaken
 
 
 networks:
-  OakenSpirits:
+  oaken:
 
 volumes:
   oaken-mysql:

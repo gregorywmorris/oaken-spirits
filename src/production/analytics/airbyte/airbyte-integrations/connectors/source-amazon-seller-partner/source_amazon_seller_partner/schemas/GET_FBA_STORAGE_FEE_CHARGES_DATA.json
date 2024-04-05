@@ -1,0 +1,105 @@
+{
+  "title": "FBA Storage Fees Report",
+  "description": "FBA Storage Fees Report",
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "asin": {
+      "type": ["null", "string"]
+    },
+    "fnsku": {
+      "type": ["null", "string"]
+    },
+    "product_name": {
+      "type": ["null", "string"]
+    },
+    "fulfillment_center": {
+      "type": ["null", "string"]
+    },
+    "country_code": {
+      "type": ["null", "string"]
+    },
+    "longest_side": {
+      "type": ["null", "string"]
+    },
+    "median_side": {
+      "type": ["null", "string"]
+    },
+    "shortest_side": {
+      "type": ["null", "string"]
+    },
+    "measurement_units": {
+      "type": ["null", "string"]
+    },
+    "weight": {
+      "type": ["null", "string"]
+    },
+    "weight_units": {
+      "type": ["null", "string"]
+    },
+    "item_volume": {
+      "type": ["null", "string"]
+    },
+    "volume_units": {
+      "type": ["null", "string"]
+    },
+    "product_size_tier": {
+      "type": ["null", "string"]
+    },
+    "average_quantity_on_hand": {
+      "type": ["null", "string"]
+    },
+    "average_quantity_pending_removal": {
+      "type": ["null", "string"]
+    },
+    "estimated_total_item_volume": {
+      "type": ["null", "string"]
+    },
+    "month_of_charge": {
+      "type": ["null", "string"]
+    },
+    "storage_rate": {
+      "type": ["null", "string"]
+    },
+    "estimated_monthly_storage_fee": {
+      "type": ["null", "string"]
+    },
+    "currency": {
+      "type": ["null", "string"]
+    },
+    "average_quantity_customer_orders": {
+      "type": ["null", "number"]
+    },
+    "base_rate": {
+      "type": ["null", "number"]
+    },
+    "breakdown_incentive_fee_amount": {
+      "type": ["null", "string"]
+    },
+    "dangerous_goods_storage_type": {
+      "type": ["null", "string"]
+    },
+    "eligible_for_inventory_discount": {
+      "type": ["null", "string"]
+    },
+    "qualifies_for_inventory_discount": {
+      "type": ["null", "string"]
+    },
+    "storage_utilization_ratio": {
+      "type": ["null", "number"]
+    },
+    "storage_utilization_ratio_units": {
+      "type": ["null", "string"]
+    },
+    "total_incentive_fee_amount": {
+      "type": ["null", "number"]
+    },
+    "utilization_surcharge_rate": {
+      "type": ["null", "number"]
+    },
+    "dataEndTime": {
+      "type": ["null", "string"],
+      "format": "date"
+    }
+  }
+}

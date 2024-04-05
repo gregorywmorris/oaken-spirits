@@ -1,0 +1,12 @@
+plugins {
+    id 'groovy-gradle-plugin'
+}
+
+repositories {
+    // # Gradle looks for dependency artifacts in repositories listed in 'repositories' blocks in descending order.
+    gradlePluginPortal()
+}
+
+tasks.withType(Jar).configureEach {
+    duplicatesStrategy DuplicatesStrategy.INCLUDE
+}

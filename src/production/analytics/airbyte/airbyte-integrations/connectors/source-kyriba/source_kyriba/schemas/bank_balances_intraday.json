@@ -1,0 +1,40 @@
+{
+  "type": "object",
+  "properties": {
+    "account": {
+      "type": ["object", "null"],
+      "properties": {
+        "code": {
+          "type": ["string", "null"]
+        },
+        "statementIdentifier": {
+          "type": ["null", "string"]
+        },
+        "uuid": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "bankBalance": {
+      "type": ["object", "null"],
+      "properties": {
+        "amount": {
+          "type": ["number", "null"]
+        },
+        "balanceDate": {
+          "type": ["string", "null"]
+        },
+        "currencyCode": {
+          "type": ["string", "null"]
+        },
+        "lastKnownBalanceDate": {
+          "type": ["string", "null"]
+        }
+      },
+      "title": "BK-BalanceModel"
+    }
+  },
+  "title": "BK-BankStatementBalanceModel",
+  "description": "Bank statement balance.",
+  "$schema": "http://json-schema.org/schema#"
+}

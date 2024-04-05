@@ -1,0 +1,67 @@
+{
+  "type": "object",
+  "required": ["uuid", "account", "flowAmount", "flowCode", "status"],
+  "properties": {
+    "uuid": {
+      "type": ["string", "null"]
+    },
+    "transactionDate": {
+      "type": ["string", "null"]
+    },
+    "valueDate": {
+      "type": ["string", "null"]
+    },
+    "accountingDate": {
+      "type": ["string", "null"]
+    },
+    "updateDateTime": {
+      "type": ["string", "null"]
+    },
+    "account": {
+      "$ref": "_definitions.json#/definitions/ReferenceModel"
+    },
+    "flowCode": {
+      "description": "Flow code",
+      "$ref": "_definitions.json#/definitions/ReferenceModel"
+    },
+    "budgetCode": {
+      "description": "Budget code",
+      "$ref": "_definitions.json#/definitions/ReferenceModel"
+    },
+    "status": {
+      "type": ["string", "null"]
+    },
+    "flowAmount": {
+      "description": "Flow amount",
+      "$ref": "_definitions.json#/definitions/AmountModel"
+    },
+    "accountAmount": {
+      "description": "Account amount",
+      "$ref": "_definitions.json#/definitions/AmountModel"
+    },
+    "description": {
+      "type": ["null", "string"]
+    },
+    "reference": {
+      "type": ["null", "string"]
+    },
+    "origin": {
+      "type": ["string", "null"]
+    },
+    "number": {
+      "type": ["integer", "null"]
+    },
+    "glStatus": {
+      "type": ["string", "null"]
+    },
+    "userZones": {
+      "description": "User zones of the cash flow",
+      "$ref": "_definitions.json#/definitions/UserZonesModel"
+    },
+    "actualMode": {
+      "type": ["string", "null"]
+    }
+  },
+  "title": "CashFlowSearchModel",
+  "$schema": "http://json-schema.org/schema#"
+}

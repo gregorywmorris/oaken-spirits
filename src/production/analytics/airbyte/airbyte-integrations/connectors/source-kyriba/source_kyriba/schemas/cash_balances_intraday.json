@@ -1,0 +1,64 @@
+{
+  "type": "object",
+  "properties": {
+    "account": {
+      "type": ["object", "null"],
+      "properties": {
+        "code": {
+          "type": ["string", "null"]
+        },
+        "statementIdentifier": {
+          "type": ["null", "string"]
+        },
+        "uuid": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "cashBalance": {
+      "type": ["array", "null"],
+      "description": "Cash balance.",
+      "items": {
+        "type": ["object", "null"],
+        "properties": {
+          "amount": {
+            "type": ["number", "null"]
+          },
+          "balanceDate": {
+            "type": ["object", "null"],
+            "properties": {
+              "date": {
+                "type": ["string", "null"]
+              },
+              "dateType": {
+                "type": ["string", "null"]
+              }
+            }
+          },
+          "currencyCode": {
+            "type": ["string", "null"]
+          }
+        }
+      }
+    },
+    "cashFlowStatus": {
+      "type": ["object", "null"],
+      "properties": {
+        "actual": {
+          "type": ["boolean", "null"]
+        },
+        "confirmedForecasts": {
+          "type": ["boolean", "null"]
+        },
+        "estimatedForecasts": {
+          "type": ["boolean", "null"]
+        },
+        "intraday": {
+          "type": ["boolean", "null"]
+        }
+      }
+    }
+  },
+  "title": "BK-AccountCashBalanceModel",
+  "$schema": "http://json-schema.org/schema#"
+}

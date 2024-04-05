@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "type": ["null", "integer"]
+    },
+    "price_rule_id": {
+      "type": ["null", "integer"]
+    },
+    "code": {
+      "type": ["null", "string"]
+    },
+    "usage_count": {
+      "type": ["null", "integer"]
+    },
+    "created_at": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "summary": {
+      "type": ["null", "string"]
+    },
+    "discount_type": {
+      "type": ["null", "string"]
+    },
+    "admin_graphql_api_id": {
+      "type": ["null", "string"]
+    },
+    "shop_url": {
+      "type": ["null", "string"]
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "properties": {
+    "error_code": {
+      "type": ["null", "string"]
+    },
+    "device_id": {
+      "type": ["null", "integer"]
+    },
+    "user_id": {
+      "type": ["null", "integer"]
+    },
+    "parent_id": {
+      "type": ["null", "integer"]
+    },
+    "test": {
+      "type": ["null", "boolean"]
+    },
+    "kind": {
+      "type": ["null", "string"]
+    },
+    "order_id": {
+      "type": ["null", "integer"]
+    },
+    "amount": {
+      "type": ["null", "number"]
+    },
+    "authorization": {
+      "type": ["null", "string"]
+    },
+    "currency": {
+      "type": ["null", "string"]
+    },
+    "source_name": {
+      "type": ["null", "string"]
+    },
+    "message": {
+      "type": ["null", "string"]
+    },
+    "id": {
+      "type": ["null", "integer"]
+    },
+    "created_at": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "status": {
+      "type": ["null", "string"]
+    },
+    "total_unsettled_set": {
+      "type": ["null", "object"],
+      "properties": {
+        "shop_money": {
+          "type": ["null", "object"],
+          "properties": {
+            "amount": {
+              "type": ["null", "number"]
+            },
+            "currency_code": {
+              "type": ["null", "string"]
+            },
+            "currency": {
+              "type": ["null", "string"]
+            }
+          }
+        },
+        "presentment_money": {
+          "type": ["null", "object"],
+          "properties": {
+            "amount": {
+              "type": ["null", "number"]
+            },
+            "currency_code": {
+              "type": ["null", "string"]
+            },
+            "currency": {
+              "type": ["null", "string"]
+            }
+          }
+        }
+      }
+    },
+    "payment_id": {
+      "type": ["null", "string"]
+    },
+    "payment_details": {
+      "type": ["null", "object"],
+      "additionalProperties": true,
+      "properties": {
+        "avs_result_code": {
+          "type": ["null", "string"]
+        },
+        "buyer_action_info": {
+          "type": ["null", "string"]
+        },
+        "credit_card_bin": {
+          "type": ["null", "string"]
+        },
+        "credit_card_company": {
+          "type": ["null", "string"]
+        },
+        "credit_card_expiration_month": {
+          "type": ["null", "integer"]
+        },
+        "credit_card_expiration_year": {
+          "type": ["null", "integer"]
+        },
+        "credit_card_name": {
+          "type": ["null", "string"]
+        },
+        "credit_card_number": {
+          "type": ["null", "string"]
+        },
+        "credit_card_wallet": {
+          "type": ["null", "string"]
+        },
+        "cvv_result_code": {
+          "type": ["null", "string"]
+        }
+      }
+    },
+    "processed_at": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "gateway": {
+      "type": ["null", "string"]
+    },
+    "admin_graphql_api_id": {
+      "type": ["null", "string"]
+    },
+    "receipt": {
+      "oneOf": [
+        {
+          "type": ["null", "object"],
+          "additionalProperties": true,
+          "properties": {
+            "fee_amount": {
+              "type": ["null", "number"],
+              "multipleOf": 1e-10
+            },
+            "gross_amount": {
+              "type": ["null", "number"],
+              "multipleOf": 1e-10
+            },
+            "tax_amount": {
+              "type": ["null", "number"],
+              "multipleOf": 1e-10
+            }
+          }
+        },
+        {
+          "type": ["null", "string"]
+        }
+      ]
+    },
+    "location_id": {
+      "type": ["null", "integer"]
+    },
+    "shop_url": {
+      "type": ["null", "string"]
+    }
+  },
+  "additionalProperties": true,
+  "type": ["null", "object"]
+}
