@@ -1,16 +1,16 @@
 WITH base AS (
   SELECT 
-    product_id,
-    COUNT(id) AS purchase_count
-  FROM {{ ref('stg_purchases') }}
+    ItemNumber,
+    COUNT(ItemNumber) AS purchase_count
+  FROM {{ ref('stg_sales') }}
   GROUP BY 1
 )
 
 SELECT 
-  p.id,
-  p.make,
-  p.model,
+  p.ItemNumber,
+  p.ItemName,
+  p.ItemDescription,
   b.purchase_count
-FROM {{ ref('stg_products') }} p
-LEFT JOIN base b ON p.id = b.product_id
+FROM {{ ref('stg_product') }} p
+LEFT JOIN base b ON p.ItemNumber = b.product_ItemNumber
 ORDER BY b.purchase_count DESC
