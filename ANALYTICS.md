@@ -164,39 +164,43 @@ If everything is set up correctly, this command should report a successful conne
 
 ## 5. Orchestrating with Dagster
 
-[Dagster](https://dagster.io/) is a modern data orchestrator designed to help you build, test, and monitor your data workflows. In this section, we'll walk you through setting up Dagster to oversee both the Airbyte and dbt workflows:
+[Dagster](https://dagster.io/) is the chosen orchestrator.
 
 1. **Navigate to the Orchestration Directory**:
 
-   Switch to the directory containing the Dagster orchestration configurations:
-   ```bash
-   cd ../orchestration
-   ```
+    Switch to the directory containing the Dagster orchestration configurations:
+
+    ```bash
+    cd oaken-spirits/src/production/analytics/orchestration/dagster
+    ```
 
 2. **Set Environment Variables**:
 
    Dagster requires certain environment variables to be set to interact with other tools like dbt and Airbyte. Set the following variables:
 
-   ```bash
-   export DAGSTER_DBT_PARSE_PROJECT_ON_LOAD=1
-   export AIRBYTE_PASSWORD=password
-   ```
-   
-   Note: The `AIRBYTE_PASSWORD` is set to `password` as a default for local Airbyte instances. If you've changed this during your Airbyte setup, ensure you use the appropriate password here.
+    ```bash
+    export DAGSTER_DBT_PARSE_PROJECT_ON_LOAD=1
+    export AIRBYTE_PASSWORD=password
+    ```
+
+    Note: The `AIRBYTE_PASSWORD` is set to `password` as a default for local Airbyte instances. If you've changed this during your Airbyte setup, ensure you use the appropriate password here.
 
 3. **Launch the Dagster UI**:
 
-   With the environment variables in place, kick-start the Dagster UI:
-   ```bash
-   dagster dev
-   ```
+    With the environment variables in place, kick-start the Dagster UI:
+
+    ```bash
+    nohup dagster dev
+    ```
 
 4. **Access Dagster in Your Browser**:
 
-   Open your browser and navigate to:
-   ```
-   http://127.0.0.1:3000
-   ```
+    Open your browser and navigate to:
+
+    ```text
+    http://127.0.0.1:3000
+    ```
+
 Here, you should see assets for both Airbyte and dbt. To get an overview of how these assets interrelate, click on `view global asset lineage` at the top right corner of the Dagster UI. This will give you a clear picture of the data lineage, visualizing how data flows between the tools.
 
 5. **Materialize Dagster Assets**:
@@ -204,29 +208,3 @@ Here, you should see assets for both Airbyte and dbt. To get an overview of how 
    In the Dagster UI, click on `Materialize all`. This should trigger the full pipeline. First the Airbyte sync to extract data from Faker and load it into BigQuery, and then dbt to transform the raw data, materializing the `staging` and `marts` models.
 
 You can go to the Airbyte UI and confirm a sync is running, and then, once the dbt jobs have run, go to your BigQuery console and check the views have been created in the `transformed data` dataset.
-
-## Next Steps
-
-Congratulations on deploying and running the E-commerce Analytics Quistart! 🎉 Here are some suggestions on what you can explore next to dive deeper and get more out of your project:
-
-### 1. **Explore the Data and Insights**
-   - Dive into the datasets in BigQuery, run some queries, and explore the data you've collected and transformed. This is your chance to uncover insights and understand the data better!
-
-### 2. **Optimize Your dbt Models**
-   - Review the transformations you’ve applied using dbt. Try optimizing the models or create new ones based on your evolving needs and insights you want to extract.
-
-### 3. **Expand Your Data Sources**
-   - Add more data sources to Airbyte. Explore different types of sources available, and see how they can enrich your existing datasets and broaden your analytical capabilities.
-
-### 4. **Enhance Data Quality and Testing**
-   - Implement data quality tests in dbt to ensure the reliability and accuracy of your transformations. Use dbt's testing features to validate your data and catch issues early on.
-
-### 5. **Automate and Monitor Your Pipelines**
-   - Explore more advanced Dagster configurations and setups to automate your pipelines further and set up monitoring and alerting to be informed of any issues immediately.
-
-### 6. **Scale Your Setup**
-   - Consider scaling your setup to handle more data, more sources, and more transformations. Optimize your configurations and resources to ensure smooth and efficient processing of larger datasets.
-
-### 7. **Contribute to the Community**
-   - Share your learnings, optimizations, and new configurations with the community. Contribute to the respective tool’s communities and help others learn and grow.
-

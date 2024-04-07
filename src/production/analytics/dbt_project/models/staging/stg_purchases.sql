@@ -8,4 +8,4 @@ select
     created_at,
     added_to_cart_at,
     _airbyte_extracted_at,
-from {{ source('faker', 'purchases') }}
+from {{ source('oaken', 'purchases') }}

@@ -10,4 +10,4 @@ select
     created_at,
     updated_at,
     _airbyte_extracted_at,
-from {{ source('faker', 'users') }}
+from {{ source('oaken', 'users') }}
