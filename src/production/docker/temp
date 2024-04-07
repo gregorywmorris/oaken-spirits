@@ -7,3 +7,5 @@ kafka-topics --list --bootstrap-server localhost:9092
 
       database-mysql:
         condition: service_healthy
+
+command: --server-id=223344 --log-bin=mysql-bin --binlog-format=ROW --binlog-row-image=FULL --binlog_expire_logs_seconds=864000

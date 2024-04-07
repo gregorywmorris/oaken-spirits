@@ -9,10 +9,11 @@
 Format: **Requirement**: My solution
 
 - **Problem description:** [Overview section](#overview)
-- **Cloud:** AWS, site link [here](https://aws.amazon.com/)
+- **Cloud:** Google Cloud Platform, site link [GCP](https://cloud.google.com/)
 - **Data ingestion:**
   - Stream with Apache Kafka, site link [here](https://kafka.apache.org/)
-- **Data warehouse:** TBD
+  - Batch with Airbyte, site link [here](https://airbyte.com/)
+- **Data warehouse:** GCP BigQuery
 - **Transformations:** TBD
 - **Dashboard:** TBD
 - **Reproducibility:** Instructions [start at this section](#technical-design)
@@ -84,6 +85,7 @@ See [OAKEN_TECHNICAL_DESIGN](OAKEN_TECHNICAL_DESIGN.md)
 or
 
 - Full Cloud - not available yet
+
 ![Under Construction](images/under-construction.jpg)
 
 <!-- 1. Kafka: see [**1A_Kafka_AWS.md**](1A_Kafka_AWS.md)

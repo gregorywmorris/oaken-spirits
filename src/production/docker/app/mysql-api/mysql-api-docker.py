@@ -209,4 +209,4 @@ finally:
     invoice_producer.close()
     mysql_cursor.close()
     mysql_conn.close()
-    sleep(3)
+    sleep(0)

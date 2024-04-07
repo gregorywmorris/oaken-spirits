@@ -60,3 +60,8 @@ CREATE TABLE salesLedger (
     PRIMARY KEY (Invoice, Note),
     FOREIGN KEY (Invoice) REFERENCES sales(Invoice)
 );
+
+CREATE USER 'airbyte'@'%' IDENTIFIED BY 'airbyte';
+GRANT RELOAD, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'airbyte'@'%';
+GRANT ALL PRIVILEGES ON oaken.* TO 'airbyte'@'%';
+FLUSH PRIVILEGES;

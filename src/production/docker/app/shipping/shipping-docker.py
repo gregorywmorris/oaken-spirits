@@ -95,4 +95,4 @@ finally:
     shipping_producer.close()
     mysql_cursor.close()
     mysql_conn.close()
-    sleep(2)
+    sleep(1)

@@ -8,4 +8,4 @@
 >![WARNING]
 >This will delete all volumes, even those not associated with this project.
 
-1. If you want to clean up all volumes on your docker system `docker volume prune`
+1. If you want to clean up all volumes on your docker system `docker volume prune --force`
