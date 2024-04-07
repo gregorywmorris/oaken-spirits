@@ -1,0 +1,23 @@
+[project]
+name = "oaken-spirits"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "gregorywmorris", email = "gwm1980@gmail.com"},
+]
+dependencies = [
+    "kafka-python>=2.0.2",
+    "python-dotenv>=1.0.1",
+    "mysql>=0.0.3",
+    "mysqlclient>=2.2.4",
+    "mysql-connector-python>=8.3.0",
+    "pandas>=2.2.1",
+    "dbt>=1.0.0.37.6",
+]
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "NONE"}
+
+
+[tool.pdm]
+distribution = false
