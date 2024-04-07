@@ -1,4 +1,6 @@
-# Airbyte
+# Analytics
+
+## Airbyte
 
 1. `cd src/production/analytics/airbyte`
 1. Environment variables
@@ -6,7 +8,7 @@
     - Copy **env-template** into **.env** file
     - In a single command: `cp env-template .env`
 1. `nohup ./run-ab-platform.sh &`
-1. Run `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' oaken-mysql` and note the IP address returned.
+1. Run `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' oaken-mysql` and note the IP address returned. This needed to setup the MySQL source.
 1. Open browser and go to `localhost8000`
 1. Create a login
     - enter an email = admin@oakenspirits.org
@@ -34,3 +36,7 @@
             - This will print the contents to your command line. Just copy and past into the above field.
             - `cat name-and-path-of-your-file.json`
             - You can also open the file and copy the data.
+
+## DBT
+
+1. 

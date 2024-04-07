@@ -1,0 +1,65 @@
+version: 2
+
+sources:
+  - name: oaken
+    # Use your BigQuery project ID
+    database: elaborate-art-318223
+    # Use your BigQuery dataset name
+    schema: oaken_spirits
+
+    tables:
+      - name: customers
+        description: "Oaken customer profile"
+        columns:
+          - name: StoreNumber
+            description: "Unique identifier for the user."
+          - name: StoreName
+          - name: Address
+          - name: City
+          - name: CountyName
+          - name: State
+          - name: ZipCode
+
+      - name: product
+        description: "Oaken products"
+        columns:
+          - name: ItemNumber
+            description: "Unique identifier for the product."
+          - name: CategoryNumber
+          - name: ItemDescription
+          - name: BottleVolumeML
+          - name: Pack
+          - name: BottleCost
+          - name: BottleRetail
+
+      - name: vendor
+        description: "Vendors"
+        columns:
+          - name: VendorNumber
+            description: "Unique identifier for vendors"
+          - name: VendorName
+
+      - name: category
+        description: "Product categories"
+        columns:
+          - name: CategoryNumber
+            description: "Unique identifier for categories"
+          - name: CategoryName
+
+      - name: sales
+        description: "Customer purchases"
+        columns:
+          - name: Invoice
+            description: "Unique identifier for the purchases."
+          - name: StoreNumber
+            description: "Foreign key"
+          - name: VendorNumber
+            description: "Foreign key"
+          - name: SalesDate
+          - name: SaleDollars
+          - name: ItemNumber
+            description: "Foreign key"
+          - name: BottlesSold
+          - name: VolumesSoldLiters
+          - name: ShippingDate
+          - name: ShippingCost
