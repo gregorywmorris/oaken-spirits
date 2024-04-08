@@ -1,3 +1,7 @@
+![Under Constructions](images/under-construction.jpg)
+
+
+
 To run your script as a daemon on Ubuntu to continually process data from a Kafka topic, you can create a systemd service unit. Systemd is the standard init system for many Linux distributions, including Ubuntu. Here's a step-by-step guide to setting up your script as a systemd service:
 
 1. Create a Service File:

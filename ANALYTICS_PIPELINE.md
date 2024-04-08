@@ -6,7 +6,7 @@
 - [Setting an environment for your project](#1-setting-an-environment-for-your-project)
 - [Setting Up BigQuery to work with Airbyte and DBT](#2-setting-up-bigquery)
 - [Setting Up Airbyte Connectors](#3-setting-up-airbyte-connectors)
-- [Setting Up the DBT Project](#4-setting-up-the-DBT-project)
+- [Setting Up the DBT Project](#4-setting-up-the-dbt-project)
 - [Orchestrating with Dagster](#5-orchestrating-with-dagster)
 - [Next Steps](#next-steps)
 
@@ -45,11 +45,11 @@ Get the project up and running on your local machine by following these steps:
 
 - In the Google Cloud Console, go to BigQuery.
 - Make two new datasets: `oken_spririts` for Airbyte and `oaken_transformed` for DBT.
-    - **How to create a dataset:**
-    - In the left sidebar, click on your project name.
-    - Click “Create Dataset”.
-    - Enter the dataset ID (either `oken_spririts` or `oaken_transformed`).
-    - Click "Create Dataset".
+  - **How to create a dataset:**
+  - In the left sidebar, click on your project name.
+  - Click “Create Dataset”.
+  - Enter the dataset ID (either `oken_spririts` or `oaken_transformed`).
+  - Click "Create Dataset".
 
 ### 3. **Create Service Accounts and Assign Roles**
 
@@ -58,20 +58,20 @@ Get the project up and running on your local machine by following these steps:
 - Name your service account (like `airbyte-service-account`).
 - Assign the “BigQuery Data Editor” and “BigQuery Job User” roles to the service account.
 - Follow the same steps to make another service account for DBT (like `DBT-service-account`) and assign the roles.
-    - **How to create a service account and assign roles:**
-        - While creating the service account, under the “Grant this service account access to project” section, click the “Role” dropdown.
-        - Choose the “BigQuery Data Editor” and “BigQuery Job User” roles.
-        - Finish the creation process.
+  - **How to create a service account and assign roles:**
+    - While creating the service account, under the “Grant this service account access to project” section, click the “Role” dropdown.
+    - Choose the “BigQuery Data Editor” and “BigQuery Job User” roles.
+    - Finish the creation process.
 
 ### 4. **Generate JSON Keys for Service Accounts**
 
 - For both service accounts, make a JSON key to let the service accounts sign in.
-    - **How to generate JSON key:**
-        - Find the service account in the “Service accounts” list.
-        - Click on the service account name.
-        - In the “Keys” section, click “Add Key” and pick JSON.
-        - The key will download automatically. Keep it safe and don’t share it.
-        - Do this for the other service account too.
+  - **How to generate JSON key:**
+    - Find the service account in the “Service accounts” list.
+    - Click on the service account name.
+    - In the “Keys” section, click “Add Key” and pick JSON.
+    - The key will download automatically. Keep it safe and don’t share it.
+    - Do this for the other service account too.
 
 ## 3. Setting Up Airbyte Connectors
 
@@ -88,10 +88,10 @@ Get the project up and running on your local machine by following these steps:
 
 ### 3.2. Setting Up Airbyte Connectors Using the UI
 
-Start by launching the Airbyte UI by going to **http://localhost:8000/** in your browser. Then:
+Start by launching the Airbyte UI by going to **<http://localhost:8000/>** in your browser. Then:
 
 1. **Create a login (for first time login only)**:
-    - enter an email = admin@oakenspirits.org
+    - enter an email = <admin@oakenspirits.org>
     - Organization name = Oaken Spirits
     - Select **Get started**
 
@@ -134,7 +134,7 @@ Start by launching the Airbyte UI by going to **http://localhost:8000/** in your
     - Select the source and destination you just created.
     - Follow instructions above for **Complete connection**.
 
-That’s it! Your connection is set up and ready to go! 🎉 
+That’s it! Your connection is set up and ready to go! 🎉
 
 ## 4. Setting Up the DBT Project
 
@@ -143,6 +143,7 @@ That’s it! Your connection is set up and ready to go! 🎉
 1. **Navigate to the DBT Project Directory**:
 
     Move to the directory containing the DBT configuration:
+
     ```bash
     cd oaken-spirits/src/production/analytics/DBT_project
     ```
@@ -157,9 +158,11 @@ If you want to avoid hardcoding credentials in the `profiles.yml` file, you can 
 3. **Test the Connection**:
 
    Once you’ve updated the connection details, you can test the connection to your BigQuery instance using:
+
    ```bash
    DBT debug
    ```
+
 If everything is set up correctly, this command should report a successful connection to BigQuery 🎉.
 
 ## 5. Orchestrating with Dagster

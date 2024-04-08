@@ -12,11 +12,11 @@ Format: **Requirement**: My solution
 - **Cloud:** Google Cloud Platform, site link [GCP](https://cloud.google.com/)
 - **Data ingestion:**
   - Stream with Apache Kafka, site link [here](https://kafka.apache.org/)
-  - Batch with Airbyte, site link [here](https://airbyte.com/)
+  - Batch with Airbyte and Dagster, GitHub links for [Airbyte](https://github.com/airbytehq) and [Dagster](https://github.com/dagster-io/dagster)
 - **Data warehouse:** GCP BigQuery
-- **Transformations:** [DBT](https://www.getdbt.com/)
+- **Transformations:** [Data Build Tool (DBT)](https://www.getdbt.com/)
 - **Dashboard:** TBD
-- **Reproducibility:** Instructions [start at this section](#technical-design)
+- **Reproducibility:** Instructions [start at this section](#instructions-order)
 
 #### Assumptions and Limitations
 
@@ -72,7 +72,7 @@ See [OAKEN_TECHNICAL_DESIGN](OAKEN_TECHNICAL_DESIGN.md)
 
 ### Instructions order
 
-1. Fork, then clone the repository locally
+1. Clone the repository locally
 1. Choose Local
 1. Cloud Analytics
 
@@ -80,7 +80,7 @@ See [OAKEN_TECHNICAL_DESIGN](OAKEN_TECHNICAL_DESIGN.md)
 
 - Local
 
-1. See [**2B_LOCAL_DOCKER.md**](2B_LOCAL_DOCKER.md)
+1. [**LOCAL_DOCKER.md**](LOCAL_DOCKER.md), streaming data pipeline for business services.
 
 or
 
@@ -93,4 +93,9 @@ or
 
 ### Cloud Analytics
 
-1. Run analytics services: see [**3_ANALYTICS.md**](3_ANALYTICS.md)
+1. Run analytics services: see [**ANALYTICS_PIPELINE.md**](ANALYTICS_PIPELINE.md), batch data pipeline for analytics.
+1. Dashboard: [DASHBOARD.md](DASHBOARD.md)
+
+### Close Project
+
+1. [Clean up](CLEAN_UP.md)

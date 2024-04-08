@@ -1,3 +1,5 @@
+![Under Constructions](images/under-construction.jpg)
+
 # Kafka EC2 Set up
 
 ## 1 Create Instance
