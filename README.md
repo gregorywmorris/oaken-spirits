@@ -14,7 +14,7 @@ Format: **Requirement**: My solution
   - Stream with Apache Kafka, site link [here](https://kafka.apache.org/)
   - Batch with Airbyte, site link [here](https://airbyte.com/)
 - **Data warehouse:** GCP BigQuery
-- **Transformations:** TBD
+- **Transformations:** [DBT](https://www.getdbt.com/)
 - **Dashboard:** TBD
 - **Reproducibility:** Instructions [start at this section](#technical-design)
 

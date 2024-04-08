@@ -8,7 +8,7 @@ sources:
     schema: oaken_spirits
 
     tables:
-      - name: customers
+      - name: customer
         description: "Oaken customer profile"
         columns:
           - name: StoreNumber

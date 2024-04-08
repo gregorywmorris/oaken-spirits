@@ -1,9 +1,9 @@
 select
     Invoice,
-    StoreNumber
+    StoreNumber,
     VendorNumber,
-    SalesDate,
-    SalesDollars,
+    SaleDate,
+    SaleDollars,
     ItemNumber,
     VolumeSoldLiters,
     ShippingDate,

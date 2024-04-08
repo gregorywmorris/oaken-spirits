@@ -1,5 +1,4 @@
 select
-    customers,
     StoreNumber,
     StoreName,
     Address,

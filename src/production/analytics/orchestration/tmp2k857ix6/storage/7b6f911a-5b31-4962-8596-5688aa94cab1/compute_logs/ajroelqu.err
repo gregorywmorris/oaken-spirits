@@ -1,0 +1,59 @@
+[32m2024-04-08 11:06:46 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 7b6f911a-5b31-4962-8596-5688aa94cab1 - 1214469 - LOGS_CAPTURED - Started capturing logs in process (pid: 1214469).
+[32m2024-04-08 11:06:46 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 7b6f911a-5b31-4962-8596-5688aa94cab1 - 1214469 - dbt_project_dbt_assets - STEP_START - Started execution of step "dbt_project_dbt_assets".
+[32m2024-04-08 11:06:46 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 7b6f911a-5b31-4962-8596-5688aa94cab1 - dbt_project_dbt_assets - A dbt subsetted execution is not being performed. Using the default dbt selection arguments `['--select', 'fqn:*']`.
+[32m2024-04-08 11:06:46 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 7b6f911a-5b31-4962-8596-5688aa94cab1 - dbt_project_dbt_assets - Copying `/home/blackitalian/ds_projects/oaken-spirits/src/production/analytics/dbt_project/target/partial_parse.msgpack` to `/home/blackitalian/ds_projects/oaken-spirits/src/production/analytics/dbt_project/target/dbt_project_dbt_assets-7b6f911-9cd859a/partial_parse.msgpack` to take advantage of partial parsing.
+[32m2024-04-08 11:06:46 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 7b6f911a-5b31-4962-8596-5688aa94cab1 - dbt_project_dbt_assets - Running dbt command: `dbt build --select fqn:*`.
+[32m2024-04-08 11:06:50 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 7b6f911a-5b31-4962-8596-5688aa94cab1 - 1214469 - dbt_project_dbt_assets - STEP_OUTPUT - Yielded output "model_dbt_project_stg_category" of type "Nothing". (Type check passed).
+[32m2024-04-08 11:06:50 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 7b6f911a-5b31-4962-8596-5688aa94cab1 - 1214469 - dbt_project_dbt_assets - ASSET_MATERIALIZATION - Materialized value stg_category.
+[32m2024-04-08 11:06:54 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 7b6f911a-5b31-4962-8596-5688aa94cab1 - 1214469 - dbt_project_dbt_assets - STEP_OUTPUT - Yielded output "model_dbt_project_stg_product" of type "Nothing". (Type check passed).
+[32m2024-04-08 11:06:54 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 7b6f911a-5b31-4962-8596-5688aa94cab1 - 1214469 - dbt_project_dbt_assets - ASSET_MATERIALIZATION - Materialized value stg_product.
+[32m2024-04-08 11:06:57 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 7b6f911a-5b31-4962-8596-5688aa94cab1 - 1214469 - dbt_project_dbt_assets - STEP_OUTPUT - Yielded output "model_dbt_project_stg_vendor" of type "Nothing". (Type check passed).
+[32m2024-04-08 11:06:57 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 7b6f911a-5b31-4962-8596-5688aa94cab1 - 1214469 - dbt_project_dbt_assets - ASSET_MATERIALIZATION - Materialized value stg_vendor.
+[32m2024-04-08 11:06:57 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 7b6f911a-5b31-4962-8596-5688aa94cab1 - dbt_project_dbt_assets - Finished dbt command: `dbt build --select fqn:*`.
+[32m2024-04-08 11:06:57 -0400[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 7b6f911a-5b31-4962-8596-5688aa94cab1 - 1214469 - dbt_project_dbt_assets - STEP_FAILURE - Execution of step "dbt_project_dbt_assets" failed.
+
+dagster_dbt.errors.DagsterDbtCliRuntimeError: The dbt CLI process with command
+
+`dbt build --select fqn:*`
+
+failed with exit code `1`. Check the stdout in the Dagster compute logs for the full information about the error, or view the dbt debug log: /home/blackitalian/ds_projects/oaken-spirits/src/production/analytics/dbt_project/target/dbt_project_dbt_assets-7b6f911-9cd859a/dbt.log.
+
+Errors parsed from dbt logs:
+
+BigQuery adapter: https://console.cloud.google.com/bigquery?project=elaborate-art-318223&j=bq:US:d59610d7-b0d2-4b9b-8d9d-27996b7d7fbc&page=queryresults
+
+BigQuery adapter: https://console.cloud.google.com/bigquery?project=elaborate-art-318223&j=bq:US:0232d53e-cda5-40af-8678-e9a59d71f8ec&page=queryresults
+
+  Database Error in model stg_customer (models/staging/stg_customer.sql)
+  Unrecognized name: customers; Did you mean customer? at [7:5]
+  compiled Code at target/dbt_project_dbt_assets-7b6f911-9cd859a/run/dbt_project/models/staging/stg_customer.sql
+
+  Database Error in model stg_sales (models/staging/stg_sales.sql)
+  Unrecognized name: SalesDate; Did you mean SaleDate? at [10:5]
+  compiled Code at target/dbt_project_dbt_assets-7b6f911-9cd859a/run/dbt_project/models/staging/stg_sales.sql
+
+Stack Trace:
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster/_core/execution/plan/execute_step.py", line 521, in core_dagster_event_sequence_for_step
+    for user_event in _step_output_error_checked_user_event_sequence(
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster/_core/execution/plan/execute_step.py", line 202, in _step_output_error_checked_user_event_sequence
+    for user_event in user_event_sequence:
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster/_core/execution/plan/execute_step.py", line 100, in _process_asset_results_to_events
+    for user_event in user_event_sequence:
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster/_core/execution/plan/compute.py", line 208, in execute_core_compute
+    for step_output in _yield_compute_results(step_context, inputs, compute_fn, compute_context):
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster/_core/execution/plan/compute.py", line 177, in _yield_compute_results
+    for event in iterate_with_context(
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster/_utils/__init__.py", line 464, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/home/blackitalian/ds_projects/oaken-spirits/src/production/analytics/orchestration/orchestration/assets.py", line 10, in dbt_project_dbt_assets
+    yield from dbt.cli(["build"], context=context).stream()
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster_dbt/core/resources_v2.py", line 635, in stream
+    for event in self.stream_raw_events():
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster_dbt/core/resources_v2.py", line 696, in stream_raw_events
+    self._raise_on_error()
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster_dbt/core/resources_v2.py", line 786, in _raise_on_error
+    raise DagsterDbtCliRuntimeError(
+[0m
