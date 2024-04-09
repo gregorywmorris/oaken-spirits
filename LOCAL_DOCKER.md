@@ -8,12 +8,16 @@
     - `cp docker.env.template` 
 1. Run `chmod +x create-topics.sh .env`
 1. build images
-    - `docker build -t oaken-mysql-kafka -f mysql-api.yml .`
-    - `docker build -t oaken-shipping -f shipping.yml .`
-    - `docker build -t oaken-accounting -f accounting.yml .`
+
+    ```bash
+    docker build -t oaken-mysql-kafka -f mysql-api.yml .
+    docker build -t oaken-shipping -f shipping.yml .
+    docker build -t oaken-accounting -f accounting.yml .
+    ```
+
 1. docker compose: `docker-compose up -d`
 1. Once services are up read [CLOUD_BEAVER.md](CLOUD_BEAVER.md)
-    - Or you may use a database manager running on your pc of your own choice. Mysql is available at `localhost:3306`.
+    - Or you may use a database manager running on your pc of your own choice. MySQL is available at `localhost:3306`.
 
 ## Testing and trouble shooting a single service
 

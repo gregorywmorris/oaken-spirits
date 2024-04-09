@@ -1,6 +1,6 @@
 ![Oaken Spirirts Logo](images/oaken-spirits-logo.png)
 
-![Python](https://img.shields.io/badge/Python-darkblue)![Kafka](https://img.shields.io/badge/kafka-black)![MySQL](https://img.shields.io/badge/MySQL-lightblue)![Ubuntu](https://img.shields.io/badge/Ubuntu-green)![Airflow](https://img.shields.io/badge/Airflow-red)![Static Badge](https://img.shields.io/badge/AWS-yellow)![Static Badge](https://img.shields.io/badge/docker-purple)
+![Python](https://img.shields.io/badge/Python-gluegreen)![Kafka](https://img.shields.io/badge/kafka-black)![MySQL](https://img.shields.io/badge/MySQL-lightblue)![Ubuntu](https://img.shields.io/badge/Ubuntu-lightgreen)![Docker](https://img.shields.io/badge/Docker-darkblue)![Dagster](https://img.shields.io/badge/Dagster-violet)![Airbyte](https://img.shields.io/badge/Airbyte-purple)![DBT](https://img.shields.io/badge/DBT-orange)![GCP](https://img.shields.io/badge/GCP-blue)![BigQuery](https://img.shields.io/badge/BigQuery-skyblue)
 
 ## Project Prompt
 
@@ -20,14 +20,15 @@ Format: **Requirement**: My solution
 
 #### Assumptions and Limitations
 
-##### **Assumptions**
+##### Assumptions
 
 - Instructions completed in VS Code, ability to convert to your IDE if different
 - Access to a bash command line
-- Basic familiarity with github
+- Basic familiarity with GitHub
 - Ability to access cloud service providers
+- Computer capable of running application in this project
 
-##### **Limitations**
+##### Limitations
 
 > For grader reproducibility, some things were hard coded that normally would not be. Host names, secrets, etc. best practices would be to define these either in environment variables or in an encrypted manner.
 
@@ -56,7 +57,7 @@ Format: **Requirement**: My solution
 
 ### Technical Design
 
-See [OAKEN_TECHNICAL_DESIGN](OAKEN_TECHNICAL_DESIGN.md)
+See [OAKEN_TECHNICAL_DESIGN.md](OAKEN_TECHNICAL_DESIGN.md)
 
 ## Data
 
@@ -70,11 +71,16 @@ See [OAKEN_TECHNICAL_DESIGN](OAKEN_TECHNICAL_DESIGN.md)
 
 ![App Services Diagram](images/oaken-service-diagram.png)
 
-### Instructions order
+### Instructions Order
 
+1. Requirements
 1. Clone the repository locally
 1. Choose Local
 1. Cloud Analytics
+
+### Requirements
+
+- [**REQUIREMENTS.md**](REQUIREMENTS.md)
 
 ### Business Services
 
@@ -94,8 +100,8 @@ or
 ### Cloud Analytics
 
 1. Run analytics services: see [**ANALYTICS_PIPELINE.md**](ANALYTICS_PIPELINE.md), batch data pipeline for analytics.
-1. Dashboard: [DASHBOARD.md](DASHBOARD.md)
+1. Dashboard: [**DASHBOARD.md**](DASHBOARD.md)
 
 ### Close Project
 
-1. [Clean up](CLEAN_UP.md)
+- [**Clean_up.md**](CLEAN_UP.md)
