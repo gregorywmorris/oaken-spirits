@@ -58,14 +58,14 @@ Install [Docker](https://docs.docker.com/get-docker/) following the official doc
 ### 2. Create BigQuery Datasets
 
 - In the Google Cloud Console, go to BigQuery.
-- Make two new datasets: `oken_spririts` for Airbyte and `oaken_transformed` for DBT.
+- Make two new datasets: `oaken_spirits` for **Airbyte** and `oaken_transformed` for **DBT**.
   - **How to create a dataset:**
     - In the left sidebar, click on your project name.
     - Click “Create Dataset”.
-    - Enter the dataset ID (either `oken_spririts` or `oaken_transformed`).
+    - Enter the dataset ID (either `oaken_spirits` or `oaken_transformed`).
     - Click "Create Dataset".
 
-### 3. **Create Service Accounts and Assign Roles**
+### 3. Create Service Accounts and Assign Roles
 
 - Go to “IAM & Admin” > “Service accounts” in the Google Cloud Console.
 - Click “Create Service Account”.
@@ -89,7 +89,11 @@ Install [Docker](https://docs.docker.com/get-docker/) following the official doc
 
 1. [Dataset](https://www.kaggle.com/datasets/residentmario/iowa-liquor-sales)
 1. Download and move dataset to `oaken-spirits/src/data`
-1. Unzip and save as **unzip iowa-liquor-sales_dirty.csv** - 3.47 GB file
-    - Command line: `unzip iowa-liquor-sales.zip 'unzip iowa-liquor-sales_dirty.csv'`
+1. Unzip and save as **iowa-liquor-sales_dirty.csv** - 3.47 GB file
+
+    ```bash
+    unzip iowa-liquor-sales.zip 'unzip iowa-liquor-sales_dirty.csv'
+    ```
+
 1. Go to `oaken-spirits/src/non-production/data-preprocessing`
 1. Open `data-cleaning.ipynb` and **Run All**
