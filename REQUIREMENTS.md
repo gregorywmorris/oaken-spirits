@@ -4,19 +4,20 @@
 > This project simulates a data center on a local PC. Underpowered PCs may have difficulty running all process simultaneously. In particular when uploading data to BigQuery.
 
 > [!TIP]
-> If having difficulty consider the following:
+> If having or concerned about having difficulty, consider the following:
 >
 > 1. Run the business services for a short period to confirm the flow then stop the invoice notebook.
-> 1. Stop these docker services after you have run them for at least a few minutes:
+> 1. Stop these docker services after you have run them for at least a few minutes (**oaken-mysql must stay running!**):
 >    - dbeaver
 >    - shipping
 >    - accounting
 >    - kafka: all instances and zookeeper
-> 1. Compare your device to mine to prepare for any difficulty
->    - 12 core (24 logical) CPU at 4.2 GHZ
->    - 48 GB of ram
->    - 2 TB NVME SSD drive
->    - Nvidia 3080 GPU
+> 1. Compare your device to mine to prepare for any difficulty.
+>    - **Note:** While it's not mandatory for your PC to match mine, I can only assure optimal operation based on my own system. Other hardware configurations may yield different results.
+>       - 12 core (24 logical) CPU at 4.2 GHZ
+>       - 48 GB of ram
+>       - 2 TB NVME SSD drive
+>       - Nvidia 3080 GPU
 
 ## 1. Local environment
 
@@ -92,7 +93,7 @@ Install [Docker](https://docs.docker.com/get-docker/) following the official doc
 1. Unzip and save as **iowa-liquor-sales_dirty.csv** - 3.47 GB file
 
     ```bash
-    unzip iowa-liquor-sales.zip 'unzip iowa-liquor-sales_dirty.csv'
+    unzip iowa-liquor-sales.zip 'iowa-liquor-sales_dirty.csv'
     ```
 
 1. Go to `oaken-spirits/src/non-production/data-preprocessing`
