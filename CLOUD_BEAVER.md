@@ -1,8 +1,11 @@
 # Cloud Beaver
 
+## FYI 
 Cloud Beaver community edition is the free version of [DBeaver](https://dbeaver.com/download/cloudbeaver/). DBeaver allows connection to multiple databases though one interface.
 
 The GitHub repository is [here](https://github.com/dbeaver/cloudbeaver) and you can find the docker image [cloud-beaver/here](https://hub.docker.com/r/dbeaver/cloudbeaver).
+
+## Instructions
 
 1. Verify oaken-dbeaver docker container is running
 1. In your browser go to `localhost:8978`
@@ -31,11 +34,11 @@ The GitHub repository is [here](https://github.com/dbeaver/cloudbeaver) and you 
 ![cbeaver connection established](images/cloud-beaver/cbeaver-connection-established.png)
     - Select **Create**
 1. Connect
-    - Select the connection from the top drop down or double click the connection on the left.
+    - Select the connection from the top drop down.
     - Select the **oaken** database
-    - **Note:** You must select the connection on the left and the database else the SQL editor will not associate with the connection. The tool is designed for multiple connections, so one must be selected.
+    - **Note:** You must select the connection and the database else the SQL editor will not associate with the connection. The tool is designed for multiple connections, so one must be selected.
 1. Confirm database
-    - Using the down arrows on the left opne the connection, Databases, oaken, Tables and you should see a list of tables.
+    - Using the down arrows on the left open the connection, Databases, oaken, Tables and you should see a list of tables.
 
         ![cbeaver mysql tables](images/cloud-beaver/cbeaver-mysql-tables.png)
     - Verify a table
@@ -44,4 +47,6 @@ The GitHub repository is [here](https://github.com/dbeaver/cloudbeaver) and you 
         - From the left click the **orange arrow**
         - Alternatively you can select the **orange list** icon to run a script if it had multiple statements.
 1. MySQl is ready for data ingestion
-1. To login normally see bellow
+1. To log back in after a timeout or logout, select the gear on the upper right.
+
+![cbeaver login](images/cloud-beaver/cbeaver-login.png)
