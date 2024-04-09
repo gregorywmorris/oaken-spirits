@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-- [Prerequisites](#prerequisites)
+
 - [Setting an environment for your project](#1-setting-an-environment-for-your-project)
 - [Setting Up BigQuery to work with Airbyte and DBT](#2-setting-up-bigquery)
 - [Setting Up Airbyte Connectors](#3-setting-up-airbyte-connectors)
@@ -10,16 +10,9 @@
 - [Orchestrating with Dagster](#5-orchestrating-with-dagster)
 - [Next Steps](#next-steps)
 
-## Prerequisites
+## 1. Setting Up Airbyte Connectors
 
-Ensure you have the following set up and ready:
-
-
-
-
-## 3. Setting Up Airbyte Connectors
-
-### 3.1 Launch Airbyte in Docker
+### 1.1 Launch Airbyte in Docker
 
 - From the command line:
     1. `cd oaken-spirits/src/production/analytics/airbyte`
@@ -30,7 +23,7 @@ Ensure you have the following set up and ready:
     1. Run `docker compose up -d`
     1. Run `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' oaken-mysql` and note the IP address returned. This needed to setup the MySQL source.
 
-### 3.2. Setting Up Airbyte Connectors Using the UI
+### 1.2. Setting Up Airbyte Connectors Using the UI
 
 Start by launching the Airbyte UI by going to **<http://localhost:8000/>** in your browser. Then:
 
@@ -80,7 +73,7 @@ Start by launching the Airbyte UI by going to **<http://localhost:8000/>** in yo
 
 That’s it! Your connection is set up and ready to go! 🎉
 
-## 4. Setting Up the DBT Project
+## 2. Setting Up the DBT Project
 
 [DBT (data build tool)](https://www.getDBT.com/) allows you to transform your data by writing, documenting, and executing SQL workflows. Setting up the DBT project requires specifying connection details for your data platform, in this case, BigQuery. Here’s a step-by-step guide to help you set this up:
 
@@ -109,7 +102,7 @@ If you want to avoid hardcoding credentials in the `profiles.yml` file, you can 
 
 If everything is set up correctly, this command should report a successful connection to BigQuery 🎉.
 
-## 5. Orchestrating with Dagster
+## 3. Orchestrating with Dagster
 
 [Dagster](https://dagster.io/) is the chosen orchestrator.
 

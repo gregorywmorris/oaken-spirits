@@ -3,7 +3,7 @@
 1. Run `docker-compose down --volumes` in the following folders
     - oaken-spirits/src/production/analytics/airbyte
     - oaken-spirits/src/production/docker
-1. Remove local data: `cd src`, `sudo rm -r data`
+1. Delete local repository
 1. Delete `.json` file for service account.
 
 >[!WARNING]

@@ -73,6 +73,7 @@ See [OAKEN_TECHNICAL_DESIGN.md](OAKEN_TECHNICAL_DESIGN.md)
 1. Clone the repository locally
 1. Choose Local
 1. Cloud Analytics
+1. Clean up
 
 ### Requirements
 
@@ -100,4 +101,4 @@ or
 
 ### Close Project
 
-- [**Clean_up.md**](CLEAN_UP.md)
+- [**CLEAN_UP.md**](CLEAN_UP.md)

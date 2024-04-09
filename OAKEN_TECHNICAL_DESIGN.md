@@ -21,6 +21,15 @@ Oaken Spirits is looking to expand and the current application implementations a
 - **Pub/sub message queue:** Publisher and subscriber message queue. Where a source publishes messages to a queue and a subscribers get those messages from the queue.
 - **ELT:** Extract, Load, Transform. The order of operations in a data transfer.
 - **Virtual Machine (VM):** a compute resource that uses software instead of a physical computer to run programs and deploy apps.
+- Multiples of bytes
+  - 1 kibibyte (KiB) = 1,024 bytes
+  - 1 mebibyte (MiB) = 1,024 KiB
+  - 1 gibibyte (GiB) = 1,024 MiB
+  - 1 tebbibyte (TiB) = 1,024 GiB
+  - 1 pebibyte (PiB) = 1,024 TiB
+  - 1 exbibibyte (EiB) = 1,024 PiB
+  - 1 zebbibibyte (ZiB) = 1,024 EiB
+  - 1 yobbibibyte (YiB) = 1,024 ZiB
 
 ## 4. Out of Scope (Non-goals)
 
@@ -44,9 +53,8 @@ Oaken Spirits is looking to expand and the current application implementations a
     - Custom API for invoice integration with MySQL.
 1. SSOT: Integrate into MySQL database for all data.
 1. Analytics:
-    - Data warehouse: Google BigQury
+    - Data warehouse: Google BigQuery
     - Airbyte: Database snapshot used for extract and load to BigQuery
-
 
 ### Database
 
@@ -95,7 +103,14 @@ Open source applications with in-house support are preferred over paid.
 
 ### Cloud Cost Estimate
 
-
+- BigQuery pricing [documentation](https://cloud.google.com/bigquery?hl=en#pricing).
+- Currently Oaken Spirits would remain in the [free tier](https://cloud.google.com/bigquery/pricing#free-tier).
+- See data calculations [here](DATA_CALCULATIONS.md)
+- With daily updates to BigQuey, we would start to incur costs at 10 GiB
+- Row total ingestion is about 693 bytes
+- **Storage** will incur costs once we pass approximately 15,467,086 rows (total across all BigQuery tables).
+    - **Note:** any data marts/views would be included in this total.
+- **Queries** will incur costs once we pass approximately 1,587,857,143 rows.
 
 ## 9. Cross-region Considerations
 
@@ -123,11 +138,29 @@ If there are any risks or unknowns, list them here. Are there any open questions
 
 ## 12. Solutions considered and discarded
 
-What alternatives have you have considered and discarded? Why don’t these work? Be brief, linking to other documents for details is ok, but always provide a summary inline.
+- Data processing: Apache Spark
+- Data streaming:
+  - Redpanda
+  - RabbitMQ
+- Orchestration:
+  - Apache Airflow
+  - Mage
+- Database: Postgres
 
-Only alternative solutions that an impartial observer would deem credible need be documented.
+**Solutions for future consideration:**
 
-If an alternative solution is not appropriate now, but may be in the future, please discuss potential migration paths.
+- Customer Relation Management (CRM) for sales
+  - Salesforce
+  - Zoho
+  - Hubspot
+- Shipping
+  - Shippo
+  - ShipStation
+  - AfterShip
+- Accounting software
+  - Intuit (multiple solutions)
+  - Zoho Books
+  - Sage
 
 ## 13. Work Required
 
@@ -135,8 +168,10 @@ Include a high level breakdown of the work required to implement your proposed s
 
 ## 14. High-level Test Plan
 
-At a high level, describe how your chosen solution be tested.
+Testing will be to non-production docker environment and to temporary data warehouse tables. Data warehouse temp tables are destroyed after use.
 
 ## 15. References
 
-Links to any other documents that may be relevant, or sources you wish to cite.
+- [BigQuery pricing](https://cloud.google.com/bigquery?hl=en#pricing)
+  - [Free tier](https://cloud.google.com/bigquery/pricing#free-tier)
+- [Data calculations](DATA_CALCULATIONS.md)
