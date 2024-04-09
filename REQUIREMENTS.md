@@ -5,18 +5,18 @@
 
 > [!TIP]
 > If having difficulty consider the following:
-
-1. Run the business services for a short period to confirm the flow then stop the invoice notebook.
-1. Stop these docker services after you have run them for at least a few minutes:
-    - dbeaver
-    - shipping
-    - accounting
-    - kafka: all instances and zookeeper
-1. Compare your device to mine to prepare for any difficulty
-    - 12 core (24 logical) CPU at 4.2 GHZ
-    - 48 GB of ram
-    - 2 TB NVME SSD drive
-    - Nvidia 3080 GPU
+>
+> 1. Run the business services for a short period to confirm the flow then stop the invoice notebook.
+> 1. Stop these docker services after you have run them for at least a few minutes:
+>    - dbeaver
+>    - shipping
+>    - accounting
+>    - kafka: all instances and zookeeper
+> 1. Compare your device to mine to prepare for any difficulty
+>    - 12 core (24 logical) CPU at 4.2 GHZ
+>    - 48 GB of ram
+>    - 2 TB NVME SSD drive
+>    - Nvidia 3080 GPU
 
 ## 1. Local environment
 
