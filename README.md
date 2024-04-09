@@ -32,6 +32,8 @@ Format: **Requirement**: My solution
 
 > For grader reproducibility, some things were hard coded that normally would not be. Host names, secrets, etc. best practices would be to define these either in environment variables or in an encrypted manner.
 
+> Additionally, a single service account was created.
+
 ## Overview
 
 > Oaken Spirits is an alcohol distributor that gets its name from its popular private selection of whiskey. Its popularity has spurred growth and the company has recently signed a deal to expand at a national level with several large vendors. Currently, the applications supporting the business are for Iowa sales only and the CEO is concerned that they will not support future growth and would like a system that can handle national-level sales.
@@ -58,14 +60,6 @@ Format: **Requirement**: My solution
 ### Technical Design
 
 See [OAKEN_TECHNICAL_DESIGN.md](OAKEN_TECHNICAL_DESIGN.md)
-
-## Data
-
-[Dataset](https://www.kaggle.com/datasets/residentmario/iowa-liquor-sales)
-
-1. [Ubuntu Kaggle API instructions](https://www.endtoend.ai/tutorial/how-to-download-kaggle-datasets-on-ubuntu/)
-1. `kaggle datasets download -d residentmario/iowa-liquor-sales`
-1. `unzip iowa-liquor-sales.zip 'unzip iowa-liquor-sales_dirty.csv'` - 3.47 GB file
 
 ## Set Up Services
 
