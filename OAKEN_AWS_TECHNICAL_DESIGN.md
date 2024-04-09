@@ -8,7 +8,7 @@ Oaken Spirits is looking to expand and the current application implementations a
 
 1. Create a scalable solution.
 1. Create a data pipeline that integrates the systems and provides real-time updates.
-1. Create a single database as the single source of truth (SSOT).
+1. Create a single database as the single source of truth.
 1. Provide an analytics solution for management.
 
 ## 3. Glossary
@@ -19,12 +19,16 @@ Oaken Spirits is looking to expand and the current application implementations a
 - **OLAP:** Online analytical processing.For data analytics.
 - **Apache Kafka:** A pub/sub message queue.
 - **Pub/sub message queue:** Publisher and subscriber message queue. Where a source publishes messages to a queue and a subscribers get those messages from the queue.
-- **ELT:** Extract, Load, Transform. The order of operations in a data transfer.
+- **ETL:** Extract, Transform, Load. The order of operations in a data transfer.
+- **SuperSet:** Data analytics and dashboard application.
+- **Airflow:** Application for scheduling and orchestration of data pipelines or workflows.
 - **Virtual Machine (VM):** a compute resource that uses software instead of a physical computer to run programs and deploy apps.
 
 ## 4. Out of Scope (Non-goals)
 
 1. Implementing new applications that are not required for the initially identified requirements.
+1. Implementation team is not the training team.
+    - Documentation provided, but IT support team trainers retain responsibility.
 
 ## 5. Assumptions
 
@@ -37,27 +41,29 @@ Oaken Spirits is looking to expand and the current application implementations a
 
 ### Overview
 
-1. Scalable: Docker provides an scalable service (within the confines of our data center). Internally accessed applications, from a small staff allow our local data center service these applications.
+1. Scalable: use of cloud services will allow scalability to a national level if desired.
+    - Virtual Machines (VM) allows auto scaling.
+        - Machines Images can be used for quick service recovery.
+        - Machine images can be imported into different cloud services.
+    - Cloud services have high uptime service agreements which reduces downtime and recovery as services grow.
 1. Service Integration:
     - Kafka Pub/sub Message queue to transfer data between services.
         - Apache Kafka can scale to over a 1 million messages a second.
-    - Custom API for invoice integration with MySQL.
-1. SSOT: Integrate into MySQL database for all data.
+    - API for invoice integration with MySQL.
+1. SSOT: Integrate into MySQL database for OLTP.
 1. Analytics:
-    - Data warehouse: Google BigQury
-    - Airbyte: Database snapshot used for extract and load to BigQuery
-
+    - Database snapshot used for ETL.
+    - Data extract to SuperSet.
+    - Automate with Airflow.
 
 ### Database
 
-#### Data Retention
+### Data Retention
 
 1. **OLTP database:** 2 years. Data beyond this point moved to a data warehouse.
-1. **Data Warehouse:** 10 years for audit requirements.
+1. **Data Warehouse:** At least 10 years for audit requirements.
 
 #### Data Types
-
-MySQL data types
 
 | Type | Storage(Bytes) | Minimum Value Signed | Minimum Value Unsigned | Maximum Value Signed | Maximum Value Unsigned |
 |:---| :---: | :---: | :---: | :---: | :---: |
@@ -69,33 +75,56 @@ MySQL data types
 
 ## 7. Security Considerations
 
-1. Exposed ports:
+1. For local machine IP:
     - All VMs SSH port 22.
-    - Kafka port 9092,9093,9094, 19092,19903,19904
+    - Kafka port 9092 (for Invoice application).
     - MySQL 33060.
-1. Sensitive data
-    - GCP service account `.json` file
-    - MySQL credentials
-    - Cloud Beaver credentials
-    - Customer personally identifiable data
-    - Business operational data
+1. For cloud resources:
+    - Kafka port 9092.
+    - MySQL 33060.
+1. Sensitive environment variables.
+    - AWS Systems Manager Parameter Store.
+1. Linux on each system to be updated on cycle with company policy.
 
 ## 8. Cost Analysis
 
-Oaken Spirits preference is budget conscious choices that will grow as the company grows rather than a system that can necessarily support future growth out of the box.
+Oaken Spirits is still a small company and preference is to budget conscious choices that will grow as the company grows rather than a system that can necessarily support future growth out of the box.
 
-Open source applications with in-house support are preferred over paid.
+Open source applications are preferred over paid with in-house support.
 
 ### Application Cost Estimate
 
-1. Continue to use legacy applications, no additional costs.
-1. Open source database and integration solutions, no additional costs.
-    - Monitor hardware usage for future need for expansion.
-1. Google Bigquery, see below.
+1. No additional cost. Continue to use legacy applications.
 
 ### Cloud Cost Estimate
 
+1. AWS Parameter Store
+    - Standard = Free
 
+#### AWS 3 year commitment
+
+1. Business applications virtual machines
+    - VM: m6i.large (business apps)
+        - Monthly: $44.43
+    - 10GB Block Storage
+        - Monthly $0.80
+    - Data transfer
+        - free
+    - 4 virtual machines total (business apps)
+        - $182.52 month
+        - $2190.24 year
+    - VM: r6i.xlarge (database)
+        - $ 95.96 month
+    - 10GB Block storage
+        - Monthly: $0.80  
+    - 2X Daily Snapshot
+        - Monthly: $2.80
+    - 1 virtual machine total (database)
+        - Monthly: $99.56
+        - Yearly: $1194.72
+    - TOTAL
+        - Monthly: $282.08
+        - Yearly: $3384.96
 
 ## 9. Cross-region Considerations
 

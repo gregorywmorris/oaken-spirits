@@ -30,9 +30,11 @@ Format: **Requirement**: My solution
 
 ##### Limitations
 
-> For grader reproducibility, some things were hard coded that normally would not be. Host names, secrets, etc. best practices would be to define these either in environment variables or in an encrypted manner.
-
-> Additionally, a single service account was created.
+> 1. For grader reproducibility, some things were hard coded that normally would not be. Host names, secrets, etc. best practices would be to define these either in environment variables or in an encrypted manner.
+>
+> 2. Additionally, a single service account was created.
+>
+> 3. Mardown written for GitHub Markdown, as such it may render better if read on GitHub.
 
 ## Overview
 
