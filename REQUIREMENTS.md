@@ -1,7 +1,7 @@
 # Project Requirements
 
 > [!IMPORTANT]
-> This project simulates a data center on a local PC. Underpowered PCs may have difficulty running all process simultaneously.
+> This project simulates a data center on a local PC. Underpowered PCs may have difficulty running all process simultaneously. In particular when uploading data to BigQuery.
 
 > [!TIP]
 > If having difficulty consider the following:
