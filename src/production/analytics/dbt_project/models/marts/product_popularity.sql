@@ -4,12 +4,6 @@ WITH base AS (
     COUNT(ItemNumber) AS purchase_count
   FROM {{ ref('stg_sales') }}
   GROUP BY ItemNumber
-),
-product AS (
-  SELECT
-    ItemNumber,
-    ItemDescription
-  FROM {{ ref('stg_product') }}
 )
 
 SELECT 

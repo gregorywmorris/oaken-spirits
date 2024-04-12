@@ -96,9 +96,9 @@ If you want to avoid hardcoding credentials in the `profiles.yml` file, you can 
 
    Once you’ve updated the connection details, you can test the connection to your BigQuery instance using:
 
-   ```bash
-   DBT debug
-   ```
+    ```bash
+    DBT debug
+    ```
 
 If everything is set up correctly, this command should report a successful connection to BigQuery 🎉.
 
