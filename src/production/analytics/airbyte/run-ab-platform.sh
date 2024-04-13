@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# version=1.0
-
 ########## Pointless Banner for street cred ##########
 # Make sure the console is huuuge
 
