@@ -51,7 +51,7 @@ Install [Docker](https://docs.docker.com/get-docker/) following the official doc
 
 ### 1. Create a Google Cloud Project
 
-- If you have a Google Cloud project, you can skip this step.
+- If you have a Google Cloud project, you can skip this step if you wish to use your existing project.
 - Go to the [Google Cloud Console](https://console.cloud.google.com/).
 - Click on the "Select a project" dropdown at the top right and select "New Project".
 - Give your project a name and follow the steps to create it.
@@ -63,14 +63,16 @@ Install [Docker](https://docs.docker.com/get-docker/) following the official doc
   - **How to create a dataset:**
     - In the left sidebar, click on your project name.
     - Click “Create Dataset”.
-    - Enter the dataset ID (either `oaken_spirits` or `oaken_transformed`).
+    - Enter the dataset ID  `oaken_spirits`.
     - Click "Create Dataset".
+    - Repeat these steps for `oaken_transformed`.
+- Copy and run the `oaken-spirits/src/production/analytics/bigquery/bigquery.sql` in BigQuery.
 
 ### 3. Create Service Accounts and Assign Roles
 
 - Go to “IAM & Admin” > “Service accounts” in the Google Cloud Console.
 - Click “Create Service Account”.
-- Name your service account, `oaken-service-account`).
+- Name your service account, `oaken-service-account`.
 - Assign the “BigQuery Data Editor” and “BigQuery Job User” roles to the service account.
   - **How to create a service account and assign roles:**
     - While creating the service account, under the “Grant this service account access to project” section, click the “Role” dropdown.
@@ -85,6 +87,7 @@ Install [Docker](https://docs.docker.com/get-docker/) following the official doc
     - Click on the service account name.
     - In the “Keys” section, click “Add Key” and pick JSON.
     - The key will download automatically. Keep it safe and don’t share it.
+    - This key location is needed for the analytics portion of the project.
 
 ## 3. Data prep
 
@@ -97,4 +100,4 @@ Install [Docker](https://docs.docker.com/get-docker/) following the official doc
     ```
 
 1. Go to `oaken-spirits/src/non-production/data-preprocessing`
-1. Open `data-cleaning.ipynb` and **Run All**
+1. Open `data-cleaning.ipynb` and **Run All**.

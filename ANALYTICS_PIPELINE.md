@@ -2,13 +2,9 @@
 
 ## Table of Contents
 
-
-- [Setting an environment for your project](#1-setting-an-environment-for-your-project)
-- [Setting Up BigQuery to work with Airbyte and DBT](#2-setting-up-bigquery)
-- [Setting Up Airbyte Connectors](#3-setting-up-airbyte-connectors)
-- [Setting Up the DBT Project](#4-setting-up-the-dbt-project)
-- [Orchestrating with Dagster](#5-orchestrating-with-dagster)
-- [Next Steps](#next-steps)
+- [Setting Up Airbyte Connectors](#1-setting-up-airbyte-connectors)
+- [Setting Up the DBT Project](#2-setting-up-the-dbt-project)
+- [Orchestrating with Dagster](#3-orchestrating-with-dagster)
 
 ## 1. Setting Up Airbyte Connectors
 
@@ -87,7 +83,7 @@ That’s it! Your connection is set up and ready to go! 🎉
 
 2. **Update Connection Details**:
 
-   - You'll find a `profiles.yml` file within the directory. This file contains configurations for DBT to connect with your data platform. Update this file with your BigQuery connection details. Specifically, you need to update the Service Account JSON file path and your BigQuery project ID.
+   - You'll find a `profiles.yml` file within the directory. This file contains configurations for DBT to connect with your data platform. Update this file with your BigQuery connection details. Specifically, you need to update the **Service Account JSON file path** and **your BigQuery project ID**.
    - Provide your BigQuery project ID in the `database` field of the `DBT_project/models/sources/oaken_sources.yml` file.
 
 If you want to avoid hardcoding credentials in the `profiles.yml` file, you can leverage environment variables. An example of how to use them in this file is provided for the `keyfile` key.
