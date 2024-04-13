@@ -91,9 +91,6 @@ or
 
 ![Under Construction](images/under-construction.jpg)
 
-<!-- 1. Kafka: see [**1A_Kafka_AWS.md**](1A_Kafka_AWS.md)
-1. Run business services: see [**2A_AWS.md**](2A_AWS.md)-->
-
 ### Cloud Analytics
 
 1. Run analytics services: see [**ANALYTICS_PIPELINE.md**](ANALYTICS_PIPELINE.md), batch data pipeline for analytics.

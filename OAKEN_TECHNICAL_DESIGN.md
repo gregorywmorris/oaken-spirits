@@ -13,15 +13,14 @@ Oaken Spirits is looking to expand and the current application implementations a
 
 ## 3. Glossary
 
-- **A single source of truth (SSOT):** The practice of aggregating the data from many systems within an organization to a single location.
+- **A single source of truth (SSOT):** The practice of aggregating the data from many systems within an organization to a single location. Rule enforcement used to ensure this data is trustworthy.
 - **Scope creep:** Adding additional features or functions of a new product, requirements, or work that is not authorized during project scoping.
 - **OLTP:** Online Transactional Processing. I.e. every day business services.
-- **OLAP:** Online analytical processing.For data analytics.
-- **Apache Kafka:** A pub/sub message queue.
+- **OLAP:** Online analytical processing. For data analytics, often columnar rather than row based.
 - **Pub/sub message queue:** Publisher and subscriber message queue. Where a source publishes messages to a queue and a subscribers get those messages from the queue.
 - **ELT:** Extract, Load, Transform. The order of operations in a data transfer.
-- **Virtual Machine (VM):** a compute resource that uses software instead of a physical computer to run programs and deploy apps.
-- Multiples of bytes
+- ***bibyte:** A suffix used in the context of a binary systems, where multiples of 2 are used instead of multiples of 10. Example: kibi instead of kilo.
+- **Multiples of *bibytes**
   - 1 kibibyte (KiB) = 1,024 bytes
   - 1 mebibyte (MiB) = 1,024 KiB
   - 1 gibibyte (GiB) = 1,024 MiB
@@ -51,7 +50,7 @@ Oaken Spirits is looking to expand and the current application implementations a
     - Kafka Pub/sub Message queue to transfer data between services.
         - Apache Kafka can scale to over a 1 million messages a second.
     - Custom API for invoice integration with MySQL.
-1. SSOT: Integrate into MySQL database for all data.
+1. Single Source of Truth: Integrate into MySQL database for all data.
 1. Analytics:
     - Data warehouse: Google BigQuery
     - Airbyte: Database snapshot used for extract and load to BigQuery
@@ -105,38 +104,43 @@ Open source applications with in-house support are preferred over paid.
 
 - BigQuery pricing [documentation](https://cloud.google.com/bigquery?hl=en#pricing).
 - Currently Oaken Spirits would remain in the [free tier](https://cloud.google.com/bigquery/pricing#free-tier).
-- See data calculations [here](DATA_CALCULATIONS.md)
+- See data calculations [here](documentation/DATA_CALCULATIONS.md)
 - With daily updates to BigQuey, we would start to incur costs at 10 GiB
 - Row total ingestion is about 693 bytes
 - **Storage** will incur costs once we pass approximately 15,467,086 rows (total across all BigQuery tables).
     - **Note:** any data marts/views would be included in this total.
 - **Queries** will incur costs once we pass approximately 1,587,857,143 rows.
+- With current sales it would take decades to pass storage cost concerns. However monitoring is required as we move into the national market.
 
-## 9. Cross-region Considerations
+## 9. Operational Readiness Considerations
+
+1. Deployment on docker server.
+1. Additional monitoring required for new implementations.
+    - Consider automating monitoring.
+    - Integration disruption.
+    - Network monitoring for increased traffic.
+1. Additional training of IT staff for on call support.
+1. Increased access management requirements and monitoring.
+1. Increase backups for new MySQL database.
+1. Application downtime process required to address integrations not flowing.
+    - Will operations resort to manual entry or wait for system to resume?
+    - How will backlogged data be caught up?
+
+## 10. Cross-region Considerations
 
 Not applicable.
 
-## 10. Operational Readiness Considerations
-
-Discuss how your solution will support operational excellence, ensuring customer satisfaction with a frugal level of support.
-
-Aim to answer:
-
-How your chosen solution will be deployed?
-What metrics and alarms will be key to monitoring the health of your solution?
-How are your solution limits enforced?
-Will there be any throttling or blacklisting mechanisms in place?
-Will there be any data recovery mechanisms in place?
-If this is a multi-tenant solution, how are you dealing with noisy neighbor issues?
-How will your solution be debugged when problems occur?
-How will your solution recover in case of a brown-out?
-Are there any operational tools required for your solution?
-
 ## 11. Risks and Open Issues
 
-If there are any risks or unknowns, list them here. Are there any open questions which could impact your design for which you do not currently have answers? How are you going to get answers? Will any required team members be loaned to other teams during the time slated for implementation? Are all of required dependencies available in all the regions you need them? What are the one way doors, and are we sure we want to go through them?
+1. Security requirements need to be updated to specifically address cloud solutions.
+    - Auditing
+    - Access
+    - Application connections
+    - Data management
 
 ## 12. Solutions considered and discarded
+
+### Solutions cost of ownership that exceeded our current needs
 
 - Data processing: Apache Spark
 - Data streaming:
@@ -146,8 +150,13 @@ If there are any risks or unknowns, list them here. Are there any open questions
   - Apache Airflow
   - Mage
 - Database: Postgres
+- Data warehouse:
+  - AWS Redshift
+  - Databricks
+  - Snowflake
+  - Fivetran
 
-**Solutions for future consideration:**
+### Solutions for future consideration
 
 - Customer Relation Management (CRM) for sales
   - Salesforce
@@ -164,7 +173,19 @@ If there are any risks or unknowns, list them here. Are there any open questions
 
 ## 13. Work Required
 
-Include a high level breakdown of the work required to implement your proposed solution, including t-shirt size estimates (S, M, XL) where appropriate. Also, specifically call out if this solution requires resources from other teams to be completed (away teams, dependencies etc.)
+**Implementation:**
+
+1. Kafka - M
+1. Custom MySQL API - M
+1. MySQL database - S
+1. Data pipeline - L
+    - Multiple linked applications
+1. Bigquery - S
+1. Dashboard - M
+
+**Support:**
+
+1. Overall ongoing support - L
 
 ## 14. High-level Test Plan
 
