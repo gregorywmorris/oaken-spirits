@@ -9,4 +9,4 @@ OPTIONS(
 ) AS
 
 SELECT  SaleDate, CategoryName, TotalSalesDollars
-FROM `elaborate-art-318223.oaken_transformed.top_ten_forecast`
+FROM `your project name.oaken_transformed.top_ten_forecast`
