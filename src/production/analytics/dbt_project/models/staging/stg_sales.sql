@@ -5,6 +5,7 @@ select
     SaleDate,
     SaleDollars,
     ItemNumber,
+    BottlesSold,
     VolumeSoldLiters,
     ShippingDate,
     ShippingCost

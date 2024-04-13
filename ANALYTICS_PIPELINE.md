@@ -111,7 +111,7 @@ If everything is set up correctly, this command should report a successful conne
     Switch to the directory containing the Dagster orchestration configurations:
 
     ```bash
-    cd oaken-spirits/src/production/analytics/orchestration/dagster
+    cd oaken-spirits/src/production/analytics/orchestration/
     ```
 
 2. **Set Environment Variables**:
@@ -143,5 +143,6 @@ Here, you should see assets for both Airbyte and DBT. To get an overview of how 
 5. **Materialize Dagster Assets**:
 
     1. In the Dagster UI, click on `Materialize all`. This should trigger the full pipeline. First the Airbyte sync to extract data from MySQL and load it into BigQuery, and then DBT to transform the raw data, materializing the `staging` and `marts` models.
+        - **NOTE:** I have had this faile without cause. Just materialize again.
     1. You can go to the Airbyte UI and confirm a sync is running, and then.
     1. When the DBT jobs have run, go to your BigQuery console and check the views have been created in the `oaken_transformed` dataset.
