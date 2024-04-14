@@ -44,20 +44,20 @@ Formatted as: **Requirement**: My solution
 
 ### Concern
 
-1. Not scalable, some manual data entry and transfers. This could cause delays or errors, more so as we scale nationally. The current processes may not be practical.
-1. Does not integrate or deliver real-time updates between the applications. This can lead to delays in shipping and accounting.
-1. Has data in multiple locations; sometimes duplicated. Lack of integration and centralization has led to departments such as sales and shipping recording duplicate data.
-1. Lacks an analytics solution. There are no options for leadership to make data-informed decisions.
-1. Lacks integration options making replacement or adding applications difficult. As the business grows and technology improves, new applications may be added and current applications replaced.
+>1. Not scalable, some manual data entry and transfers. This could cause delays or errors, more so as we scale nationally. The current processes may not be practical.
+>1. Does not integrate or deliver real-time updates between the applications. This can lead to delays in shipping and accounting.
+>1. Has data in multiple locations; sometimes duplicated. Lack of integration and centralization has led to departments such as sales and shipping recording duplicate data.
+>1. Lacks an analytics solution. There are no options for leadership to make data-informed decisions.
+>1. Lacks integration options making replacement or adding applications difficult. As the business grows and technology improves, new applications may be added and current applications replaced.
 
 ### Objectives
 
-1. Create a single database as the source of truth.
-1. Create a data pipeline that integrates the systems and provides real-time updates.
-1. Ensure the system is scalable.
-1. Provide an analytics solution.
+>1. Create a single database as the source of truth.
+>1. Create a data pipeline that integrates the systems and provides real-time updates.
+>1. Ensure the system is scalable.
+>1. Provide an analytics solution.
 
-### Technical Design
+## Technical Design
 
 See [OAKEN_TECHNICAL_DESIGN.md](OAKEN_TECHNICAL_DESIGN.md)
 
@@ -79,9 +79,7 @@ See [OAKEN_TECHNICAL_DESIGN.md](OAKEN_TECHNICAL_DESIGN.md)
 
 ### Business Services
 
-- Local
-
-1. [**LOCAL_DOCKER.md**](LOCAL_DOCKER.md), streaming data pipeline for business services.
+- On-site data center: [**LOCAL_DOCKER.md**](LOCAL_DOCKER.md), streaming data pipeline for business services.
 
 or
 
