@@ -15,7 +15,7 @@ Format: **Requirement**: My solution
   - Batch with Airbyte and Dagster, GitHub links for [Airbyte](https://github.com/airbytehq) and [Dagster](https://github.com/dagster-io/dagster)
 - **Data warehouse:** GCP BigQuery
 - **Transformations:** [Data Build Tool (DBT)](https://www.getdbt.com/)
-- **Dashboard:** TBD
+- **Dashboard:** Looker Studio
 - **Reproducibility:** Instructions [start at this section](#instructions-order)
 
 #### Assumptions and Limitations
@@ -26,7 +26,7 @@ Format: **Requirement**: My solution
 - Access to a bash command line
 - Basic familiarity with GitHub
 - Ability to access cloud service providers
-- Computer capable of running application in this project
+- A computer capable of running applications in this project
 
 ##### Limitations
 
@@ -34,11 +34,11 @@ Format: **Requirement**: My solution
 >
 > 2. Additionally, a single service account was created.
 >
-> 3. Mardown written for GitHub Markdown, as such it may render better if read on GitHub.
+> 3. Markdown written for GitHub Markdown, as such it may render better if read on GitHub.
 
 ## Overview
 
-> Oaken Spirits is an alcohol distributor that gets its name from its popular private selection of whiskey. Its popularity has spurred growth and the company has recently signed a deal to expand at a national level with several large vendors. Currently, the applications supporting the business are for Iowa sales only and the CEO is concerned that they will not support future growth and would like a system that can handle national-level sales.
+> Oaken Spirits is an alcohol distributor that has gained popularity from it's private selection of whiskey. Its popularity has spurred growth and the company has recently signed a deal to expand at a national level with several large vendors. Currently, the applications supporting the business are for Iowa sales only and the CEO is concerned that they will not support future growth and would like a system that can handle national-level sales.
 
 ### Scenario
 
@@ -54,10 +54,10 @@ Format: **Requirement**: My solution
 
 ### Objectives
 
-1. Create a single database as the source of truth
-1. Create a data pipeline that integrates the systems and provides real-time updates
-1. Ensure the system is scalable
-1. Provide an analytics solution
+1. Create a single database as the source of truth.
+1. Create a data pipeline that integrates the systems and provides real-time updates.
+1. Ensure the system is scalable.
+1. Provide an analytics solution.
 
 ### Technical Design
 
