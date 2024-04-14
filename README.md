@@ -17,6 +17,9 @@ Formatted as: **Requirement**: My solution
 - **Transformations:** [Data Build Tool (DBT)](https://www.getdbt.com/)
 - **Dashboard:** Looker Studio
 - **Reproducibility:** Instructions [start at this section](#instructions-order)
+- **Tests:**
+  - Added to `start-dagster.sh`
+  - Included in the `start-airbyte.sh` from the source template
 
 #### Assumptions and Limitations
 

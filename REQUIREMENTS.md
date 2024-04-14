@@ -35,7 +35,7 @@
     - [Miniconda installation instructions](https://docs.anaconda.com/free/miniconda/)
     - `conda create -n oaken`
 
-> [!NOTE]
+> [!TIP]
 > In VS code, **Ctrl+Shift+p** pulls up option to select Python interpreter.
 
 ### After activating environment

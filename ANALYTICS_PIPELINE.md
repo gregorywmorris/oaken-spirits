@@ -104,6 +104,9 @@ Start by launching the Airbyte UI by going to **http://localhost:8000/** in your
 
 [Dagster](https://dagster.io/) is the chosen orchestrator.
 
+>[!NOTE]
+> Airbyte and MySQL dockers containers must be running.
+
 1. **Navigate to the Orchestration Directory**:
 
     Switch to the directory containing the Dagster orchestration configurations:
@@ -112,23 +115,19 @@ Start by launching the Airbyte UI by going to **http://localhost:8000/** in your
     cd oaken-spirits/src/production/analytics/orchestration/
     ```
 
-2. **Set Environment Variables**:
-
-   - Set the following variables:
-
-    ```bash
-    export DAGSTER_DBT_PARSE_PROJECT_ON_LOAD=1
-    ```
-
-3. **Launch the Dagster UI**:
+1. **Launch the Dagster UI**:
 
     - Launch Dagster:
 
     ```bash
-    dagster dev
+    chmod +x start-dagster.sh
     ```
 
-4. **Access Dagster in Your Browser**:
+    ```bash
+    ./start-dagster.sh
+    ```
+
+1. **Access Dagster in Your Browser**:
 
     - Open your browser and navigate to:
 
@@ -136,10 +135,13 @@ Start by launching the Airbyte UI by going to **http://localhost:8000/** in your
     http://127.0.0.1:3000
     ```
 
-Here, you should see assets for both Airbyte and DBT. To get an overview of how these assets interrelate, click on `view global asset lineage` at the top right corner of the Dagster UI. This will give you a clear picture of the data lineage, visualizing how data flows between the tools.
+    - Here, you should see assets for both Airbyte and DBT. To get an overview of how these assets interrelate, click on `view global asset lineage` at the top right corner of the Dagster UI. This will give you a clear picture of the data lineage, visualizing how data flows between the tools.
 
-5. **Materialize Dagster Assets**:
+1. **Materialize Dagster Assets**:
 
-    1. In the Dagster UI, click on `Materialize all`. This should trigger the full pipeline. First the Airbyte sync to extract data from MySQL and load it into BigQuery, and then DBT to transform the raw data, materializing the `staging` and `marts` models.
+    1. Select Assets from the top bar.
+    1. Select the check box in hte upper ledt, or manually select all the assets.
+    1. Click on `Materialize all` in the uppr right. This should trigger the full pipeline.
+        - The status will show the the assets processing.
         - **NOTE:** I have had this fail without cause. Just materialize again.
     1. When the DBT jobs have run, go to your BigQuery console and check the views have been created in the `oaken_transformed` dataset.
