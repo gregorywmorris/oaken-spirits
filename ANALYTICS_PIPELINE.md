@@ -12,11 +12,12 @@
 
 - From the command line:
     1. `cd oaken-spirits/src/production/analytics/airbyte`
-    1. Environment variables
-        - Create a **.env** file
-        - Copy **env-template** into **.env** file
-        - In a single command: `cp env-template .env`
-    1. Run `docker compose up -d`
+    1. Start airbyte
+
+        ```bash
+        ./start-airbyte.sh -b
+        ```
+
     1. Run `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' oaken-mysql` and note the IP address returned. This needed to setup the MySQL source.
 
 ### 1.2. Setting Up Airbyte Connectors Using the UI
