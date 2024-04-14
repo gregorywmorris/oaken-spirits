@@ -62,6 +62,10 @@ Oaken Spirits is looking to expand and the current application implementations a
 1. **OLTP database:** 2 years. Data beyond this point moved to a data warehouse.
 1. **Data Warehouse:** 10 years for audit requirements.
 
+#### Entity Relationship Diagram
+
+![ERD](images/oaken-mysql-erd.png)
+
 #### Data Types
 
 MySQL data types
@@ -196,3 +200,4 @@ Testing will be to non-production docker environment and to temporary data wareh
 - [BigQuery pricing](https://cloud.google.com/bigquery?hl=en#pricing)
   - [Free tier](https://cloud.google.com/bigquery/pricing#free-tier)
 - [Data calculations](DATA_CALCULATIONS.md)
+- [ERD creation tool](https://sqldbm.com/)
