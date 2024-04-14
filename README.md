@@ -1,6 +1,6 @@
 ![Oaken Spirirts Logo](images/oaken-spirits-logo.png)
 
-![Python](https://img.shields.io/badge/Python-gluegreen)![Kafka](https://img.shields.io/badge/kafka-black)![MySQL](https://img.shields.io/badge/MySQL-lightblue)![Ubuntu](https://img.shields.io/badge/Ubuntu-lightgreen)![Docker](https://img.shields.io/badge/Docker-darkblue)![Dagster](https://img.shields.io/badge/Dagster-violet)![Airbyte](https://img.shields.io/badge/Airbyte-purple)![DBT](https://img.shields.io/badge/DBT-orange)![GCP](https://img.shields.io/badge/GCP-blue)![BigQuery](https://img.shields.io/badge/BigQuery-skyblue)
+![Python](https://img.shields.io/badge/Python-gluegreen)![Kafka](https://img.shields.io/badge/kafka-black)![MySQL](https://img.shields.io/badge/MySQL-lightblue)![Ubuntu](https://img.shields.io/badge/Ubuntu-lightgreen)![Docker](https://img.shields.io/badge/Docker-darkblue)![Dagster](https://img.shields.io/badge/Dagster-violet)![Airbyte](https://img.shields.io/badge/Airbyte-purple)![DBT](https://img.shields.io/badge/DBT-orange)![GCP](https://img.shields.io/badge/GCP-blue)![BigQuery](https://img.shields.io/badge/BigQuery-skyblue)![Looker](https://img.shields.io/badge/Looker_Studio-darkred)
 
 ## Project Prompt
 
