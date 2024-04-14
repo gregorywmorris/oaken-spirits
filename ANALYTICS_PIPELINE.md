@@ -21,18 +21,18 @@
 
 ### 1.2. Setting Up Airbyte Connectors Using the UI
 
-Start by launching the Airbyte UI by going to **<http://localhost:8000/>** in your browser. Then:
+Start by launching the Airbyte UI by going to **http://localhost:8000/** in your browser.
 
 1. **Create a login (for first time login only)**:
-    - enter an email = <admin@oakenspirits.org>
+    - enter an email = admin@oakenspirits.org
     - Organization name = Oaken Spirits
     - Select **Get started**
 
 1. **Create a source**:
-    1. Select **Create your first connection** in the middle of the page
+    - Select **Create your first connection** in the middle of the page
         - Or go to the Sources tab and click on `+ New source`.
-    1. Search for MySQL and select it.
-    1. Set up connection
+    - Search for MySQL and select it.
+    - Set up connection
         - Source name = Oaken MySQL
         - Host = the IP address from above, it will not accept host or container name
         - port = 3306
@@ -67,11 +67,9 @@ Start by launching the Airbyte UI by going to **<http://localhost:8000/>** in yo
     - Select the source and destination you just created.
     - Follow instructions above for **Complete connection**.
 
-That’s it! Your connection is set up and ready to go! 🎉
-
 ## 2. Setting Up the DBT Project
 
-[DBT (data build tool)](https://www.getDBT.com/) allows you to transform your data by writing, documenting, and executing SQL workflows. Setting up the DBT project requires specifying connection details for your data platform, in this case, BigQuery. Here’s a step-by-step guide to help you set this up:
+[DBT (data build tool)](https://www.getDBT.com/) Setting up the DBT project requires specifying connection details for your data platform, in this case, BigQuery. Here’s a step-by-step guide to help you set this up:
 
 1. **Navigate to the DBT Project Directory**:
 
@@ -83,22 +81,26 @@ That’s it! Your connection is set up and ready to go! 🎉
 
 2. **Update Connection Details**:
 
-   - You'll find a `profiles.yml` file within the directory. This file contains configurations for DBT to connect with your data platform. Update this file with your BigQuery connection details. Specifically, you need to update the **Service Account JSON file path** and **your BigQuery project ID**.
-   - Provide your BigQuery project ID in the `database` field of the `DBT_project/models/sources/oaken_sources.yml` file.
-
-If you want to avoid hardcoding credentials in the `profiles.yml` file, you can leverage environment variables. An example of how to use them in this file is provided for the `keyfile` key.
+   - You'll find a `profiles.yml` file within the directory. Update this file with your BigQuery connection details. Specifically, you need to update the **Service Account JSON file path** and **your BigQuery project ID**.
+   - Go to `DBT_project/models/sources/oaken_sources.yml`.
+        - Update the `database` field with your BigQuery project ID
 
 3. **Test the Connection**:
 
-   Once you’ve updated the connection details, you can test the connection to your BigQuery instance using:
+    - Test DBT with:
 
     ```bash
     DBT debug
     ```
 
-If everything is set up correctly, this command should report a successful connection to BigQuery 🎉.
+    - Output should end with:
 
-## 3. Orchestrating with Dagster
+    ```bash
+    04:30:58   Connection test: [OK connection ok]
+    04:30:58  All checks passed
+    ```
+
+## 3. Orchestrating with Dagster:
 
 [Dagster](https://dagster.io/) is the chosen orchestrator.
 
@@ -112,7 +114,7 @@ If everything is set up correctly, this command should report a successful conne
 
 2. **Set Environment Variables**:
 
-   Dagster requires certain environment variables to be set to interact with other tools like DBT and Airbyte. Set the following variables:
+   - Set the following variables:
 
     ```bash
     export DAGSTER_DBT_PARSE_PROJECT_ON_LOAD=1
@@ -120,7 +122,7 @@ If everything is set up correctly, this command should report a successful conne
 
 3. **Launch the Dagster UI**:
 
-    With the environment variables in place, kick-start the Dagster UI:
+    - Launch Dagster:
 
     ```bash
     dagster dev
@@ -128,7 +130,7 @@ If everything is set up correctly, this command should report a successful conne
 
 4. **Access Dagster in Your Browser**:
 
-    Open your browser and navigate to:
+    - Open your browser and navigate to:
 
     ```text
     http://127.0.0.1:3000
@@ -139,6 +141,5 @@ Here, you should see assets for both Airbyte and DBT. To get an overview of how 
 5. **Materialize Dagster Assets**:
 
     1. In the Dagster UI, click on `Materialize all`. This should trigger the full pipeline. First the Airbyte sync to extract data from MySQL and load it into BigQuery, and then DBT to transform the raw data, materializing the `staging` and `marts` models.
-        - **NOTE:** I have had this faile without cause. Just materialize again.
-    1. You can go to the Airbyte UI and confirm a sync is running, and then.
+        - **NOTE:** I have had this fail without cause. Just materialize again.
     1. When the DBT jobs have run, go to your BigQuery console and check the views have been created in the `oaken_transformed` dataset.

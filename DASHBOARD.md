@@ -23,7 +23,7 @@
 
 1. Use above image as a general guide
 1. Primary font color dark-yellow
-1. Header color redish-orange
+1. Header background color redish-orange
 1. Title: **Oaken Spirits - Sales Report**
 1. Left window filters
     - Date Range control
