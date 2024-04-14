@@ -6,7 +6,7 @@
 
 ### Data Engineering Zoomcamp
 
-Format: **Requirement**: My solution
+Formatted as: **Requirement**: My solution
 
 - **Problem description:** [Overview section](#overview)
 - **Cloud:** Google Cloud Platform, site link [GCP](https://cloud.google.com/)
