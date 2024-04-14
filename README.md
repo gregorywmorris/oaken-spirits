@@ -30,9 +30,10 @@ Formatted as: **Requirement**: My solution
 
 ##### Limitations
 
-1. For grader reproducibility, some things were hard coded that normally would not be. Host names, secrets, etc. best practices would be to define these either in environment variables or in an encrypted manner.
-1. Additionally, a single service account was created.
-1. Markdown written for GitHub Markdown, as such it may render better if read on GitHub.
+1. For grader reproducibility, some things were hardcoded that normally would not be. Host names, secrets, etc. best practices would be to define these either in environment variables or in an encrypted manner.
+1. Additionally, a single service account was created, in production there would be a service account for each service.
+1. Batch processing is run manually for demonstration, this would be put on a schedule in production.
+1. Markdown is written for GitHub Markdown, as such it may render better if read on GitHub.
 
 ## Overview
 
@@ -59,7 +60,7 @@ Formatted as: **Requirement**: My solution
 
 ## Technical Design
 
-See [OAKEN_TECHNICAL_DESIGN.md](OAKEN_TECHNICAL_DESIGN.md)
+See [**OAKEN_TECHNICAL_DESIGN.md**](OAKEN_TECHNICAL_DESIGN.md)
 
 ## Set Up Services
 
