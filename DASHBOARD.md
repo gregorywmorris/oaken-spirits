@@ -41,10 +41,12 @@
     - Bottles Sold: Scorecard with compact numbers
     - Sales Dollars: Scorecard with compact numbers
 1. Charts: Bar and Line
+    - All align legend center
     - All have Date range Dimension SaleDate
     - All have dimension of SaleDate(YearMonth)
     - All sort SaleDate(Date) Descending.
     - In Style, Bars 12. This provides the latest date and goes back at least 12 months.
+    - Reverse x-axis for bar charts
     - Top bar: Invoice
     - Middle bar: BottlesSold
     - Bottom is Time series, Sales Dollars
