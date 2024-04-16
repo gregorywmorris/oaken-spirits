@@ -1,0 +1,270 @@
+2024-04-15 19:12:49 [46mplatform[0m > Docker volume job log path: /tmp/workspace/8/0/logs.log
+2024-04-15 19:12:49 [46mplatform[0m > Executing worker wrapper. Airbyte version: 0.57.1
+2024-04-15 19:12:49 [46mplatform[0m > Attempt 0 to save workflow id for cancellation
+2024-04-15 19:12:49 [46mplatform[0m > start sync worker. job id: 8 attempt id: 0
+2024-04-15 19:12:49 [46mplatform[0m > 
+2024-04-15 19:12:49 [46mplatform[0m > ----- START REPLICATION -----
+2024-04-15 19:12:49 [46mplatform[0m > 
+2024-04-15 19:12:49 [46mplatform[0m > Running destination...
+2024-04-15 19:12:49 [46mplatform[0m > Using default value for environment variable SIDECAR_KUBE_CPU_LIMIT: '2.0'
+2024-04-15 19:12:49 [46mplatform[0m > Using default value for environment variable SOCAT_KUBE_CPU_LIMIT: '2.0'
+2024-04-15 19:12:49 [46mplatform[0m > Using default value for environment variable SIDECAR_KUBE_CPU_LIMIT: '2.0'
+2024-04-15 19:12:49 [46mplatform[0m > Using default value for environment variable SIDECAR_KUBE_CPU_REQUEST: '0.1'
+2024-04-15 19:12:49 [46mplatform[0m > Using default value for environment variable SOCAT_KUBE_CPU_REQUEST: '0.1'
+2024-04-15 19:12:49 [46mplatform[0m > Using default value for environment variable SOCAT_KUBE_CPU_LIMIT: '2.0'
+2024-04-15 19:12:49 [46mplatform[0m > Using default value for environment variable SIDECAR_KUBE_CPU_REQUEST: '0.1'
+2024-04-15 19:12:49 [46mplatform[0m > Using default value for environment variable SOCAT_KUBE_CPU_REQUEST: '0.1'
+2024-04-15 19:12:49 [46mplatform[0m > Checking if airbyte/destination-bigquery:2.4.12 exists...
+2024-04-15 19:12:49 [46mplatform[0m > Checking if airbyte/source-mysql:3.3.13 exists...
+2024-04-15 19:13:03 [46mplatform[0m > airbyte/source-mysql:3.3.13 not found locally. Attempting to pull the image...
+2024-04-15 19:13:03 [46mplatform[0m > airbyte/destination-bigquery:2.4.12 not found locally. Attempting to pull the image...
+2024-04-15 19:13:16 [46mplatform[0m > Image does not exist.
+2024-04-15 19:13:16 [46mplatform[0m > Image does not exist.
+2024-04-15 19:13:16 [46mplatform[0m > thread status... timeout thread: false , replication thread: true
+2024-04-15 19:13:16 [46mplatform[0m > sync summary: {
+  "status" : "failed",
+  "startTime" : 1713208369347,
+  "endTime" : 1713208396865,
+  "totalStats" : {
+    "bytesEmitted" : 0,
+    "destinationStateMessagesEmitted" : 0,
+    "destinationWriteEndTime" : 0,
+    "destinationWriteStartTime" : 1713208369379,
+    "meanSecondsBeforeSourceStateMessageEmitted" : 0,
+    "maxSecondsBeforeSourceStateMessageEmitted" : 0,
+    "meanSecondsBetweenStateMessageEmittedandCommitted" : 0,
+    "recordsEmitted" : 0,
+    "replicationEndTime" : 1713208396857,
+    "replicationStartTime" : 1713208369347,
+    "sourceReadEndTime" : 0,
+    "sourceReadStartTime" : 1713208369380,
+    "sourceStateMessagesEmitted" : 0
+  },
+  "streamStats" : [ ],
+  "performanceMetrics" : {
+    "processFromSource" : {
+      "elapsedTimeInNanos" : 0,
+      "executionCount" : 0,
+      "avgExecTimeInNanos" : "NaN"
+    },
+    "readFromSource" : {
+      "elapsedTimeInNanos" : 0,
+      "executionCount" : 0,
+      "avgExecTimeInNanos" : "NaN"
+    },
+    "processFromDest" : {
+      "elapsedTimeInNanos" : 0,
+      "executionCount" : 0,
+      "avgExecTimeInNanos" : "NaN"
+    },
+    "writeToDest" : {
+      "elapsedTimeInNanos" : 0,
+      "executionCount" : 0,
+      "avgExecTimeInNanos" : "NaN"
+    },
+    "readFromDest" : {
+      "elapsedTimeInNanos" : 0,
+      "executionCount" : 0,
+      "avgExecTimeInNanos" : "NaN"
+    }
+  }
+}
+2024-04-15 19:13:16 [46mplatform[0m > failures: [ {
+  "failureOrigin" : "replication",
+  "internalMessage" : "io.airbyte.workers.exception.WorkerException: Could not find image: airbyte/source-mysql:3.3.13",
+  "externalMessage" : "Something went wrong during replication",
+  "metadata" : {
+    "attemptNumber" : 0,
+    "jobId" : 8
+  },
+  "stacktrace" : "java.lang.RuntimeException: io.airbyte.workers.exception.WorkerException: Could not find image: airbyte/source-mysql:3.3.13\n\tat io.airbyte.workers.general.ReplicationWorkerHelper.startSource(ReplicationWorkerHelper.kt:219)\n\tat io.airbyte.workers.general.BufferedReplicationWorker.lambda$run$1(BufferedReplicationWorker.java:163)\n\tat io.airbyte.workers.general.BufferedReplicationWorker.lambda$runAsync$2(BufferedReplicationWorker.java:227)\n\tat java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\nCaused by: io.airbyte.workers.exception.WorkerException: Could not find image: airbyte/source-mysql:3.3.13\n\tat io.airbyte.workers.process.DockerProcessFactory.create(DockerProcessFactory.java:117)\n\tat io.airbyte.workers.process.AirbyteIntegrationLauncher.read(AirbyteIntegrationLauncher.java:227)\n\tat io.airbyte.workers.internal.DefaultAirbyteSource.start(DefaultAirbyteSource.java:93)\n\tat io.airbyte.workers.general.ReplicationWorkerHelper.startSource(ReplicationWorkerHelper.kt:217)\n\t... 6 more\n",
+  "timestamp" : 1713208396825
+}, {
+  "failureOrigin" : "replication",
+  "internalMessage" : "io.airbyte.workers.exception.WorkerException: Could not find image: airbyte/destination-bigquery:2.4.12",
+  "externalMessage" : "Something went wrong during replication",
+  "metadata" : {
+    "attemptNumber" : 0,
+    "jobId" : 8
+  },
+  "stacktrace" : "java.lang.RuntimeException: io.airbyte.workers.exception.WorkerException: Could not find image: airbyte/destination-bigquery:2.4.12\n\tat io.airbyte.workers.general.ReplicationWorkerHelper.startDestination(ReplicationWorkerHelper.kt:201)\n\tat io.airbyte.workers.general.BufferedReplicationWorker.lambda$run$0(BufferedReplicationWorker.java:162)\n\tat io.airbyte.workers.general.BufferedReplicationWorker.lambda$runAsync$2(BufferedReplicationWorker.java:227)\n\tat java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\nCaused by: io.airbyte.workers.exception.WorkerException: Could not find image: airbyte/destination-bigquery:2.4.12\n\tat io.airbyte.workers.process.DockerProcessFactory.create(DockerProcessFactory.java:117)\n\tat io.airbyte.workers.process.AirbyteIntegrationLauncher.write(AirbyteIntegrationLauncher.java:265)\n\tat io.airbyte.workers.internal.DefaultAirbyteDestination.start(DefaultAirbyteDestination.java:112)\n\tat io.airbyte.workers.general.ReplicationWorkerHelper.startDestination(ReplicationWorkerHelper.kt:199)\n\t... 6 more\n",
+  "timestamp" : 1713208396825
+} ]
+2024-04-15 19:13:16 [46mplatform[0m > 
+2024-04-15 19:13:16 [46mplatform[0m > ----- END REPLICATION -----
+2024-04-15 19:13:16 [46mplatform[0m > 
+2024-04-15 19:13:17 [46mplatform[0m > Retry State: RetryManager(completeFailureBackoffPolicy=BackoffPolicy(minInterval=PT10S, maxInterval=PT30M, base=3), partialFailureBackoffPolicy=null, successiveCompleteFailureLimit=5, totalCompleteFailureLimit=10, successivePartialFailureLimit=1000, totalPartialFailureLimit=10, successiveCompleteFailures=1, totalCompleteFailures=1, successivePartialFailures=0, totalPartialFailures=0)
+ Backoff before next attempt: 10 seconds
+2024-04-15 19:13:18 [46mplatform[0m > Retry State: RetryManager(completeFailureBackoffPolicy=BackoffPolicy(minInterval=PT10S, maxInterval=PT30M, base=3), partialFailureBackoffPolicy=null, successiveCompleteFailureLimit=5, totalCompleteFailureLimit=10, successivePartialFailureLimit=1000, totalPartialFailureLimit=10, successiveCompleteFailures=1, totalCompleteFailures=1, successivePartialFailures=0, totalPartialFailures=0)
+2024-04-15 19:13:18 [46mplatform[0m > Backing off for: 10 seconds.
+2024-04-15 19:13:29 [46mplatform[0m > Docker volume job log path: /tmp/workspace/8/1/logs.log
+2024-04-15 19:13:29 [46mplatform[0m > Executing worker wrapper. Airbyte version: 0.57.1
+2024-04-15 19:13:29 [46mplatform[0m > Attempt 0 to save workflow id for cancellation
+2024-04-15 19:13:29 [46mplatform[0m > 
+2024-04-15 19:13:29 [46mplatform[0m > Using default value for environment variable SIDECAR_KUBE_CPU_LIMIT: '2.0'
+2024-04-15 19:13:29 [46mplatform[0m > Using default value for environment variable SOCAT_KUBE_CPU_LIMIT: '2.0'
+2024-04-15 19:13:29 [46mplatform[0m > ----- START CHECK -----
+2024-04-15 19:13:29 [46mplatform[0m > Using default value for environment variable SIDECAR_KUBE_CPU_REQUEST: '0.1'
+2024-04-15 19:13:29 [46mplatform[0m > 
+2024-04-15 19:13:29 [46mplatform[0m > Using default value for environment variable SOCAT_KUBE_CPU_REQUEST: '0.1'
+2024-04-15 19:13:29 [46mplatform[0m > Checking if airbyte/source-mysql:3.3.13 exists...
+2024-04-15 19:13:39 [46mplatform[0m > airbyte/source-mysql:3.3.13 not found locally. Attempting to pull the image...
+2024-04-15 19:13:52 [46mplatform[0m > Image does not exist.
+2024-04-15 19:13:52 [46mplatform[0m > Unexpected error while checking connection: 
+io.airbyte.workers.exception.WorkerException: Could not find image: airbyte/source-mysql:3.3.13
+	at io.airbyte.workers.process.DockerProcessFactory.create(DockerProcessFactory.java:117) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at io.airbyte.workers.process.AirbyteIntegrationLauncher.check(AirbyteIntegrationLauncher.java:149) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at io.airbyte.workers.general.DefaultCheckConnectionWorker.run(DefaultCheckConnectionWorker.java:71) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at io.airbyte.workers.general.DefaultCheckConnectionWorker.run(DefaultCheckConnectionWorker.java:44) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at io.airbyte.workers.temporal.TemporalAttemptExecution.get(TemporalAttemptExecution.java:142) ~[io.airbyte-airbyte-workers-0.57.1.jar:?]
+	at io.airbyte.workers.temporal.check.connection.CheckConnectionActivityImpl.lambda$runWithJobOutput$1(CheckConnectionActivityImpl.java:226) ~[io.airbyte-airbyte-workers-0.57.1.jar:?]
+	at io.airbyte.commons.temporal.HeartbeatUtils.withBackgroundHeartbeat(HeartbeatUtils.java:57) ~[io.airbyte-airbyte-commons-temporal-core-0.57.1.jar:?]
+	at io.airbyte.workers.temporal.check.connection.CheckConnectionActivityImpl.runWithJobOutput(CheckConnectionActivityImpl.java:211) ~[io.airbyte-airbyte-workers-0.57.1.jar:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at io.temporal.internal.activity.RootActivityInboundCallsInterceptor$POJOActivityInboundCallsInterceptor.executeActivity(RootActivityInboundCallsInterceptor.java:64) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.activity.RootActivityInboundCallsInterceptor.execute(RootActivityInboundCallsInterceptor.java:43) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.activity.ActivityTaskExecutors$BaseActivityTaskExecutor.execute(ActivityTaskExecutors.java:107) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.activity.ActivityTaskHandlerImpl.handle(ActivityTaskHandlerImpl.java:124) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.worker.ActivityWorker$TaskHandlerImpl.handleActivity(ActivityWorker.java:278) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.worker.ActivityWorker$TaskHandlerImpl.handle(ActivityWorker.java:243) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.worker.ActivityWorker$TaskHandlerImpl.handle(ActivityWorker.java:216) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.worker.PollTaskExecutor.lambda$process$0(PollTaskExecutor.java:105) ~[temporal-sdk-1.22.3.jar:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+2024-04-15 19:13:52 [46mplatform[0m > 
+2024-04-15 19:13:52 [46mplatform[0m > ----- END CHECK -----
+2024-04-15 19:13:52 [46mplatform[0m > 
+2024-04-15 19:13:53 [46mplatform[0m > Retry State: RetryManager(completeFailureBackoffPolicy=BackoffPolicy(minInterval=PT10S, maxInterval=PT30M, base=3), partialFailureBackoffPolicy=null, successiveCompleteFailureLimit=5, totalCompleteFailureLimit=10, successivePartialFailureLimit=1000, totalPartialFailureLimit=10, successiveCompleteFailures=2, totalCompleteFailures=2, successivePartialFailures=0, totalPartialFailures=0)
+ Backoff before next attempt: 30 seconds
+2024-04-15 19:13:53 [46mplatform[0m > Retry State: RetryManager(completeFailureBackoffPolicy=BackoffPolicy(minInterval=PT10S, maxInterval=PT30M, base=3), partialFailureBackoffPolicy=null, successiveCompleteFailureLimit=5, totalCompleteFailureLimit=10, successivePartialFailureLimit=1000, totalPartialFailureLimit=10, successiveCompleteFailures=2, totalCompleteFailures=2, successivePartialFailures=0, totalPartialFailures=0)
+2024-04-15 19:13:53 [46mplatform[0m > Backing off for: 30 seconds.
+2024-04-15 19:14:24 [46mplatform[0m > Docker volume job log path: /tmp/workspace/8/2/logs.log
+2024-04-15 19:14:24 [46mplatform[0m > Executing worker wrapper. Airbyte version: 0.57.1
+2024-04-15 19:14:24 [46mplatform[0m > Attempt 0 to save workflow id for cancellation
+2024-04-15 19:14:24 [46mplatform[0m > Using default value for environment variable SIDECAR_KUBE_CPU_LIMIT: '2.0'
+2024-04-15 19:14:24 [46mplatform[0m > 
+2024-04-15 19:14:24 [46mplatform[0m > Using default value for environment variable SOCAT_KUBE_CPU_LIMIT: '2.0'
+2024-04-15 19:14:24 [46mplatform[0m > ----- START CHECK -----
+2024-04-15 19:14:24 [46mplatform[0m > Using default value for environment variable SIDECAR_KUBE_CPU_REQUEST: '0.1'
+2024-04-15 19:14:24 [46mplatform[0m > 
+2024-04-15 19:14:24 [46mplatform[0m > Using default value for environment variable SOCAT_KUBE_CPU_REQUEST: '0.1'
+2024-04-15 19:14:24 [46mplatform[0m > Checking if airbyte/source-mysql:3.3.13 exists...
+2024-04-15 19:14:34 [46mplatform[0m > airbyte/source-mysql:3.3.13 not found locally. Attempting to pull the image...
+2024-04-15 19:14:51 [46mplatform[0m > Image does not exist.
+2024-04-15 19:14:51 [46mplatform[0m > Unexpected error while checking connection: 
+io.airbyte.workers.exception.WorkerException: Could not find image: airbyte/source-mysql:3.3.13
+	at io.airbyte.workers.process.DockerProcessFactory.create(DockerProcessFactory.java:117) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at io.airbyte.workers.process.AirbyteIntegrationLauncher.check(AirbyteIntegrationLauncher.java:149) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at io.airbyte.workers.general.DefaultCheckConnectionWorker.run(DefaultCheckConnectionWorker.java:71) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at io.airbyte.workers.general.DefaultCheckConnectionWorker.run(DefaultCheckConnectionWorker.java:44) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at io.airbyte.workers.temporal.TemporalAttemptExecution.get(TemporalAttemptExecution.java:142) ~[io.airbyte-airbyte-workers-0.57.1.jar:?]
+	at io.airbyte.workers.temporal.check.connection.CheckConnectionActivityImpl.lambda$runWithJobOutput$1(CheckConnectionActivityImpl.java:226) ~[io.airbyte-airbyte-workers-0.57.1.jar:?]
+	at io.airbyte.commons.temporal.HeartbeatUtils.withBackgroundHeartbeat(HeartbeatUtils.java:57) ~[io.airbyte-airbyte-commons-temporal-core-0.57.1.jar:?]
+	at io.airbyte.workers.temporal.check.connection.CheckConnectionActivityImpl.runWithJobOutput(CheckConnectionActivityImpl.java:211) ~[io.airbyte-airbyte-workers-0.57.1.jar:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at io.temporal.internal.activity.RootActivityInboundCallsInterceptor$POJOActivityInboundCallsInterceptor.executeActivity(RootActivityInboundCallsInterceptor.java:64) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.activity.RootActivityInboundCallsInterceptor.execute(RootActivityInboundCallsInterceptor.java:43) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.activity.ActivityTaskExecutors$BaseActivityTaskExecutor.execute(ActivityTaskExecutors.java:107) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.activity.ActivityTaskHandlerImpl.handle(ActivityTaskHandlerImpl.java:124) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.worker.ActivityWorker$TaskHandlerImpl.handleActivity(ActivityWorker.java:278) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.worker.ActivityWorker$TaskHandlerImpl.handle(ActivityWorker.java:243) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.worker.ActivityWorker$TaskHandlerImpl.handle(ActivityWorker.java:216) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.worker.PollTaskExecutor.lambda$process$0(PollTaskExecutor.java:105) ~[temporal-sdk-1.22.3.jar:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+2024-04-15 19:14:51 [46mplatform[0m > 
+2024-04-15 19:14:51 [46mplatform[0m > ----- END CHECK -----
+2024-04-15 19:14:51 [46mplatform[0m > 
+2024-04-15 19:14:52 [46mplatform[0m > Retry State: RetryManager(completeFailureBackoffPolicy=BackoffPolicy(minInterval=PT10S, maxInterval=PT30M, base=3), partialFailureBackoffPolicy=null, successiveCompleteFailureLimit=5, totalCompleteFailureLimit=10, successivePartialFailureLimit=1000, totalPartialFailureLimit=10, successiveCompleteFailures=3, totalCompleteFailures=3, successivePartialFailures=0, totalPartialFailures=0)
+ Backoff before next attempt: 1 minute 30 seconds
+2024-04-15 19:14:52 [46mplatform[0m > Retry State: RetryManager(completeFailureBackoffPolicy=BackoffPolicy(minInterval=PT10S, maxInterval=PT30M, base=3), partialFailureBackoffPolicy=null, successiveCompleteFailureLimit=5, totalCompleteFailureLimit=10, successivePartialFailureLimit=1000, totalPartialFailureLimit=10, successiveCompleteFailures=3, totalCompleteFailures=3, successivePartialFailures=0, totalPartialFailures=0)
+2024-04-15 19:14:52 [46mplatform[0m > Backing off for: 1 minute 30 seconds.
+2024-04-15 19:16:23 [46mplatform[0m > Docker volume job log path: /tmp/workspace/8/3/logs.log
+2024-04-15 19:16:23 [46mplatform[0m > Executing worker wrapper. Airbyte version: 0.57.1
+2024-04-15 19:16:23 [46mplatform[0m > Attempt 0 to save workflow id for cancellation
+2024-04-15 19:16:23 [46mplatform[0m > 
+2024-04-15 19:16:23 [46mplatform[0m > Using default value for environment variable SIDECAR_KUBE_CPU_LIMIT: '2.0'
+2024-04-15 19:16:23 [46mplatform[0m > ----- START CHECK -----
+2024-04-15 19:16:23 [46mplatform[0m > Using default value for environment variable SOCAT_KUBE_CPU_LIMIT: '2.0'
+2024-04-15 19:16:23 [46mplatform[0m > 
+2024-04-15 19:16:23 [46mplatform[0m > Using default value for environment variable SIDECAR_KUBE_CPU_REQUEST: '0.1'
+2024-04-15 19:16:23 [46mplatform[0m > Using default value for environment variable SOCAT_KUBE_CPU_REQUEST: '0.1'
+2024-04-15 19:16:23 [46mplatform[0m > Checking if airbyte/source-mysql:3.3.13 exists...
+2024-04-15 19:16:33 [46mplatform[0m > airbyte/source-mysql:3.3.13 not found locally. Attempting to pull the image...
+2024-04-15 19:16:46 [46mplatform[0m > Image does not exist.
+2024-04-15 19:16:46 [46mplatform[0m > Unexpected error while checking connection: 
+io.airbyte.workers.exception.WorkerException: Could not find image: airbyte/source-mysql:3.3.13
+	at io.airbyte.workers.process.DockerProcessFactory.create(DockerProcessFactory.java:117) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at io.airbyte.workers.process.AirbyteIntegrationLauncher.check(AirbyteIntegrationLauncher.java:149) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at io.airbyte.workers.general.DefaultCheckConnectionWorker.run(DefaultCheckConnectionWorker.java:71) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at io.airbyte.workers.general.DefaultCheckConnectionWorker.run(DefaultCheckConnectionWorker.java:44) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at io.airbyte.workers.temporal.TemporalAttemptExecution.get(TemporalAttemptExecution.java:142) ~[io.airbyte-airbyte-workers-0.57.1.jar:?]
+	at io.airbyte.workers.temporal.check.connection.CheckConnectionActivityImpl.lambda$runWithJobOutput$1(CheckConnectionActivityImpl.java:226) ~[io.airbyte-airbyte-workers-0.57.1.jar:?]
+	at io.airbyte.commons.temporal.HeartbeatUtils.withBackgroundHeartbeat(HeartbeatUtils.java:57) ~[io.airbyte-airbyte-commons-temporal-core-0.57.1.jar:?]
+	at io.airbyte.workers.temporal.check.connection.CheckConnectionActivityImpl.runWithJobOutput(CheckConnectionActivityImpl.java:211) ~[io.airbyte-airbyte-workers-0.57.1.jar:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at io.temporal.internal.activity.RootActivityInboundCallsInterceptor$POJOActivityInboundCallsInterceptor.executeActivity(RootActivityInboundCallsInterceptor.java:64) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.activity.RootActivityInboundCallsInterceptor.execute(RootActivityInboundCallsInterceptor.java:43) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.activity.ActivityTaskExecutors$BaseActivityTaskExecutor.execute(ActivityTaskExecutors.java:107) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.activity.ActivityTaskHandlerImpl.handle(ActivityTaskHandlerImpl.java:124) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.worker.ActivityWorker$TaskHandlerImpl.handleActivity(ActivityWorker.java:278) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.worker.ActivityWorker$TaskHandlerImpl.handle(ActivityWorker.java:243) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.worker.ActivityWorker$TaskHandlerImpl.handle(ActivityWorker.java:216) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.worker.PollTaskExecutor.lambda$process$0(PollTaskExecutor.java:105) ~[temporal-sdk-1.22.3.jar:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+2024-04-15 19:16:46 [46mplatform[0m > 
+2024-04-15 19:16:46 [46mplatform[0m > ----- END CHECK -----
+2024-04-15 19:16:46 [46mplatform[0m > 
+2024-04-15 19:16:47 [46mplatform[0m > Retry State: RetryManager(completeFailureBackoffPolicy=BackoffPolicy(minInterval=PT10S, maxInterval=PT30M, base=3), partialFailureBackoffPolicy=null, successiveCompleteFailureLimit=5, totalCompleteFailureLimit=10, successivePartialFailureLimit=1000, totalPartialFailureLimit=10, successiveCompleteFailures=4, totalCompleteFailures=4, successivePartialFailures=0, totalPartialFailures=0)
+ Backoff before next attempt: 4 minutes 30 seconds
+2024-04-15 19:16:47 [46mplatform[0m > Retry State: RetryManager(completeFailureBackoffPolicy=BackoffPolicy(minInterval=PT10S, maxInterval=PT30M, base=3), partialFailureBackoffPolicy=null, successiveCompleteFailureLimit=5, totalCompleteFailureLimit=10, successivePartialFailureLimit=1000, totalPartialFailureLimit=10, successiveCompleteFailures=4, totalCompleteFailures=4, successivePartialFailures=0, totalPartialFailures=0)
+2024-04-15 19:16:47 [46mplatform[0m > Backing off for: 4 minutes 30 seconds.
+2024-04-15 19:21:19 [46mplatform[0m > Docker volume job log path: /tmp/workspace/8/4/logs.log
+2024-04-15 19:21:19 [46mplatform[0m > Executing worker wrapper. Airbyte version: 0.57.1
+2024-04-15 19:21:19 [46mplatform[0m > Attempt 0 to save workflow id for cancellation
+2024-04-15 19:21:19 [46mplatform[0m > Using default value for environment variable SIDECAR_KUBE_CPU_LIMIT: '2.0'
+2024-04-15 19:21:19 [46mplatform[0m > 
+2024-04-15 19:21:19 [46mplatform[0m > Using default value for environment variable SOCAT_KUBE_CPU_LIMIT: '2.0'
+2024-04-15 19:21:19 [46mplatform[0m > Using default value for environment variable SIDECAR_KUBE_CPU_REQUEST: '0.1'
+2024-04-15 19:21:19 [46mplatform[0m > ----- START CHECK -----
+2024-04-15 19:21:19 [46mplatform[0m > Using default value for environment variable SOCAT_KUBE_CPU_REQUEST: '0.1'
+2024-04-15 19:21:19 [46mplatform[0m > 
+2024-04-15 19:21:19 [46mplatform[0m > Checking if airbyte/source-mysql:3.3.13 exists...
+2024-04-15 19:21:37 [46mplatform[0m > airbyte/source-mysql:3.3.13 not found locally. Attempting to pull the image...
+2024-04-15 19:21:54 [46mplatform[0m > Image does not exist.
+2024-04-15 19:21:54 [46mplatform[0m > Unexpected error while checking connection: 
+io.airbyte.workers.exception.WorkerException: Could not find image: airbyte/source-mysql:3.3.13
+	at io.airbyte.workers.process.DockerProcessFactory.create(DockerProcessFactory.java:117) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at io.airbyte.workers.process.AirbyteIntegrationLauncher.check(AirbyteIntegrationLauncher.java:149) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at io.airbyte.workers.general.DefaultCheckConnectionWorker.run(DefaultCheckConnectionWorker.java:71) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at io.airbyte.workers.general.DefaultCheckConnectionWorker.run(DefaultCheckConnectionWorker.java:44) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at io.airbyte.workers.temporal.TemporalAttemptExecution.get(TemporalAttemptExecution.java:142) ~[io.airbyte-airbyte-workers-0.57.1.jar:?]
+	at io.airbyte.workers.temporal.check.connection.CheckConnectionActivityImpl.lambda$runWithJobOutput$1(CheckConnectionActivityImpl.java:226) ~[io.airbyte-airbyte-workers-0.57.1.jar:?]
+	at io.airbyte.commons.temporal.HeartbeatUtils.withBackgroundHeartbeat(HeartbeatUtils.java:57) ~[io.airbyte-airbyte-commons-temporal-core-0.57.1.jar:?]
+	at io.airbyte.workers.temporal.check.connection.CheckConnectionActivityImpl.runWithJobOutput(CheckConnectionActivityImpl.java:211) ~[io.airbyte-airbyte-workers-0.57.1.jar:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at io.temporal.internal.activity.RootActivityInboundCallsInterceptor$POJOActivityInboundCallsInterceptor.executeActivity(RootActivityInboundCallsInterceptor.java:64) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.activity.RootActivityInboundCallsInterceptor.execute(RootActivityInboundCallsInterceptor.java:43) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.activity.ActivityTaskExecutors$BaseActivityTaskExecutor.execute(ActivityTaskExecutors.java:107) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.activity.ActivityTaskHandlerImpl.handle(ActivityTaskHandlerImpl.java:124) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.worker.ActivityWorker$TaskHandlerImpl.handleActivity(ActivityWorker.java:278) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.worker.ActivityWorker$TaskHandlerImpl.handle(ActivityWorker.java:243) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.worker.ActivityWorker$TaskHandlerImpl.handle(ActivityWorker.java:216) ~[temporal-sdk-1.22.3.jar:?]
+	at io.temporal.internal.worker.PollTaskExecutor.lambda$process$0(PollTaskExecutor.java:105) ~[temporal-sdk-1.22.3.jar:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+2024-04-15 19:21:54 [46mplatform[0m > 
+2024-04-15 19:21:54 [46mplatform[0m > ----- END CHECK -----
+2024-04-15 19:21:54 [46mplatform[0m > 
+2024-04-15 19:21:55 [46mplatform[0m > Retry State: RetryManager(completeFailureBackoffPolicy=BackoffPolicy(minInterval=PT10S, maxInterval=PT30M, base=3), partialFailureBackoffPolicy=null, successiveCompleteFailureLimit=5, totalCompleteFailureLimit=10, successivePartialFailureLimit=1000, totalPartialFailureLimit=10, successiveCompleteFailures=5, totalCompleteFailures=5, successivePartialFailures=0, totalPartialFailures=0)
+ Backoff before next attempt: 13 minutes 30 seconds
+2024-04-15 19:21:55 [46mplatform[0m > Failing job: 8, reason: Job failed after too many retries for connection 92a36319-c76c-4252-8520-2416aed60f2c

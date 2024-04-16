@@ -30,7 +30,7 @@
     - Windows
         - `.venv\Scripts\activate`
 1. Anaconda or Miniconda
-    - Using Anaconda or Miniconda strongly advised.
+    - Using Anaconda or Miniconda is strongly advised.
     - [Anaconda installation instructions](https://docs.anaconda.com/free/anaconda/install/index.html) if not already installed.
     - [Miniconda installation instructions](https://docs.anaconda.com/free/miniconda/)
     - `conda create -n oaken`
