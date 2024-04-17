@@ -37,3 +37,6 @@ models:
       +materialized: view
     marts:
       +materialized: view
+      table:
+        +materialized: table
+        sort: event_time
