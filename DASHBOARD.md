@@ -5,7 +5,7 @@
 ![Sales Dashboard](images/dashboard/looker-dashboard.png)
 
 >[!TIP]
->OPTIONAL: If you wish to have a large amount of data be sure to run the `streaming-invoice-docker` for sufficient time. I set the sleep to 0 and ran it for 40 minutes. This will generate a large dataset. I materialized Dagster throughout that time to reduce the processing it had to do for the final run.
+>OPTIONAL: If you wish to have a large amount of data be sure to run the `streaming-invoice-docker` for sufficient time, I let it run for 10+ hours. You see in the README.mn video I have over 2 million rows. I materialized Dagster throughout that time to reduce the processing it had to do for the final run.
 
 ## Looker Dashboard
 
