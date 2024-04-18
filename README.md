@@ -4,8 +4,9 @@
 
 ## Video Overview
 
-[Access 17 minute video here](https://youtu.be/nwtH_r85Qpw)
-{% include youtube.html id="nwtH_r85Qpw" %}
+### Link takes you to YouTube 
+
+[![YouTube video](https://img.youtube.com/vi/nwtH_r85Qpw/0.jpg)](https://youtu.be/nwtH_r85Qpw)
 
 ## Project Prompt
 
