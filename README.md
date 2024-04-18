@@ -53,7 +53,7 @@ Formatted as: **Requirement**: My solution
 >1. Does not integrate or deliver real-time updates between the applications. This can lead to delays in shipping and accounting.
 >1. Has data in multiple locations; sometimes duplicated. Lack of integration and centralization has led to departments such as sales and shipping recording duplicate data.
 >1. Lacks an analytics solution. There are no options for leadership to make data-informed decisions.
->1. Lacks integration options making replacement or adding applications difficult. As the business grows and technology improves, new applications may be added and current applications replaced.
+>1. Desire integration options that allow replacement or adding applications. As the business grows and technology improves, new applications may be added and current applications replaced.
 
 ### Objectives
 
