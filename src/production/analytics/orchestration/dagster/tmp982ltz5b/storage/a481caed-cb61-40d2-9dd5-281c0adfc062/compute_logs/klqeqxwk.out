@@ -1,0 +1,558 @@
+2024-04-18 02:50:08 [46mplatform[0m > Docker volume job log path: /tmp/workspace/23/0/logs.log
+2024-04-18 02:50:09 [46mplatform[0m > Executing worker wrapper. Airbyte version: 0.57.1
+2024-04-18 02:50:09 [46mplatform[0m > Attempt 0 to save workflow id for cancellation
+2024-04-18 02:50:09 [46mplatform[0m > start sync worker. job id: 23 attempt id: 0
+2024-04-18 02:50:09 [46mplatform[0m > 
+2024-04-18 02:50:09 [46mplatform[0m > ----- START REPLICATION -----
+2024-04-18 02:50:09 [46mplatform[0m > 
+2024-04-18 02:50:09 [46mplatform[0m > Using default value for environment variable SIDECAR_KUBE_CPU_LIMIT: '2.0'
+2024-04-18 02:50:09 [46mplatform[0m > Running destination...
+2024-04-18 02:50:09 [46mplatform[0m > Using default value for environment variable SOCAT_KUBE_CPU_LIMIT: '2.0'
+2024-04-18 02:50:09 [46mplatform[0m > Using default value for environment variable SIDECAR_KUBE_CPU_REQUEST: '0.1'
+2024-04-18 02:50:09 [46mplatform[0m > Using default value for environment variable SOCAT_KUBE_CPU_REQUEST: '0.1'
+2024-04-18 02:50:09 [46mplatform[0m > Using default value for environment variable SIDECAR_KUBE_CPU_LIMIT: '2.0'
+2024-04-18 02:50:09 [46mplatform[0m > Using default value for environment variable SOCAT_KUBE_CPU_LIMIT: '2.0'
+2024-04-18 02:50:09 [46mplatform[0m > Using default value for environment variable SIDECAR_KUBE_CPU_REQUEST: '0.1'
+2024-04-18 02:50:09 [46mplatform[0m > Using default value for environment variable SOCAT_KUBE_CPU_REQUEST: '0.1'
+2024-04-18 02:50:09 [46mplatform[0m > Checking if airbyte/source-mysql:3.3.13 exists...
+2024-04-18 02:50:09 [46mplatform[0m > Checking if airbyte/destination-bigquery:2.4.12 exists...
+2024-04-18 02:50:09 [46mplatform[0m > airbyte/destination-bigquery:2.4.12 was found locally.
+2024-04-18 02:50:09 [46mplatform[0m > Creating docker container = destination-bigquery-write-23-0-ktste with resources io.airbyte.config.ResourceRequirements@14762e38[cpuRequest=1,cpuLimit=2,memoryRequest=1Gi,memoryLimit=2Gi,additionalProperties={}] and allowedHosts null
+2024-04-18 02:50:09 [46mplatform[0m > airbyte/source-mysql:3.3.13 was found locally.
+2024-04-18 02:50:09 [46mplatform[0m > Creating docker container = source-mysql-read-23-0-ycxpu with resources io.airbyte.config.ResourceRequirements@1b0cdc86[cpuRequest=1,cpuLimit=2,memoryRequest=1Gi,memoryLimit=2Gi,additionalProperties={}] and allowedHosts io.airbyte.config.AllowedHosts@731ece69[hosts=[172.23.0.3, *.datadoghq.com, *.datadoghq.eu, *.sentry.io],additionalProperties={}]
+2024-04-18 02:50:09 [46mplatform[0m > Preparing command: docker run --rm --init -i -w /data/23/0 --log-driver none --name source-mysql-read-23-0-ycxpu -e CONCURRENT_SOURCE_STREAM_READ=false --network host -v airbyte_workspace:/data -v oss_local_root:/local -e DEPLOYMENT_MODE=OSS -e WORKER_CONNECTOR_IMAGE=airbyte/source-mysql:3.3.13 -e AUTO_DETECT_SCHEMA=true -e LAUNCHDARKLY_KEY= -e SOCAT_KUBE_CPU_REQUEST=0.1 -e SOCAT_KUBE_CPU_LIMIT=2.0 -e FIELD_SELECTION_WORKSPACES= -e USE_STREAM_CAPABLE_STATE=true -e AIRBYTE_ROLE=dev -e WORKER_ENVIRONMENT=DOCKER -e APPLY_FIELD_SELECTION=false -e WORKER_JOB_ATTEMPT=0 -e OTEL_COLLECTOR_ENDPOINT=http://host.docker.internal:4317 -e FEATURE_FLAG_CLIENT=config -e AIRBYTE_VERSION=0.57.1 -e WORKER_JOB_ID=23 --cpus=2 --memory-reservation=1Gi --memory=2Gi airbyte/source-mysql:3.3.13 read --config source_config.json --catalog source_catalog.json --state input_state.json
+2024-04-18 02:50:09 [46mplatform[0m > Preparing command: docker run --rm --init -i -w /data/23/0 --log-driver none --name destination-bigquery-write-23-0-ktste --network host -v airbyte_workspace:/data -v oss_local_root:/local -e DEPLOYMENT_MODE=OSS -e WORKER_CONNECTOR_IMAGE=airbyte/destination-bigquery:2.4.12 -e AUTO_DETECT_SCHEMA=true -e LAUNCHDARKLY_KEY= -e SOCAT_KUBE_CPU_REQUEST=0.1 -e SOCAT_KUBE_CPU_LIMIT=2.0 -e FIELD_SELECTION_WORKSPACES= -e USE_STREAM_CAPABLE_STATE=true -e AIRBYTE_ROLE=dev -e WORKER_ENVIRONMENT=DOCKER -e APPLY_FIELD_SELECTION=false -e WORKER_JOB_ATTEMPT=0 -e OTEL_COLLECTOR_ENDPOINT=http://host.docker.internal:4317 -e FEATURE_FLAG_CLIENT=config -e AIRBYTE_VERSION=0.57.1 -e WORKER_JOB_ID=23 --cpus=2 --memory-reservation=1Gi --memory=2Gi airbyte/destination-bigquery:2.4.12 write --config destination_config.json --catalog destination_catalog.json
+2024-04-18 02:50:09 [46mplatform[0m > Writing messages to protocol version 0.2.0
+2024-04-18 02:50:09 [46mplatform[0m > Reading messages from protocol version 0.2.0
+2024-04-18 02:50:09 [46mplatform[0m > Reading messages from protocol version 0.2.0
+2024-04-18 02:50:09 [46mplatform[0m > readFromSource: start
+2024-04-18 02:50:09 [46mplatform[0m > Starting source heartbeat check. Will check threshold of 10800 seconds, every 1 minutes.
+2024-04-18 02:50:09 [46mplatform[0m > processMessage: start
+2024-04-18 02:50:09 [46mplatform[0m > writeToDestination: start
+2024-04-18 02:50:09 [46mplatform[0m > readFromDestination: start
+2024-04-18 02:50:14 [44msource[0m > INFO main i.a.i.s.m.MySqlSource(main):580 starting source: class io.airbyte.integrations.source.mysql.MySqlSource
+2024-04-18 02:50:14 [44msource[0m > INFO main i.a.c.i.b.IntegrationCliParser(parseOptions):126 integration args: {read=null, catalog=source_catalog.json, state=input_state.json, config=source_config.json}
+2024-04-18 02:50:14 [44msource[0m > INFO main i.a.c.i.b.IntegrationRunner(runInternal):132 Running integration: io.airbyte.cdk.integrations.base.ssh.SshWrappedSource
+2024-04-18 02:50:15 [44msource[0m > INFO main i.a.c.i.b.IntegrationRunner(runInternal):133 Command: READ
+2024-04-18 02:50:15 [44msource[0m > INFO main i.a.c.i.b.IntegrationRunner(runInternal):134 Integration config: IntegrationConfig{command=READ, configPath='source_config.json', catalogPath='source_catalog.json', statePath='input_state.json'}
+2024-04-18 02:50:15 [44msource[0m > WARN main c.n.s.JsonMetaSchema(newValidator):278 Unknown keyword order - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword
+2024-04-18 02:50:15 [44msource[0m > WARN main c.n.s.JsonMetaSchema(newValidator):278 Unknown keyword airbyte_secret - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword
+2024-04-18 02:50:15 [44msource[0m > WARN main c.n.s.JsonMetaSchema(newValidator):278 Unknown keyword always_show - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword
+2024-04-18 02:50:15 [44msource[0m > WARN main c.n.s.JsonMetaSchema(newValidator):278 Unknown keyword display_type - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword
+2024-04-18 02:50:15 [44msource[0m > WARN main c.n.s.JsonMetaSchema(newValidator):278 Unknown keyword min - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword
+2024-04-18 02:50:15 [44msource[0m > WARN main c.n.s.JsonMetaSchema(newValidator):278 Unknown keyword max - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword
+2024-04-18 02:50:15 [43mdestination[0m > INFO main i.a.c.i.b.IntegrationCliParser(parseOptions):126 integration args: {catalog=destination_catalog.json, write=null, config=destination_config.json}
+2024-04-18 02:50:15 [43mdestination[0m > INFO main i.a.c.i.b.IntegrationRunner(runInternal):132 Running integration: io.airbyte.integrations.destination.bigquery.BigQueryDestination
+2024-04-18 02:50:15 [43mdestination[0m > INFO main i.a.c.i.b.IntegrationRunner(runInternal):133 Command: WRITE
+2024-04-18 02:50:15 [43mdestination[0m > INFO main i.a.c.i.b.IntegrationRunner(runInternal):134 Integration config: IntegrationConfig{command=WRITE, configPath='destination_config.json', catalogPath='destination_catalog.json', statePath='null'}
+2024-04-18 02:50:15 [43mdestination[0m > WARN main c.n.s.JsonMetaSchema(newValidator):278 Unknown keyword groups - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword
+2024-04-18 02:50:15 [43mdestination[0m > WARN main c.n.s.JsonMetaSchema(newValidator):278 Unknown keyword group - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword
+2024-04-18 02:50:15 [43mdestination[0m > WARN main c.n.s.JsonMetaSchema(newValidator):278 Unknown keyword order - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword
+2024-04-18 02:50:15 [43mdestination[0m > WARN main c.n.s.JsonMetaSchema(newValidator):278 Unknown keyword display_type - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword
+2024-04-18 02:50:15 [43mdestination[0m > WARN main c.n.s.JsonMetaSchema(newValidator):278 Unknown keyword airbyte_secret - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword
+2024-04-18 02:50:15 [43mdestination[0m > WARN main c.n.s.JsonMetaSchema(newValidator):278 Unknown keyword always_show - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword
+2024-04-18 02:50:15 [43mdestination[0m > INFO main i.a.i.d.b.BigQueryUtils(getLoadingMethod):419 Selected loading method is set to: STANDARD
+2024-04-18 02:50:15 [44msource[0m > INFO main i.a.c.i.b.s.SshTunnel(getInstance):252 Starting connection with method: NO_TUNNEL
+2024-04-18 02:50:15 [44msource[0m > INFO main i.a.c.i.s.r.s.StateManagerFactory(createStateManager):53 Global state manager selected to manage state object with type GLOBAL.
+2024-04-18 02:50:15 [44msource[0m > INFO main i.a.c.i.s.r.s.CursorManager(createCursorInfoForStream):199 Cursor field set in state but not present in catalog. Stream: oaken_product. Original Cursor Field: null. Original value: null. Resetting cursor.
+2024-04-18 02:50:15 [44msource[0m > INFO main i.a.c.i.s.r.s.CursorManager(createCursorInfoForStream):199 Cursor field set in state but not present in catalog. Stream: oaken_vendor. Original Cursor Field: null. Original value: null. Resetting cursor.
+2024-04-18 02:50:15 [44msource[0m > INFO main i.a.c.i.s.r.s.CursorManager(createCursorInfoForStream):199 Cursor field set in state but not present in catalog. Stream: oaken_category. Original Cursor Field: null. Original value: null. Resetting cursor.
+2024-04-18 02:50:15 [44msource[0m > INFO main i.a.c.i.s.r.s.CursorManager(createCursorInfoForStream):199 Cursor field set in state but not present in catalog. Stream: oaken_customer. Original Cursor Field: null. Original value: null. Resetting cursor.
+2024-04-18 02:50:16 [44msource[0m > INFO main i.a.c.i.s.r.CdcStateManager(<init>):33 Initialized CDC state with: io.airbyte.cdk.integrations.source.relationaldb.models.CdcState@3d4d3fe7[state={"is_compressed":false,"mysql_cdc_offset":{"[\"oaken\",{\"server\":\"oaken\"}]":"{\"transaction_id\":null,\"ts_sec\":1713394455,\"file\":\"binlog.000002\",\"pos\":337625446,\"row\":1,\"server_id\":1,\"event\":2}"},"mysql_db_history":"{\"source\":{\"server\":\"oaken\"},\"position\":{\"ts_sec\":1713385308,\"file\":\"binlog.000002\",\"pos\":141628,\"snapshot\":true},\"ts_ms\":1713385309067,\"databaseName\":\"\",\"ddl\":\"SET character_set_server=utf8mb4, collation_server=utf8mb4_0900_ai_ci\",\"tableChanges\":[]}\n{\"source\":{\"server\":\"oaken\"},\"position\":{\"ts_sec\":1713385309,\"file\":\"binlog.000002\",\"pos\":141628,\"snapshot\":true},\"ts_ms\":1713385309083,\"databaseName\":\"oaken\",\"ddl\":\"DROP TABLE IF EXISTS `oaken`.`categories`\",\"tableChanges\":[{\"type\":\"DROP\",\"id\":\"\\\"oaken\\\".\\\"categories\\\"\"}]}\n{\"source\":{\"server\":\"oaken\"},\"position\":{\"ts_sec\":1713385309,\"file\":\"binlog.000002\",\"pos\":141628,\"snapshot\":true},\"ts_ms\":1713385309084,\"databaseName\":\"oaken\",\"ddl\":\"DROP TABLE IF EXISTS `oaken`.`customers`\",\"tableChanges\":[{\"type\":\"DROP\",\"id\":\"\\\"oaken\\\".\\\"customers\\\"\"}]}\n{\"source\":{\"server\":\"oaken\"},\"position\":{\"ts_sec\":1713385309,\"file\":\"binlog.000002\",\"pos\":141628,\"snapshot\":true},\"ts_ms\":1713385309085,\"databaseName\":\"oaken\",\"ddl\":\"DROP TABLE IF EXISTS `oaken`.`products`\",\"tableChanges\":[{\"type\":\"DROP\",\"id\":\"\\\"oaken\\\".\\\"products\\\"\"}]}\n{\"source\":{\"server\":\"oaken\"},\"position\":{\"ts_sec\":1713385309,\"file\":\"binlog.000002\",\"pos\":141628,\"snapshot\":true},\"ts_ms\":1713385309085,\"databaseName\":\"oaken\",\"ddl\":\"DROP TABLE IF EXISTS `oaken`.`sales`\",\"tableChanges\":[{\"type\":\"DROP\",\"id\":\"\\\"oaken\\\".\\\"sales\\\"\"}]}\n{\"source\":{\"server\":\"oaken\"},\"position\":{\"ts_sec\":1713385309,\"file\":\"binlog.000002\",\"pos\":141628,\"snapshot\":true},\"ts_ms\":1713385309086,\"databaseName\":\"oaken\",\"ddl\":\"DROP TABLE IF EXISTS `oaken`.`salesLedger`\",\"tableChanges\":[{\"type\":\"DROP\",\"id\":\"\\\"oaken\\\".\\\"salesLedger\\\"\"}]}\n{\"source\":{\"server\":\"oaken\"},\"position\":{\"ts_sec\":1713385309,\"file\":\"binlog.000002\",\"pos\":141628,\"snapshot\":true},\"ts_ms\":1713385309086,\"databaseName\":\"oaken\",\"ddl\":\"DROP TABLE IF EXISTS `oaken`.`vendors`\",\"tableChanges\":[{\"type\":\"DROP\",\"id\":\"\\\"oaken\\\".\\\"vendors\\\"\"}]}\n{\"source\":{\"server\":\"oaken\"},\"position\":{\"ts_sec\":1713385309,\"file\":\"binlog.000002\",\"pos\":141628,\"snapshot\":true},\"ts_ms\":1713385309093,\"databaseName\":\"oaken\",\"ddl\":\"DROP DATABASE IF EXISTS `oaken`\",\"tableChanges\":[]}\n{\"source\":{\"server\":\"oaken\"},\"position\":{\"ts_sec\":1713385309,\"file\":\"binlog.000002\",\"pos\":141628,\"snapshot\":true},\"ts_ms\":1713385309096,\"databaseName\":\"oaken\",\"ddl\":\"CREATE DATABASE `oaken` CHARSET utf8mb4 COLLATE utf8mb4_0900_ai_ci\",\"tableChanges\":[]}\n{\"source\":{\"server\":\"oaken\"},\"position\":{\"ts_sec\":1713385309,\"file\":\"binlog.000002\",\"pos\":141628,\"snapshot\":true},\"ts_ms\":1713385309097,\"databaseName\":\"oaken\",\"ddl\":\"USE `oaken`\",\"tableChanges\":[]}\n{\"source\":{\"server\":\"oaken\"},\"position\":{\"ts_sec\":1713385309,\"file\":\"binlog.000002\",\"pos\":141628,\"snapshot\":true},\"ts_ms\":1713385309193,\"databaseName\":\"oaken\",\"ddl\":\"CREATE TABLE `products` (\\n  `ItemNumber` mediumint NOT NULL,\\n  `CategoryNumber` mediumint DEFAULT NULL,\\n  `ItemDescription` varchar(255) NOT NULL,\\n  `BottleVolumeML` int NOT NULL,\\n  `Pack` mediumint NOT NULL,\\n  `BottleCost` decimal(11,2) NOT NULL,\\n  `BottleRetail` decimal(11,2) NOT NULL,\\n  PRIMARY KEY (`ItemNumber`),\\n  KEY `CategoryNumber` (`CategoryNumber`),\\n  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`CategoryNumber`) REFERENCES `categories` (`CategoryNumber`)\\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci\",\"tableChanges\":[{\"type\":\"CREATE\",\"id\":\"\\\"oaken\\\".\\\"products\\\"\",\"table\":{\"defaultCharsetName\":\"utf8mb4\",\"primaryKeyColumnNames\":[\"ItemNumber\"],\"columns\":[{\"name\":\"ItemNumber\",\"jdbcType\":4,\"typeName\":\"MEDIUMINT\",\"typeExpression\":\"MEDIUMINT\",\"charsetName\":null,\"position\":1,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"CategoryNumber\",\"jdbcType\":4,\"typeName\":\"MEDIUMINT\",\"typeExpression\":\"MEDIUMINT\",\"charsetName\":null,\"position\":2,\"optional\":true,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":true,\"enumValues\":[]},{\"name\":\"ItemDescription\",\"jdbcType\":12,\"typeName\":\"VARCHAR\",\"typeExpression\":\"VARCHAR\",\"charsetName\":\"utf8mb4\",\"length\":255,\"position\":3,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"BottleVolumeML\",\"jdbcType\":4,\"typeName\":\"INT\",\"typeExpression\":\"INT\",\"charsetName\":null,\"position\":4,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"Pack\",\"jdbcType\":4,\"typeName\":\"MEDIUMINT\",\"typeExpression\":\"MEDIUMINT\",\"charsetName\":null,\"position\":5,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"BottleCost\",\"jdbcType\":3,\"typeName\":\"DECIMAL\",\"typeExpression\":\"DECIMAL\",\"charsetName\":null,\"length\":11,\"scale\":2,\"position\":6,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"BottleRetail\",\"jdbcType\":3,\"typeName\":\"DECIMAL\",\"typeExpression\":\"DECIMAL\",\"charsetName\":null,\"length\":11,\"scale\":2,\"position\":7,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]}],\"attributes\":[]},\"comment\":null}]}\n{\"source\":{\"server\":\"oaken\"},\"position\":{\"ts_sec\":1713385309,\"file\":\"binlog.000002\",\"pos\":141628,\"snapshot\":true},\"ts_ms\":1713385309202,\"databaseName\":\"oaken\",\"ddl\":\"CREATE TABLE `salesLedger` (\\n  `Invoice` varchar(255) NOT NULL,\\n  `Credit` decimal(11,2) DEFAULT NULL,\\n  `Debit` decimal(11,2) DEFAULT NULL,\\n  `Note` varchar(255) NOT NULL,\\n  PRIMARY KEY (`Invoice`,`Note`),\\n  CONSTRAINT `salesLedger_ibfk_1` FOREIGN KEY (`Invoice`) REFERENCES `sales` (`Invoice`)\\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci\",\"tableChanges\":[{\"type\":\"CREATE\",\"id\":\"\\\"oaken\\\".\\\"salesLedger\\\"\",\"table\":{\"defaultCharsetName\":\"utf8mb4\",\"primaryKeyColumnNames\":[\"Invoice\",\"Note\"],\"columns\":[{\"name\":\"Invoice\",\"jdbcType\":12,\"typeName\":\"VARCHAR\",\"typeExpression\":\"VARCHAR\",\"charsetName\":\"utf8mb4\",\"length\":255,\"position\":1,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"Credit\",\"jdbcType\":3,\"typeName\":\"DECIMAL\",\"typeExpression\":\"DECIMAL\",\"charsetName\":null,\"length\":11,\"scale\":2,\"position\":2,\"optional\":true,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":true,\"enumValues\":[]},{\"name\":\"Debit\",\"jdbcType\":3,\"typeName\":\"DECIMAL\",\"typeExpression\":\"DECIMAL\",\"charsetName\":null,\"length\":11,\"scale\":2,\"position\":3,\"optional\":true,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":true,\"enumValues\":[]},{\"name\":\"Note\",\"jdbcType\":12,\"typeName\":\"VARCHAR\",\"typeExpression\":\"VARCHAR\",\"charsetName\":\"utf8mb4\",\"length\":255,\"position\":4,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]}],\"attributes\":[]},\"comment\":null}]}\n{\"source\":{\"server\":\"oaken\"},\"position\":{\"ts_sec\":1713385309,\"file\":\"binlog.000002\",\"pos\":141628,\"snapshot\":true},\"ts_ms\":1713385309204,\"databaseName\":\"oaken\",\"ddl\":\"CREATE TABLE `categories` (\\n  `CategoryNumber` mediumint NOT NULL,\\n  `CategoryName` varchar(255) NOT NULL,\\n  PRIMARY KEY (`CategoryNumber`)\\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci\",\"tableChanges\":[{\"type\":\"CREATE\",\"id\":\"\\\"oaken\\\".\\\"categories\\\"\",\"table\":{\"defaultCharsetName\":\"utf8mb4\",\"primaryKeyColumnNames\":[\"CategoryNumber\"],\"columns\":[{\"name\":\"CategoryNumber\",\"jdbcType\":4,\"typeName\":\"MEDIUMINT\",\"typeExpression\":\"MEDIUMINT\",\"charsetName\":null,\"position\":1,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"CategoryName\",\"jdbcType\":12,\"typeName\":\"VARCHAR\",\"typeExpression\":\"VARCHAR\",\"charsetName\":\"utf8mb4\",\"length\":255,\"position\":2,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]}],\"attributes\":[]},\"comment\":null}]}\n{\"source\":{\"server\":\"oaken\"},\"position\":{\"ts_sec\":1713385309,\"file\":\"binlog.000002\",\"pos\":141628,\"snapshot\":true},\"ts_ms\":1713385309206,\"databaseName\":\"oaken\",\"ddl\":\"CREATE TABLE `vendors` (\\n  `VendorNumber` mediumint NOT NULL,\\n  `VendorName` varchar(255) NOT NULL,\\n  PRIMARY KEY (`VendorNumber`)\\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci\",\"tableChanges\":[{\"type\":\"CREATE\",\"id\":\"\\\"oaken\\\".\\\"vendors\\\"\",\"table\":{\"defaultCharsetName\":\"utf8mb4\",\"primaryKeyColumnNames\":[\"VendorNumber\"],\"columns\":[{\"name\":\"VendorNumber\",\"jdbcType\":4,\"typeName\":\"MEDIUMINT\",\"typeExpression\":\"MEDIUMINT\",\"charsetName\":null,\"position\":1,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"VendorName\",\"jdbcType\":12,\"typeName\":\"VARCHAR\",\"typeExpression\":\"VARCHAR\",\"charsetName\":\"utf8mb4\",\"length\":255,\"position\":2,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]}],\"attributes\":[]},\"comment\":null}]}\n{\"source\":{\"server\":\"oaken\"},\"position\":{\"ts_sec\":1713385309,\"file\":\"binlog.000002\",\"pos\":141628,\"snapshot\":true},\"ts_ms\":1713385309208,\"databaseName\":\"oaken\",\"ddl\":\"CREATE TABLE `customers` (\\n  `StoreNumber` mediumint NOT NULL,\\n  `StoreName` varchar(255) NOT NULL,\\n  `Address` varchar(255) NOT NULL,\\n  `City` varchar(255) NOT NULL,\\n  `CountyName` varchar(255) NOT NULL,\\n  `State` varchar(255) NOT NULL,\\n  `ZipCode` mediumint NOT NULL,\\n  PRIMARY KEY (`StoreNumber`)\\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci\",\"tableChanges\":[{\"type\":\"CREATE\",\"id\":\"\\\"oaken\\\".\\\"customers\\\"\",\"table\":{\"defaultCharsetName\":\"utf8mb4\",\"primaryKeyColumnNames\":[\"StoreNumber\"],\"columns\":[{\"name\":\"StoreNumber\",\"jdbcType\":4,\"typeName\":\"MEDIUMINT\",\"typeExpression\":\"MEDIUMINT\",\"charsetName\":null,\"position\":1,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"StoreName\",\"jdbcType\":12,\"typeName\":\"VARCHAR\",\"typeExpression\":\"VARCHAR\",\"charsetName\":\"utf8mb4\",\"length\":255,\"position\":2,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"Address\",\"jdbcType\":12,\"typeName\":\"VARCHAR\",\"typeExpression\":\"VARCHAR\",\"charsetName\":\"utf8mb4\",\"length\":255,\"position\":3,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"City\",\"jdbcType\":12,\"typeName\":\"VARCHAR\",\"typeExpression\":\"VARCHAR\",\"charsetName\":\"utf8mb4\",\"length\":255,\"position\":4,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"CountyName\",\"jdbcType\":12,\"typeName\":\"VARCHAR\",\"typeExpression\":\"VARCHAR\",\"charsetName\":\"utf8mb4\",\"length\":255,\"position\":5,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"State\",\"jdbcType\":12,\"typeName\":\"VARCHAR\",\"typeExpression\":\"VARCHAR\",\"charsetName\":\"utf8mb4\",\"length\":255,\"position\":6,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"ZipCode\",\"jdbcType\":4,\"typeName\":\"MEDIUMINT\",\"typeExpression\":\"MEDIUMINT\",\"charsetName\":null,\"position\":7,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]}],\"attributes\":[]},\"comment\":null}]}\n{\"source\":{\"server\":\"oaken\"},\"position\":{\"ts_sec\":1713385309,\"file\":\"binlog.000002\",\"pos\":141628,\"snapshot\":true},\"ts_ms\":1713385309222,\"databaseName\":\"oaken\",\"ddl\":\"CREATE TABLE `sales` (\\n  `Invoice` varchar(255) NOT NULL,\\n  `StoreNumber` mediumint NOT NULL,\\n  `VendorNumber` mediumint NOT NULL,\\n  `SaleDate` date NOT NULL,\\n  `SaleDollars` decimal(11,2) NOT NULL,\\n  `ItemNumber` mediumint NOT NULL,\\n  `BottlesSold` mediumint NOT NULL,\\n  `VolumeSoldLiters` decimal(11,2) NOT NULL,\\n  `ShippingDate` date DEFAULT NULL,\\n  `ShippingCost` decimal(11,2) DEFAULT NULL,\\n  PRIMARY KEY (`Invoice`),\\n  KEY `StoreNumber` (`StoreNumber`),\\n  KEY `ItemNumber` (`ItemNumber`),\\n  KEY `VendorNumber` (`VendorNumber`),\\n  CONSTRAINT `sales_ibfk_1` FOREIGN KEY (`StoreNumber`) REFERENCES `customers` (`StoreNumber`),\\n  CONSTRAINT `sales_ibfk_2` FOREIGN KEY (`ItemNumber`) REFERENCES `products` (`ItemNumber`),\\n  CONSTRAINT `sales_ibfk_3` FOREIGN KEY (`VendorNumber`) REFERENCES `vendors` (`VendorNumber`)\\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci\",\"tableChanges\":[{\"type\":\"CREATE\",\"id\":\"\\\"oaken\\\".\\\"sales\\\"\",\"table\":{\"defaultCharsetName\":\"utf8mb4\",\"primaryKeyColumnNames\":[\"Invoice\"],\"columns\":[{\"name\":\"Invoice\",\"jdbcType\":12,\"typeName\":\"VARCHAR\",\"typeExpression\":\"VARCHAR\",\"charsetName\":\"utf8mb4\",\"length\":255,\"position\":1,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"StoreNumber\",\"jdbcType\":4,\"typeName\":\"MEDIUMINT\",\"typeExpression\":\"MEDIUMINT\",\"charsetName\":null,\"position\":2,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"VendorNumber\",\"jdbcType\":4,\"typeName\":\"MEDIUMINT\",\"typeExpression\":\"MEDIUMINT\",\"charsetName\":null,\"position\":3,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"SaleDate\",\"jdbcType\":91,\"typeName\":\"DATE\",\"typeExpression\":\"DATE\",\"charsetName\":null,\"position\":4,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"SaleDollars\",\"jdbcType\":3,\"typeName\":\"DECIMAL\",\"typeExpression\":\"DECIMAL\",\"charsetName\":null,\"length\":11,\"scale\":2,\"position\":5,\"optional\":false,\"autoIncremented\":false,\"generated\":false,\"comment\":null,\"hasDefaultValue\":false,\"enumValues\":[]},{\"name\":\"ItemNumber\",\"jdbcType\":4,\"typeName\":\"MEDIUMINT\",\"typeExpression\":\"MEDIUMINT\",\"charsetName\":null,\"position\":6…
+2024-04-18 02:50:16 [44msource[0m > INFO main c.z.h.HikariDataSource(<init>):79 HikariPool-1 - Starting...
+2024-04-18 02:50:16 [44msource[0m > INFO main c.z.h.HikariDataSource(<init>):81 HikariPool-1 - Start completed.
+2024-04-18 02:50:16 [43mdestination[0m > WARN main i.a.i.d.b.BigQueryDestination(getSerializedMessageConsumer):262 The "standard" upload mode is not performant, and is not recommended for production. Please use the GCS upload mode if you are syncing a large amount of data.
+2024-04-18 02:50:16 [43mdestination[0m > INFO main i.a.c.i.d.b.BufferManager(<init>):53 Max 'memory' available for buffer allocation 768 MB
+2024-04-18 02:50:16 [43mdestination[0m > INFO main i.a.c.i.d.FlushWorkers(start):95 Start async buffer supervisor
+2024-04-18 02:50:16 [43mdestination[0m > INFO pool-3-thread-1 i.a.c.i.d.b.BufferManager(printQueueInfo):118 [ASYNC QUEUE INFO] Global: max: 768 MB, allocated: 10 MB (10.0 MB), % used: 0.013020833333333334 | State Manager memory usage: Allocated: 10 MB, Used: 0 bytes, percentage Used 0.000000
+2024-04-18 02:50:16 [43mdestination[0m > INFO main i.a.c.i.d.AsyncStreamConsumer(start):138 class io.airbyte.cdk.integrations.destination_async.AsyncStreamConsumer started.
+2024-04-18 02:50:16 [43mdestination[0m > INFO pool-5-thread-1 i.a.c.i.d.FlushWorkers(printWorkerInfo):143 [ASYNC WORKER INFO] Pool queue size: 0, Active threads: 0
+2024-04-18 02:50:21 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(migrateIfNecessary):26 Assessing whether migration is necessary for stream customers
+2024-04-18 02:50:21 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(migrateIfNecessary):26 Assessing whether migration is necessary for stream products
+2024-04-18 02:50:21 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(migrateIfNecessary):26 Assessing whether migration is necessary for stream categories
+2024-04-18 02:50:21 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(shouldMigrate):45 Checking whether v1 raw table _airbyte_raw_products in dataset oaken_spirits exists
+2024-04-18 02:50:21 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(shouldMigrate):45 Checking whether v1 raw table _airbyte_raw_customers in dataset oaken_spirits exists
+2024-04-18 02:50:21 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(shouldMigrate):45 Checking whether v1 raw table _airbyte_raw_categories in dataset oaken_spirits exists
+2024-04-18 02:50:21 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(migrateIfNecessary):26 Assessing whether migration is necessary for stream sales
+2024-04-18 02:50:21 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(migrateIfNecessary):26 Assessing whether migration is necessary for stream vendors
+2024-04-18 02:50:21 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(migrateIfNecessary):26 Assessing whether migration is necessary for stream salesLedger
+2024-04-18 02:50:21 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(shouldMigrate):45 Checking whether v1 raw table _airbyte_raw_vendors in dataset oaken_spirits exists
+2024-04-18 02:50:21 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(shouldMigrate):45 Checking whether v1 raw table _airbyte_raw_sales in dataset oaken_spirits exists
+2024-04-18 02:50:21 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(shouldMigrate):45 Checking whether v1 raw table _airbyte_raw_salesLedger in dataset oaken_spirits exists
+2024-04-18 02:50:22 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(shouldMigrate):49 Migration Info: Required for Sync mode: true, No existing v2 raw tables: false, A v1 raw table exists: false
+2024-04-18 02:50:22 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(migrateIfNecessary):32 No Migration Required for stream: customers
+2024-04-18 02:50:22 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(shouldMigrate):49 Migration Info: Required for Sync mode: true, No existing v2 raw tables: false, A v1 raw table exists: false
+2024-04-18 02:50:22 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(migrateIfNecessary):32 No Migration Required for stream: sales
+2024-04-18 02:50:22 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(shouldMigrate):49 Migration Info: Required for Sync mode: true, No existing v2 raw tables: false, A v1 raw table exists: false
+2024-04-18 02:50:22 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(migrateIfNecessary):32 No Migration Required for stream: salesLedger
+2024-04-18 02:50:22 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(shouldMigrate):49 Migration Info: Required for Sync mode: true, No existing v2 raw tables: false, A v1 raw table exists: false
+2024-04-18 02:50:22 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(migrateIfNecessary):32 No Migration Required for stream: categories
+2024-04-18 02:50:22 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(shouldMigrate):49 Migration Info: Required for Sync mode: true, No existing v2 raw tables: false, A v1 raw table exists: false
+2024-04-18 02:50:22 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(migrateIfNecessary):32 No Migration Required for stream: products
+2024-04-18 02:50:22 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(shouldMigrate):49 Migration Info: Required for Sync mode: true, No existing v2 raw tables: false, A v1 raw table exists: false
+2024-04-18 02:50:22 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.BaseDestinationV1V2Migrator(migrateIfNecessary):32 No Migration Required for stream: vendors
+2024-04-18 02:50:22 [43mdestination[0m > INFO type-and-dedupe i.a.i.d.b.t.BigQueryV2TableMigrator(migrateIfNecessary):76 No Data column Migration Required for stream oaken_spirits_raw__stream_customers
+2024-04-18 02:50:23 [43mdestination[0m > INFO type-and-dedupe i.a.i.d.b.t.BigQueryV2TableMigrator(migrateIfNecessary):76 No Data column Migration Required for stream oaken_spirits_raw__stream_sales
+2024-04-18 02:50:23 [43mdestination[0m > INFO type-and-dedupe i.a.i.d.b.t.BigQueryV2TableMigrator(migrateIfNecessary):76 No Data column Migration Required for stream oaken_spirits_raw__stream_products
+2024-04-18 02:50:23 [43mdestination[0m > INFO type-and-dedupe i.a.i.d.b.t.BigQueryV2TableMigrator(migrateIfNecessary):76 No Data column Migration Required for stream oaken_spirits_raw__stream_categories
+2024-04-18 02:50:23 [43mdestination[0m > INFO type-and-dedupe i.a.i.d.b.t.BigQueryV2TableMigrator(migrateIfNecessary):76 No Data column Migration Required for stream oaken_spirits_raw__stream_salesLedger
+2024-04-18 02:50:23 [43mdestination[0m > INFO type-and-dedupe i.a.i.d.b.t.BigQueryV2TableMigrator(migrateIfNecessary):76 No Data column Migration Required for stream oaken_spirits_raw__stream_vendors
+2024-04-18 02:50:24 [43mdestination[0m > INFO main i.a.i.d.b.t.BigQueryDestinationHandler(existingSchemaMatchesStreamConfig):228 Alter Table Report [] [] []; Clustering true; Partitioning true
+2024-04-18 02:50:26 [43mdestination[0m > INFO main i.a.i.d.b.t.BigQueryDestinationHandler(existingSchemaMatchesStreamConfig):228 Alter Table Report [] [] []; Clustering true; Partitioning true
+2024-04-18 02:50:28 [43mdestination[0m > INFO main i.a.i.d.b.t.BigQueryDestinationHandler(existingSchemaMatchesStreamConfig):228 Alter Table Report [] [] []; Clustering true; Partitioning true
+2024-04-18 02:50:29 [43mdestination[0m > INFO main i.a.i.d.b.t.BigQueryDestinationHandler(existingSchemaMatchesStreamConfig):228 Alter Table Report [] [] []; Clustering true; Partitioning true
+2024-04-18 02:50:31 [43mdestination[0m > INFO main i.a.i.d.b.t.BigQueryDestinationHandler(existingSchemaMatchesStreamConfig):228 Alter Table Report [] [] []; Clustering true; Partitioning true
+2024-04-18 02:50:33 [43mdestination[0m > INFO main i.a.i.d.b.t.BigQueryDestinationHandler(existingSchemaMatchesStreamConfig):228 Alter Table Report [] [] []; Clustering true; Partitioning true
+2024-04-18 02:50:33 [43mdestination[0m > INFO main i.a.i.d.b.BigQueryUtils(getLoadingMethod):419 Selected loading method is set to: STANDARD
+2024-04-18 02:50:33 [43mdestination[0m > INFO main i.a.i.d.b.u.BigQueryUploaderFactory(getBigQueryDirectUploader):88 Will write raw data to GenericData{classInfo=[datasetId, projectId, tableId], {datasetId=airbyte_internal, tableId=oaken_spirits_raw__stream_customers}} with schema Schema{fields=[Field{name=_airbyte_raw_id, type=STRING, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_extracted_at, type=TIMESTAMP, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_loaded_at, type=TIMESTAMP, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_data, type=STRING, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}]}
+2024-04-18 02:50:34 [43mdestination[0m > INFO main i.a.i.d.b.BigQueryUtils(getLoadingMethod):419 Selected loading method is set to: STANDARD
+2024-04-18 02:50:34 [43mdestination[0m > INFO main i.a.i.d.b.u.BigQueryUploaderFactory(getBigQueryDirectUploader):88 Will write raw data to GenericData{classInfo=[datasetId, projectId, tableId], {datasetId=airbyte_internal, tableId=oaken_spirits_raw__stream_categories}} with schema Schema{fields=[Field{name=_airbyte_raw_id, type=STRING, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_extracted_at, type=TIMESTAMP, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_loaded_at, type=TIMESTAMP, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_data, type=STRING, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}]}
+2024-04-18 02:50:35 [43mdestination[0m > INFO main i.a.i.d.b.BigQueryUtils(getLoadingMethod):419 Selected loading method is set to: STANDARD
+2024-04-18 02:50:35 [43mdestination[0m > INFO main i.a.i.d.b.u.BigQueryUploaderFactory(getBigQueryDirectUploader):88 Will write raw data to GenericData{classInfo=[datasetId, projectId, tableId], {datasetId=airbyte_internal, tableId=oaken_spirits_raw__stream_products}} with schema Schema{fields=[Field{name=_airbyte_raw_id, type=STRING, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_extracted_at, type=TIMESTAMP, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_loaded_at, type=TIMESTAMP, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_data, type=STRING, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}]}
+2024-04-18 02:50:36 [43mdestination[0m > INFO main i.a.i.d.b.BigQueryUtils(getLoadingMethod):419 Selected loading method is set to: STANDARD
+2024-04-18 02:50:36 [43mdestination[0m > INFO main i.a.i.d.b.u.BigQueryUploaderFactory(getBigQueryDirectUploader):88 Will write raw data to GenericData{classInfo=[datasetId, projectId, tableId], {datasetId=airbyte_internal, tableId=oaken_spirits_raw__stream_sales}} with schema Schema{fields=[Field{name=_airbyte_raw_id, type=STRING, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_extracted_at, type=TIMESTAMP, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_loaded_at, type=TIMESTAMP, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_data, type=STRING, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}]}
+2024-04-18 02:50:37 [43mdestination[0m > INFO main i.a.i.d.b.BigQueryUtils(getLoadingMethod):419 Selected loading method is set to: STANDARD
+2024-04-18 02:50:37 [43mdestination[0m > INFO main i.a.i.d.b.u.BigQueryUploaderFactory(getBigQueryDirectUploader):88 Will write raw data to GenericData{classInfo=[datasetId, projectId, tableId], {datasetId=airbyte_internal, tableId=oaken_spirits_raw__stream_vendors}} with schema Schema{fields=[Field{name=_airbyte_raw_id, type=STRING, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_extracted_at, type=TIMESTAMP, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_loaded_at, type=TIMESTAMP, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_data, type=STRING, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}]}
+2024-04-18 02:50:37 [43mdestination[0m > INFO main i.a.i.d.b.BigQueryUtils(getLoadingMethod):419 Selected loading method is set to: STANDARD
+2024-04-18 02:50:38 [43mdestination[0m > INFO main i.a.i.d.b.u.BigQueryUploaderFactory(getBigQueryDirectUploader):88 Will write raw data to GenericData{classInfo=[datasetId, projectId, tableId], {datasetId=airbyte_internal, tableId=oaken_spirits_raw__stream_salesLedger}} with schema Schema{fields=[Field{name=_airbyte_raw_id, type=STRING, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_extracted_at, type=TIMESTAMP, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_loaded_at, type=TIMESTAMP, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_data, type=STRING, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}]}
+2024-04-18 02:50:38 [43mdestination[0m > INFO main i.a.i.d.b.u.AbstractBigQueryUploader(createRawTable):131 Found raw table GenericData{classInfo=[datasetId, projectId, tableId], {datasetId=airbyte_internal, projectId=elaborate-art-318223, tableId=oaken_spirits_raw__stream_customers}}.
+2024-04-18 02:50:39 [43mdestination[0m > INFO main i.a.i.d.b.u.AbstractBigQueryUploader(createRawTable):131 Found raw table GenericData{classInfo=[datasetId, projectId, tableId], {datasetId=airbyte_internal, projectId=elaborate-art-318223, tableId=oaken_spirits_raw__stream_vendors}}.
+2024-04-18 02:50:39 [43mdestination[0m > INFO main i.a.i.d.b.u.AbstractBigQueryUploader(createRawTable):131 Found raw table GenericData{classInfo=[datasetId, projectId, tableId], {datasetId=airbyte_internal, projectId=elaborate-art-318223, tableId=oaken_spirits_raw__stream_salesLedger}}.
+2024-04-18 02:50:39 [43mdestination[0m > INFO main i.a.i.d.b.u.AbstractBigQueryUploader(createRawTable):131 Found raw table GenericData{classInfo=[datasetId, projectId, tableId], {datasetId=airbyte_internal, projectId=elaborate-art-318223, tableId=oaken_spirits_raw__stream_categories}}.
+2024-04-18 02:50:39 [43mdestination[0m > INFO main i.a.i.d.b.u.AbstractBigQueryUploader(createRawTable):131 Found raw table GenericData{classInfo=[datasetId, projectId, tableId], {datasetId=airbyte_internal, projectId=elaborate-art-318223, tableId=oaken_spirits_raw__stream_sales}}.
+2024-04-18 02:50:39 [43mdestination[0m > INFO main i.a.i.d.b.u.AbstractBigQueryUploader(createRawTable):131 Found raw table GenericData{classInfo=[datasetId, projectId, tableId], {datasetId=airbyte_internal, projectId=elaborate-art-318223, tableId=oaken_spirits_raw__stream_products}}.
+2024-04-18 02:50:39 [43mdestination[0m > INFO main i.a.i.b.d.t.DefaultTyperDeduper(prepareFinalTables):153 Preparing tables
+2024-04-18 02:50:39 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.DefaultTyperDeduper(lambda$prepareTablesFuture$3):173 Final Table exists for stream customers
+2024-04-18 02:50:39 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.DefaultTyperDeduper(lambda$prepareTablesFuture$3):173 Final Table exists for stream categories
+2024-04-18 02:50:39 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.DefaultTyperDeduper(lambda$prepareTablesFuture$3):173 Final Table exists for stream sales
+2024-04-18 02:50:39 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.DefaultTyperDeduper(lambda$prepareTablesFuture$3):173 Final Table exists for stream products
+2024-04-18 02:50:39 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.DefaultTyperDeduper(lambda$prepareTablesFuture$3):173 Final Table exists for stream salesLedger
+2024-04-18 02:50:39 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.DefaultTyperDeduper(lambda$prepareTablesFuture$3):173 Final Table exists for stream vendors
+2024-04-18 02:51:16 [44msource[0m > ERROR main i.a.c.i.b.s.SshWrappedSource(read):77 Exception occurred while getting the delegate read iterator, closing SSH tunnel io.airbyte.commons.exceptions.ConnectionErrorException: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 60001ms (total=0, active=0, idle=0, waiting=0)
+	at io.airbyte.cdk.db.jdbc.DefaultJdbcDatabase.getMetaData(DefaultJdbcDatabase.java:88) ~[airbyte-cdk-core-0.23.8.jar:?]
+	at io.airbyte.integrations.source.mysql.MySqlSource.createDatabase(MySqlSource.java:542) ~[io.airbyte.airbyte-integrations.connectors-source-mysql.jar:?]
+	at io.airbyte.integrations.source.mysql.MySqlSource.createDatabase(MySqlSource.java:92) ~[io.airbyte.airbyte-integrations.connectors-source-mysql.jar:?]
+	at io.airbyte.cdk.integrations.source.relationaldb.AbstractDbSource.read(AbstractDbSource.java:156) ~[airbyte-cdk-db-sources-0.23.8.jar:?]
+	at io.airbyte.cdk.integrations.base.ssh.SshWrappedSource.read(SshWrappedSource.java:75) [airbyte-cdk-core-0.23.8.jar:?]
+	at io.airbyte.cdk.integrations.base.IntegrationRunner.readSerial(IntegrationRunner.java:267) [airbyte-cdk-core-0.23.8.jar:?]
+	at io.airbyte.cdk.integrations.base.IntegrationRunner.runInternal(IntegrationRunner.java:173) [airbyte-cdk-core-0.23.8.jar:?]
+	at io.airbyte.cdk.integrations.base.IntegrationRunner.run(IntegrationRunner.java:125) [airbyte-cdk-core-0.23.8.jar:?]
+	at io.airbyte.integrations.source.mysql.MySqlSource.main(MySqlSource.java:581) [io.airbyte.airbyte-integrations.connectors-source-mysql.jar:?]
+Caused by: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 60001ms (total=0, active=0, idle=0, waiting=0)
+	at com.zaxxer.hikari.pool.HikariPool.createTimeoutException(HikariPool.java:686) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:179) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:144) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:99) ~[HikariCP-5.1.0.jar:?]
+	at io.airbyte.cdk.db.jdbc.DefaultJdbcDatabase.getMetaData(DefaultJdbcDatabase.java:79) ~[airbyte-cdk-core-0.23.8.jar:?]
+	... 8 more
+Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:448) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:724) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:703) ~[HikariCP-5.1.0.jar:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?]
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[?:?]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502) ~[?:?]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[?:?]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:167) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:89) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:948) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:818) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:448) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:724) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:703) ~[HikariCP-5.1.0.jar:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?]
+Caused by: java.net.NoRouteToHostException: No route to host
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682) ~[?:?]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:549) ~[?:?]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592) ~[?:?]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[?:?]
+	at java.base/java.net.Socket.connect(Socket.java:751) ~[?:?]
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:948) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:818) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:448) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:724) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:703) ~[HikariCP-5.1.0.jar:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?]
+
+Stack Trace: io.airbyte.commons.exceptions.ConnectionErrorException: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 60001ms (total=0, active=0, idle=0, waiting=0)
+	at io.airbyte.cdk.db.jdbc.DefaultJdbcDatabase.getMetaData(DefaultJdbcDatabase.java:88)
+	at io.airbyte.integrations.source.mysql.MySqlSource.createDatabase(MySqlSource.java:542)
+	at io.airbyte.integrations.source.mysql.MySqlSource.createDatabase(MySqlSource.java:92)
+	at io.airbyte.cdk.integrations.source.relationaldb.AbstractDbSource.read(AbstractDbSource.java:156)
+	at io.airbyte.cdk.integrations.base.ssh.SshWrappedSource.read(SshWrappedSource.java:75)
+	at io.airbyte.cdk.integrations.base.IntegrationRunner.readSerial(IntegrationRunner.java:267)
+	at io.airbyte.cdk.integrations.base.IntegrationRunner.runInternal(IntegrationRunner.java:173)
+	at io.airbyte.cdk.integrations.base.IntegrationRunner.run(IntegrationRunner.java:125)
+	at io.airbyte.integrations.source.mysql.MySqlSource.main(MySqlSource.java:581)
+Caused by: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 60001ms (total=0, active=0, idle=0, waiting=0)
+	at com.zaxxer.hikari.pool.HikariPool.createTimeoutException(HikariPool.java:686)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:179)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:144)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:99)
+	at io.airbyte.cdk.db.jdbc.DefaultJdbcDatabase.getMetaData(DefaultJdbcDatabase.java:79)
+	... 8 more
+Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:448)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:724)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:703)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151)
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:167)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:89)
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:948)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:818)
+	... 13 more
+Caused by: java.net.NoRouteToHostException: No route to host
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:549)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:751)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63)
+	... 16 more
+
+2024-04-18 02:51:16 [44msource[0m > ERROR main i.a.c.i.b.AirbyteExceptionHandler(uncaughtException):64 Something went wrong in the connector. See the logs for more details. io.airbyte.commons.exceptions.ConnectionErrorException: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 60001ms (total=0, active=0, idle=0, waiting=0)
+	at io.airbyte.cdk.db.jdbc.DefaultJdbcDatabase.getMetaData(DefaultJdbcDatabase.java:88) ~[airbyte-cdk-core-0.23.8.jar:?]
+	at io.airbyte.integrations.source.mysql.MySqlSource.createDatabase(MySqlSource.java:542) ~[io.airbyte.airbyte-integrations.connectors-source-mysql.jar:?]
+	at io.airbyte.integrations.source.mysql.MySqlSource.createDatabase(MySqlSource.java:92) ~[io.airbyte.airbyte-integrations.connectors-source-mysql.jar:?]
+	at io.airbyte.cdk.integrations.source.relationaldb.AbstractDbSource.read(AbstractDbSource.java:156) ~[airbyte-cdk-db-sources-0.23.8.jar:?]
+	at io.airbyte.cdk.integrations.base.ssh.SshWrappedSource.read(SshWrappedSource.java:75) ~[airbyte-cdk-core-0.23.8.jar:?]
+	at io.airbyte.cdk.integrations.base.IntegrationRunner.readSerial(IntegrationRunner.java:267) ~[airbyte-cdk-core-0.23.8.jar:?]
+	at io.airbyte.cdk.integrations.base.IntegrationRunner.runInternal(IntegrationRunner.java:173) ~[airbyte-cdk-core-0.23.8.jar:?]
+	at io.airbyte.cdk.integrations.base.IntegrationRunner.run(IntegrationRunner.java:125) ~[airbyte-cdk-core-0.23.8.jar:?]
+	at io.airbyte.integrations.source.mysql.MySqlSource.main(MySqlSource.java:581) ~[io.airbyte.airbyte-integrations.connectors-source-mysql.jar:?]
+Caused by: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 60001ms (total=0, active=0, idle=0, waiting=0)
+	at com.zaxxer.hikari.pool.HikariPool.createTimeoutException(HikariPool.java:686) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:179) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:144) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:99) ~[HikariCP-5.1.0.jar:?]
+	at io.airbyte.cdk.db.jdbc.DefaultJdbcDatabase.getMetaData(DefaultJdbcDatabase.java:79) ~[airbyte-cdk-core-0.23.8.jar:?]
+	... 8 more
+Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:448) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:724) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:703) ~[HikariCP-5.1.0.jar:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[?:?]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502) ~[?:?]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[?:?]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:167) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:89) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:948) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:818) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:448) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:724) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:703) ~[HikariCP-5.1.0.jar:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?]
+Caused by: java.net.NoRouteToHostException: No route to host
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682) ~[?:?]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:549) ~[?:?]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592) ~[?:?]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[?:?]
+	at java.base/java.net.Socket.connect(Socket.java:751) ~[?:?]
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:948) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:818) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:448) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198) ~[mysql-connector-java-8.0.30.jar:8.0.30]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:724) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:703) ~[HikariCP-5.1.0.jar:?]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?]
+
+Stack Trace: io.airbyte.commons.exceptions.ConnectionErrorException: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 60001ms (total=0, active=0, idle=0, waiting=0)
+	at io.airbyte.cdk.db.jdbc.DefaultJdbcDatabase.getMetaData(DefaultJdbcDatabase.java:88)
+	at io.airbyte.integrations.source.mysql.MySqlSource.createDatabase(MySqlSource.java:542)
+	at io.airbyte.integrations.source.mysql.MySqlSource.createDatabase(MySqlSource.java:92)
+	at io.airbyte.cdk.integrations.source.relationaldb.AbstractDbSource.read(AbstractDbSource.java:156)
+	at io.airbyte.cdk.integrations.base.ssh.SshWrappedSource.read(SshWrappedSource.java:75)
+	at io.airbyte.cdk.integrations.base.IntegrationRunner.readSerial(IntegrationRunner.java:267)
+	at io.airbyte.cdk.integrations.base.IntegrationRunner.runInternal(IntegrationRunner.java:173)
+	at io.airbyte.cdk.integrations.base.IntegrationRunner.run(IntegrationRunner.java:125)
+	at io.airbyte.integrations.source.mysql.MySqlSource.main(MySqlSource.java:581)
+Caused by: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 60001ms (total=0, active=0, idle=0, waiting=0)
+	at com.zaxxer.hikari.pool.HikariPool.createTimeoutException(HikariPool.java:686)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:179)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:144)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:99)
+	at io.airbyte.cdk.db.jdbc.DefaultJdbcDatabase.getMetaData(DefaultJdbcDatabase.java:79)
+	... 8 more
+Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:448)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:724)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:703)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151)
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:167)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:89)
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:948)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:818)
+	... 13 more
+Caused by: java.net.NoRouteToHostException: No route to host
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:549)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:751)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63)
+	... 16 more
+
+2024-04-18 02:51:16 [43mdestination[0m > INFO pool-3-thread-1 i.a.c.i.d.b.BufferManager(printQueueInfo):118 [ASYNC QUEUE INFO] Global: max: 768 MB, allocated: 10 MB (10.0 MB), % used: 0.013020833333333334 | State Manager memory usage: Allocated: 10 MB, Used: 0 bytes, percentage Used 0.000000
+2024-04-18 02:51:16 [43mdestination[0m > INFO pool-5-thread-1 i.a.c.i.d.FlushWorkers(printWorkerInfo):143 [ASYNC WORKER INFO] Pool queue size: 0, Active threads: 0
+2024-04-18 02:51:16 [46mplatform[0m > readFromSource: source exception
+io.airbyte.workers.internal.exception.SourceException: Source process exited with non-zero exit code 1
+	at io.airbyte.workers.general.BufferedReplicationWorker.readFromSource(BufferedReplicationWorker.java:362) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at io.airbyte.workers.general.BufferedReplicationWorker.lambda$runAsyncWithHeartbeatCheck$3(BufferedReplicationWorker.java:234) ~[io.airbyte-airbyte-commons-worker-0.57.1.jar:?]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+2024-04-18 02:51:16 [46mplatform[0m > readFromSource: done. (source.isFinished:true, fromSource.isClosed:false)
+2024-04-18 02:51:16 [46mplatform[0m > processMessage: done. (fromSource.isDone:true, forDest.isClosed:false)
+2024-04-18 02:51:16 [46mplatform[0m > writeToDestination: done. (forDest.isDone:true, isDestRunning:true)
+2024-04-18 02:51:16 [46mplatform[0m > thread status... timeout thread: false , replication thread: true
+2024-04-18 02:51:16 [43mdestination[0m > INFO main i.a.c.i.d.FlushWorkers(close):188 Closing flush workers -- waiting for all buffers to flush
+2024-04-18 02:51:16 [43mdestination[0m > INFO main i.a.c.i.d.FlushWorkers(close):217 Closing flush workers -- all buffers flushed
+2024-04-18 02:51:16 [43mdestination[0m > INFO main i.a.c.i.d.GlobalMemoryManager(free):88 Freeing 0 bytes..
+2024-04-18 02:51:16 [43mdestination[0m > INFO main i.a.c.i.d.FlushWorkers(close):225 Closing flush workers -- supervisor shut down
+2024-04-18 02:51:16 [43mdestination[0m > INFO main i.a.c.i.d.FlushWorkers(close):227 Closing flush workers -- Starting worker pool shutdown..
+2024-04-18 02:51:16 [43mdestination[0m > INFO main i.a.c.i.d.FlushWorkers(close):232 Closing flush workers  -- workers shut down
+2024-04-18 02:51:16 [43mdestination[0m > INFO main i.a.c.i.d.b.BufferManager(close):92 Buffers cleared..
+2024-04-18 02:51:46 [43mdestination[0m > INFO main i.a.i.b.d.t.DefaultTyperDeduper(typeAndDedupe):301 Typing and deduping all tables
+2024-04-18 02:51:46 [43mdestination[0m > INFO main i.a.i.b.d.t.DefaultTyperDeduper(lambda$typeAndDedupe$6):323 Skipping typing and deduping for stream oaken_spirits.customers because it had no records during this sync and no unprocessed records from a previous sync.
+2024-04-18 02:51:46 [43mdestination[0m > INFO main i.a.i.b.d.t.DefaultTyperDeduper(lambda$typeAndDedupe$6):323 Skipping typing and deduping for stream oaken_spirits.categories because it had no records during this sync and no unprocessed records from a previous sync.
+2024-04-18 02:51:46 [43mdestination[0m > INFO main i.a.i.b.d.t.DefaultTyperDeduper(lambda$typeAndDedupe$6):323 Skipping typing and deduping for stream oaken_spirits.products because it had no records during this sync and no unprocessed records from a previous sync.
+2024-04-18 02:51:46 [43mdestination[0m > INFO main i.a.i.b.d.t.DefaultTyperDeduper(lambda$typeAndDedupe$6):323 Skipping typing and deduping for stream oaken_spirits.sales because it had no records during this sync and no unprocessed records from a previous sync.
+2024-04-18 02:51:46 [43mdestination[0m > INFO main i.a.i.b.d.t.DefaultTyperDeduper(lambda$typeAndDedupe$6):323 Skipping typing and deduping for stream oaken_spirits.vendors because it had no records during this sync and no unprocessed records from a previous sync.
+2024-04-18 02:51:46 [43mdestination[0m > INFO main i.a.i.b.d.t.DefaultTyperDeduper(lambda$typeAndDedupe$6):323 Skipping typing and deduping for stream oaken_spirits.salesLedger because it had no records during this sync and no unprocessed records from a previous sync.
+2024-04-18 02:51:46 [43mdestination[0m > INFO main i.a.i.b.d.t.DefaultTyperDeduper(commitFinalTables):342 Committing final tables
+2024-04-18 02:51:46 [43mdestination[0m > INFO main i.a.i.b.d.t.DefaultTyperDeduper(cleanup):383 Cleaning Up type-and-dedupe thread pool
+2024-04-18 02:51:46 [43mdestination[0m > INFO main i.a.c.i.d.AsyncStreamConsumer(close):219 class io.airbyte.cdk.integrations.destination_async.AsyncStreamConsumer closed
+2024-04-18 02:51:46 [43mdestination[0m > INFO main i.a.c.i.b.IntegrationRunner(runInternal):227 Completed integration: io.airbyte.integrations.destination.bigquery.BigQueryDestination
+2024-04-18 02:51:46 [46mplatform[0m > readFromDestination: done. (writeToDestFailed:false, dest.isFinished:true)
+2024-04-18 02:51:46 [46mplatform[0m > thread status... timeout thread: false , replication thread: true
+2024-04-18 02:51:46 [46mplatform[0m > sync summary: {
+  "status" : "failed",
+  "startTime" : 1713408609038,
+  "endTime" : 1713408706961,
+  "totalStats" : {
+    "bytesEmitted" : 0,
+    "destinationStateMessagesEmitted" : 0,
+    "destinationWriteEndTime" : 1713408706947,
+    "destinationWriteStartTime" : 1713408609066,
+    "meanSecondsBeforeSourceStateMessageEmitted" : 0,
+    "maxSecondsBeforeSourceStateMessageEmitted" : 0,
+    "meanSecondsBetweenStateMessageEmittedandCommitted" : 0,
+    "recordsEmitted" : 0,
+    "replicationEndTime" : 1713408706952,
+    "replicationStartTime" : 1713408609038,
+    "sourceReadEndTime" : 0,
+    "sourceReadStartTime" : 1713408609067,
+    "sourceStateMessagesEmitted" : 0
+  },
+  "streamStats" : [ ],
+  "performanceMetrics" : {
+    "processFromSource" : {
+      "elapsedTimeInNanos" : 6153496,
+      "executionCount" : 2,
+      "avgExecTimeInNanos" : 3076748.0
+    },
+    "readFromSource" : {
+      "elapsedTimeInNanos" : 66794950341,
+      "executionCount" : 50,
+      "avgExecTimeInNanos" : 1.33589900682E9
+    },
+    "processFromDest" : {
+      "elapsedTimeInNanos" : 0,
+      "executionCount" : 0,
+      "avgExecTimeInNanos" : "NaN"
+    },
+    "writeToDest" : {
+      "elapsedTimeInNanos" : 0,
+      "executionCount" : 0,
+      "avgExecTimeInNanos" : "NaN"
+    },
+    "readFromDest" : {
+      "elapsedTimeInNanos" : 97154744223,
+      "executionCount" : 105,
+      "avgExecTimeInNanos" : 9.252832783142858E8
+    }
+  }
+}
+2024-04-18 02:51:46 [46mplatform[0m > failures: [ {
+  "failureOrigin" : "source",
+  "failureType" : "config_error",
+  "internalMessage" : "io.airbyte.commons.exceptions.ConnectionErrorException: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 60001ms (total=0, active=0, idle=0, waiting=0)",
+  "externalMessage" : "State code: 08S01; Message: Communications link failure\n\nThe last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.",
+  "metadata" : {
+    "attemptNumber" : 0,
+    "jobId" : 23,
+    "from_trace_message" : true,
+    "connector_command" : "read"
+  },
+  "stacktrace" : "io.airbyte.commons.exceptions.ConnectionErrorException: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 60001ms (total=0, active=0, idle=0, waiting=0)\n\tat io.airbyte.cdk.db.jdbc.DefaultJdbcDatabase.getMetaData(DefaultJdbcDatabase.java:88)\n\tat io.airbyte.integrations.source.mysql.MySqlSource.createDatabase(MySqlSource.java:542)\n\tat io.airbyte.integrations.source.mysql.MySqlSource.createDatabase(MySqlSource.java:92)\n\tat io.airbyte.cdk.integrations.source.relationaldb.AbstractDbSource.read(AbstractDbSource.java:156)\n\tat io.airbyte.cdk.integrations.base.ssh.SshWrappedSource.read(SshWrappedSource.java:75)\n\tat io.airbyte.cdk.integrations.base.IntegrationRunner.readSerial(IntegrationRunner.java:267)\n\tat io.airbyte.cdk.integrations.base.IntegrationRunner.runInternal(IntegrationRunner.java:173)\n\tat io.airbyte.cdk.integrations.base.IntegrationRunner.run(IntegrationRunner.java:125)\n\tat io.airbyte.integrations.source.mysql.MySqlSource.main(MySqlSource.java:581)\nCaused by: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 60001ms (total=0, active=0, idle=0, waiting=0)\n\tat com.zaxxer.hikari.pool.HikariPool.createTimeoutException(HikariPool.java:686)\n\tat com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:179)\n\tat com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:144)\n\tat com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:99)\n\tat io.airbyte.cdk.db.jdbc.DefaultJdbcDatabase.getMetaData(DefaultJdbcDatabase.java:79)\n\t... 8 more\nCaused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure\n\nThe last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.\n\tat com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174)\n\tat com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64)\n\tat com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828)\n\tat com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:448)\n\tat com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241)\n\tat com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198)\n\tat com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137)\n\tat com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360)\n\tat com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)\n\tat com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461)\n\tat com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:724)\n\tat com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:703)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\nCaused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure\n\nThe last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.\n\tat java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)\n\tat com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)\n\tat com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105)\n\tat com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151)\n\tat com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:167)\n\tat com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:89)\n\tat com.mysql.cj.NativeSession.connect(NativeSession.java:120)\n\tat com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:948)\n\tat com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:818)\n\t... 13 more\nCaused by: java.net.NoRouteToHostException: No route to host\n\tat java.base/sun.nio.ch.Net.pollConnect(Native Method)\n\tat java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)\n\tat java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:549)\n\tat java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)\n\tat java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)\n\tat java.base/java.net.Socket.connect(Socket.java:751)\n\tat com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153)\n\tat com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63)\n\t... 16 more\n",
+  "timestamp" : 1713408676254
+}, {
+  "failureOrigin" : "source",
+  "failureType" : "system_error",
+  "internalMessage" : "io.airbyte.commons.exceptions.ConnectionErrorException: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 60001ms (total=0, active=0, idle=0, waiting=0)",
+  "externalMessage" : "Something went wrong in the connector. See the logs for more details.",
+  "metadata" : {
+    "attemptNumber" : 0,
+    "jobId" : 23,
+    "from_trace_message" : true,
+    "connector_command" : "read"
+  },
+  "stacktrace" : "io.airbyte.commons.exceptions.ConnectionErrorException: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 60001ms (total=0, active=0, idle=0, waiting=0)\n\tat io.airbyte.cdk.db.jdbc.DefaultJdbcDatabase.getMetaData(DefaultJdbcDatabase.java:88)\n\tat io.airbyte.integrations.source.mysql.MySqlSource.createDatabase(MySqlSource.java:542)\n\tat io.airbyte.integrations.source.mysql.MySqlSource.createDatabase(MySqlSource.java:92)\n\tat io.airbyte.cdk.integrations.source.relationaldb.AbstractDbSource.read(AbstractDbSource.java:156)\n\tat io.airbyte.cdk.integrations.base.ssh.SshWrappedSource.read(SshWrappedSource.java:75)\n\tat io.airbyte.cdk.integrations.base.IntegrationRunner.readSerial(IntegrationRunner.java:267)\n\tat io.airbyte.cdk.integrations.base.IntegrationRunner.runInternal(IntegrationRunner.java:173)\n\tat io.airbyte.cdk.integrations.base.IntegrationRunner.run(IntegrationRunner.java:125)\n\tat io.airbyte.integrations.source.mysql.MySqlSource.main(MySqlSource.java:581)\nCaused by: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 60001ms (total=0, active=0, idle=0, waiting=0)\n\tat com.zaxxer.hikari.pool.HikariPool.createTimeoutException(HikariPool.java:686)\n\tat com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:179)\n\tat com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:144)\n\tat com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:99)\n\tat io.airbyte.cdk.db.jdbc.DefaultJdbcDatabase.getMetaData(DefaultJdbcDatabase.java:79)\n\t... 8 more\nCaused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure\n\nThe last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.\n\tat com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174)\n\tat com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64)\n\tat com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828)\n\tat com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:448)\n\tat com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241)\n\tat com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198)\n\tat com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137)\n\tat com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360)\n\tat com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)\n\tat com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461)\n\tat com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:724)\n\tat com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:703)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\nCaused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure\n\nThe last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.\n\tat java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)\n\tat com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)\n\tat com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105)\n\tat com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151)\n\tat com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:167)\n\tat com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:89)\n\tat com.mysql.cj.NativeSession.connect(NativeSession.java:120)\n\tat com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:948)\n\tat com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:818)\n\t... 13 more\nCaused by: java.net.NoRouteToHostException: No route to host\n\tat java.base/sun.nio.ch.Net.pollConnect(Native Method)\n\tat java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)\n\tat java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:549)\n\tat java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)\n\tat java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)\n\tat java.base/java.net.Socket.connect(Socket.java:751)\n\tat com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153)\n\tat com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63)\n\t... 16 more\n",
+  "timestamp" : 1713408676292
+}, {
+  "failureOrigin" : "source",
+  "internalMessage" : "Source process exited with non-zero exit code 1",
+  "externalMessage" : "Something went wrong within the source connector",
+  "metadata" : {
+    "attemptNumber" : 0,
+    "jobId" : 23,
+    "connector_command" : "read"
+  },
+  "stacktrace" : "io.airbyte.workers.internal.exception.SourceException: Source process exited with non-zero exit code 1\n\tat io.airbyte.workers.general.BufferedReplicationWorker.readFromSource(BufferedReplicationWorker.java:362)\n\tat io.airbyte.workers.general.BufferedReplicationWorker.lambda$runAsyncWithHeartbeatCheck$3(BufferedReplicationWorker.java:234)\n\tat java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n",
+  "timestamp" : 1713408676617
+} ]
+2024-04-18 02:51:46 [46mplatform[0m > 
+2024-04-18 02:51:46 [46mplatform[0m > ----- END REPLICATION -----
+2024-04-18 02:51:46 [46mplatform[0m > 
+2024-04-18 02:51:48 [46mplatform[0m > Retry State: RetryManager(completeFailureBackoffPolicy=BackoffPolicy(minInterval=PT10S, maxInterval=PT30M, base=3), partialFailureBackoffPolicy=null, successiveCompleteFailureLimit=5, totalCompleteFailureLimit=10, successivePartialFailureLimit=1000, totalPartialFailureLimit=10, successiveCompleteFailures=1, totalCompleteFailures=1, successivePartialFailures=0, totalPartialFailures=0)
+ Backoff before next attempt: 10 seconds
+2024-04-18 02:51:48 [46mplatform[0m > Failing job: 23, reason: Connection Check Failed 92a36319-c76c-4252-8520-2416aed60f2c

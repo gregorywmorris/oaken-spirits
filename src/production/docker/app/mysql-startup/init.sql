@@ -1,6 +1,6 @@
 USE oaken;
 
-CREATE TABLE customer (
+CREATE TABLE customers (
     StoreNumber MEDIUMINT NOT NULL,
     StoreName VARCHAR(255) NOT NULL,
     Address VARCHAR(255) NOT NULL,
@@ -11,19 +11,19 @@ CREATE TABLE customer (
     PRIMARY KEY (StoreNumber)
 );
 
-CREATE TABLE vendor (
+CREATE TABLE vendors (
     VendorNumber MEDIUMINT NOT NULL,
     VendorName VARCHAR(255) NOT NULL,
     PRIMARY KEY (VendorNumber)
 );
 
-CREATE TABLE category (
+CREATE TABLE categories (
     CategoryNumber MEDIUMINT NOT NULL,
     CategoryName VARCHAR(255) NOT NULL,
     PRIMARY KEY (CategoryNumber)
 );
 
-CREATE TABLE product (
+CREATE TABLE products (
     ItemNumber MEDIUMINT NOT NULL,
     CategoryNumber MEDIUMINT,
     ItemDescription VARCHAR(255) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE product (
     BottleCost DECIMAL(11,2) NOT NULL,
     BottleRetail DECIMAL(11,2) NOT NULL,
     PRIMARY KEY (ItemNumber),
-    FOREIGN KEY (CategoryNumber) REFERENCES category(CategoryNumber)
+    FOREIGN KEY (CategoryNumber) REFERENCES categories(CategoryNumber)
 );
 
 CREATE TABLE sales (
@@ -47,9 +47,9 @@ CREATE TABLE sales (
     ShippingDate DATE,
     ShippingCost DECIMAL(11,2),
     PRIMARY KEY (Invoice),
-    FOREIGN KEY (StoreNumber) REFERENCES customer(StoreNumber),
-    FOREIGN KEY (ItemNumber) REFERENCES product(ItemNumber),
-    FOREIGN KEY (VendorNumber) REFERENCES vendor(VendorNumber)
+    FOREIGN KEY (StoreNumber) REFERENCES customers(StoreNumber),
+    FOREIGN KEY (ItemNumber) REFERENCES products(ItemNumber),
+    FOREIGN KEY (VendorNumber) REFERENCES vendors(VendorNumber)
 );
 
 CREATE TABLE salesLedger (

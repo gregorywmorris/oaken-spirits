@@ -1,0 +1,3 @@
+[32m2024-04-18 10:14:33 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - df217e0d-13cd-46c5-99ce-265ff523ebbb - 41429 - LOGS_CAPTURED - Started capturing logs in process (pid: 41429).
+[32m2024-04-18 10:14:33 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - df217e0d-13cd-46c5-99ce-265ff523ebbb - 41429 - airbyte_sync_92a36 - STEP_START - Started execution of step "airbyte_sync_92a36".
+[32m2024-04-18 10:14:33 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - df217e0d-13cd-46c5-99ce-265ff523ebbb - airbyte_sync_92a36 - Job 29 initialized for connection_id=92a36319-c76c-4252-8520-2416aed60f2c.

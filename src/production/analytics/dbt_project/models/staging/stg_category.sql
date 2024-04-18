@@ -1,4 +1,4 @@
 select
     CategoryNumber,
     CategoryName
-from {{ source('oaken', 'category') }}
+from {{ source('oaken', 'categories') }}

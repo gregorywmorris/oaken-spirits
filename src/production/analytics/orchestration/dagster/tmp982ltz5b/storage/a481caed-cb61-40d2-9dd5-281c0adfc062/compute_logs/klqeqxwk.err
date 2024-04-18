@@ -1,0 +1,44 @@
+[32m2024-04-17 22:50:03 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - a481caed-cb61-40d2-9dd5-281c0adfc062 - 10124 - LOGS_CAPTURED - Started capturing logs in process (pid: 10124).
+[32m2024-04-17 22:50:03 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - a481caed-cb61-40d2-9dd5-281c0adfc062 - 10124 - airbyte_sync_92a36 - STEP_START - Started execution of step "airbyte_sync_92a36".
+[32m2024-04-17 22:50:06 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - a481caed-cb61-40d2-9dd5-281c0adfc062 - airbyte_sync_92a36 - Job 23 initialized for connection_id=92a36319-c76c-4252-8520-2416aed60f2c.
+[32m2024-04-17 22:51:57 -0400[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - a481caed-cb61-40d2-9dd5-281c0adfc062 - airbyte_sync_92a36 - Request to Airbyte API failed: 500 Server Error: Internal Server Error for url: http://localhost:8000/api/v1/jobs/cancel[0m
+[32m2024-04-17 22:51:57 -0400[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - a481caed-cb61-40d2-9dd5-281c0adfc062 - airbyte_sync_92a36 - Request to Airbyte API failed: 500 Server Error: Internal Server Error for url: http://localhost:8000/api/v1/jobs/cancel[0m
+[32m2024-04-17 22:51:58 -0400[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - a481caed-cb61-40d2-9dd5-281c0adfc062 - airbyte_sync_92a36 - Request to Airbyte API failed: 500 Server Error: Internal Server Error for url: http://localhost:8000/api/v1/jobs/cancel[0m
+[32m2024-04-17 22:51:58 -0400[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - a481caed-cb61-40d2-9dd5-281c0adfc062 - airbyte_sync_92a36 - Request to Airbyte API failed: 500 Server Error: Internal Server Error for url: http://localhost:8000/api/v1/jobs/cancel[0m
+[32m2024-04-17 22:51:58 -0400[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - a481caed-cb61-40d2-9dd5-281c0adfc062 - 10124 - airbyte_sync_92a36 - STEP_FAILURE - Execution of step "airbyte_sync_92a36" failed.
+
+dagster._core.definitions.events.Failure: Max retries (3) exceeded with url: http://localhost:8000/api/v1/jobs/cancel.
+
+Stack Trace:
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster/_core/execution/plan/execute_step.py", line 521, in core_dagster_event_sequence_for_step
+    for user_event in _step_output_error_checked_user_event_sequence(
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster/_core/execution/plan/execute_step.py", line 202, in _step_output_error_checked_user_event_sequence
+    for user_event in user_event_sequence:
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster/_core/execution/plan/execute_step.py", line 100, in _process_asset_results_to_events
+    for user_event in user_event_sequence:
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster/_core/execution/plan/compute.py", line 208, in execute_core_compute
+    for step_output in _yield_compute_results(step_context, inputs, compute_fn, compute_context):
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster/_core/execution/plan/compute.py", line 177, in _yield_compute_results
+    for event in iterate_with_context(
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster/_utils/__init__.py", line 464, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster_airbyte/asset_defs.py", line 194, in _assets
+    ab_output = airbyte.sync_and_poll(connection_id=connection_id)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster_airbyte/resources.py", line 672, in sync_and_poll
+    self.cancel_job(job_id)
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster_airbyte/resources.py", line 468, in cancel_job
+    self.make_request(endpoint="/jobs/cancel", data={"id": job_id})
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster_airbyte/resources.py", line 465, in make_request
+    raise Failure(f"Max retries ({self.request_max_retries}) exceeded with url: {url}.")
+
+The above exception occurred during handling of the following exception:
+dagster._core.definitions.events.Failure: Encountered unexpected state `failed` for job_id 23
+
+Stack Trace:
+  File "/home/blackitalian/miniconda3/envs/oaken/lib/python3.11/site-packages/dagster_airbyte/resources.py", line 664, in sync_and_poll
+    raise Failure(f"Encountered unexpected state `{state}` for job_id {job_id}")
+[0m

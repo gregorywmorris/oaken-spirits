@@ -134,6 +134,8 @@ Start by launching the Airbyte UI by going to **http://localhost:8000/** in your
 
     ```text
     http://127.0.0.1:3000
+    or
+    localhost:3000
     ```
 
     - Here, you should see assets for both Airbyte and DBT. To get an overview of how these assets interrelate, click on `view global asset lineage` at the top right corner of the Dagster UI. This will give you a clear picture of the data lineage, visualizing how data flows between the tools.
@@ -141,8 +143,8 @@ Start by launching the Airbyte UI by going to **http://localhost:8000/** in your
 1. **Materialize Dagster Assets**:
 
     1. Select Assets from the top bar.
-    1. Select the check box in hte upper ledt, or manually select all the assets.
-    1. Click on `Materialize all` in the uppr right. This should trigger the full pipeline.
+    1. Select the check box in hte upper left, or manually select all the assets.
+    1. Click on `Materialize all` in the upper right. This should trigger the full pipeline.
         - The status will show the the assets processing.
         - **NOTE:** I have had this fail without cause. Just materialize again.
     1. When the DBT jobs have run, go to your BigQuery console and check the views have been created in the `oaken_transformed` dataset.

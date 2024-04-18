@@ -1,4 +1,4 @@
 select
     VendorNumber,
     VendorName
-from {{ source('oaken', 'vendor') }}
+from {{ source('oaken', 'vendors') }}

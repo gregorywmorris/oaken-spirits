@@ -2,7 +2,6 @@ import sys
 sys.path.append('..')
 
 import sys
-import os
 import json
 import logging
 from kafka import KafkaConsumer, KafkaProducer
@@ -41,7 +40,7 @@ invoice_producer = KafkaProducer(
                         bootstrap_servers=['kafka1:9092','kafka2:9093','kafka3:9094'],
                         value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
-print('set up complete')
+logging.warning('set up complete')
 # Poll for messages
 try:
     for message in consumer:
@@ -50,7 +49,7 @@ try:
             # Customer
             storNumber = int(data.get('StoreNumber', ''))
             if not storNumber:
-                print("StoreNumber is null or invalid. Skipping insertion.")
+                logging.warning("StoreNumber is null or invalid. Skipping insertion.")
                 pass
 
             storeName = data.get('StoreName', '')
@@ -63,7 +62,7 @@ try:
             # vendor
             vendorNumber = int(float(data.get('VendorNumber', '')))
             if not vendorNumber:
-                print("VendorNumber is null or invalid. Skipping insertion.")
+                logging.warning("VendorNumber is null or invalid. Skipping insertion.")
                 pass
 
             vendorName = data.get('VendorName', '')
@@ -71,7 +70,7 @@ try:
             # category
             category = int(float(data.get('Category','')))
             if not category:
-                print("Category is null or invalid. Skipping insertion.")
+                logging.warning("Category is null or invalid. Skipping insertion.")
                 pass
 
             categoryName = (data.get('CategoryName',''))
@@ -79,7 +78,7 @@ try:
             # product
             itemNumber = int(data.get('ItemNumber', ''))
             if not itemNumber:
-                print("ItemNumber is null or invalid. Skipping insertion.")
+                logging.warning("ItemNumber is null or invalid. Skipping insertion.")
                 pass
             itemDescription = data.get('ItemDescription', '')
             pack = int(data.get('Pack', ''))
@@ -90,12 +89,12 @@ try:
             # Sales
             invoice = data.get('Invoice', '')
             if not invoice:
-                print("Invoice is null or invalid. Skipping insertion.")
+                logging.warning("Invoice is null or invalid. Skipping insertion.")
                 pass
 
             date_str = data.get('Date', '')
             if not date_str:
-                print("Date is null or invalid. Skipping insertion.")
+                logging.warning("Date is null or invalid. Skipping insertion.")
                 pass
 
             amountSold = int(data.get('BottlesSold', ''))
@@ -116,49 +115,45 @@ try:
             database from preventing the rest of the processes from competing.
             '''
 
-            print('customer')
             try:
                 CUSTOMER_QUERY = '''
-                    INSERT INTO customer (StoreNumber,StoreName,Address,City,CountyName,State,ZipCode)
+                    INSERT INTO customers (StoreNumber,StoreName,Address,City,CountyName,State,ZipCode)
                     VALUES (%s,%s,%s,%s,%s,%s,%s)
                     '''
                 customer_data = (storNumber,storeName,address,city,county,state,zip_code)
                 mysql_cursor.execute(CUSTOMER_QUERY, customer_data)
                 mysql_conn.commit()
             except Exception as e:
-                print(f"Error processing message: {e}")
+                logging.warning(f"Error processing message: {e}")
                 pass
 
-            print('vendor')
             try:
                 VENDOR_QUERY = '''
-                    INSERT INTO vendor (VendorNumber,VendorName)
+                    INSERT INTO vendors (VendorNumber,VendorName)
                     VALUES (%s,%s)
                     '''
                 vendor_data = (vendorNumber,vendorName)
                 mysql_cursor.execute(VENDOR_QUERY,vendor_data)
                 mysql_conn.commit()
             except Exception as e:
-                print(f"Error processing message: {e}")
+                logging.warning(f"Error processing message: {e}")
                 pass
 
-            print(category)
             try:
                 CATEGORY_QUERY = '''
-                    INSERT INTO category (CategoryNumber,CategoryName)
+                    INSERT INTO categories (CategoryNumber,CategoryName)
                     VALUES (%s,%s)
                     '''
                 category_data = (category,categoryName)
                 mysql_cursor.execute(CATEGORY_QUERY, category_data)
                 mysql_conn.commit()
             except Exception as e:
-                print(f"Error processing message: {e}")
+                logging.warning(f"Error processing message: {e}")
                 pass
 
-            print('product')
             try:
                 PRODUCT_QUERY = '''
-                    INSERT INTO product (ItemNumber,CategoryNumber,ItemDescription,BottleVolumeML,
+                    INSERT INTO products (ItemNumber,CategoryNumber,ItemDescription,BottleVolumeML,
                     Pack,BottleCost,BottleRetail)
                     VALUES (%s,%s,%s,%s,%s,%s,%s)
                     '''
@@ -166,10 +161,9 @@ try:
                 mysql_cursor.execute(PRODUCT_QUERY, product_data)
                 mysql_conn.commit()
             except Exception as e:
-                print(f"Error processing message: {e}")
+                logging.warning(f"Error processing message: {e}")
                 pass
 
-            print(sales)
             try:
                 SALES_QUERY = '''
                 INSERT INTO sales (Invoice,StoreNumber,VendorNumber,SaleDate,SaleDollars,
@@ -181,10 +175,9 @@ try:
                 mysql_cursor.execute(SALES_QUERY, sales_data)
                 mysql_conn.commit()
             except Exception as e:
-                print(f"Error processing message: {e}")
+                logging.warning(f"Error processing message: {e}")
                 pass
 
-            print('topic')
             # Topic should post after MySQL processing to ensure data is in the database.
             try:
                 INVOICES_info = {
@@ -195,11 +188,11 @@ try:
 
                 invoice_producer.send('invoices', value=INVOICES_info)
             except Exception as e:
-                print(f"Error processing message: {e}")
+                logging.warning(f"Error processing message: {e}")
                 pass
 
         except Exception as e:
-            print(f"Error processing message: {e}")
+            logging.warning(f"Error processing message: {e}")
             pass
 
 # Close MySQL connection

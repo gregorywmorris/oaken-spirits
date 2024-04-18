@@ -6,4 +6,4 @@ select
     Pack,
     BottleCost,
     BottleRetail
-from {{ source('oaken', 'product') }}
+from {{ source('oaken', 'products') }}

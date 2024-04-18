@@ -2,13 +2,10 @@ import sys
 sys.path.append('..')
 
 import sys
-import os
 import json
 import logging
 from kafka import KafkaConsumer, KafkaProducer
 from json import loads
-import random
-from datetime import datetime
 import mysql.connector
 from logging.handlers import RotatingFileHandler
 from time import sleep
@@ -60,7 +57,7 @@ try:
                 mysql_cursor.execute(LEDGER_CREDIT, credit_data)
                 mysql_conn.commit()
             except Exception as e:
-                print(f"Error processing message: {e}")
+                logging.warning(f"Error processing message: {e}")
                 pass
 
             try:
@@ -73,11 +70,11 @@ try:
                 mysql_cursor.execute(LEDGER_DEBIT, debit_data)
                 mysql_conn.commit()
             except Exception as e:
-                print(f"Error processing message: {e}")
+                logging.warning(f"Error processing message: {e}")
                 pass
 
         except Exception as e:
-            print(f"Error processing message: {e}")
+            logging.warning(f"Error processing message: {e}")
             pass
 
 # Close MySQL connection

@@ -6,4 +6,4 @@ select
     CountyName,
     State,
     ZipCode
-from {{ source('oaken', 'customer') }}
+from {{ source('oaken', 'customers') }}

@@ -8,7 +8,7 @@ sources:
     schema: oaken_spirits
 
     tables:
-      - name: customer
+      - name: customers
         description: "Oaken customer profile"
         columns:
           - name: StoreNumber
@@ -20,7 +20,7 @@ sources:
           - name: State
           - name: ZipCode
 
-      - name: product
+      - name: products
         description: "Oaken products"
         columns:
           - name: ItemNumber
@@ -32,14 +32,14 @@ sources:
           - name: BottleCost
           - name: BottleRetail
 
-      - name: vendor
+      - name: vendors
         description: "Vendors"
         columns:
           - name: VendorNumber
             description: "Unique identifier for vendors"
           - name: VendorName
 
-      - name: category
+      - name: categories
         description: "Product categories"
         columns:
           - name: CategoryNumber

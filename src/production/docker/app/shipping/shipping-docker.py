@@ -71,7 +71,7 @@ try:
 
             mysql_conn.commit()
         except Exception as e:
-            print(f"Error processing message: {e}")
+            logging.warning(f"Error processing message: {e}")
 
         try:
             # Kafka topic
@@ -85,7 +85,7 @@ try:
 
             shipping_producer.send('shipping', value=shipping_info)
         except Exception as e:
-            print(f"Error processing message: {e}")
+            logging.warning(f"Error processing message: {e}")
             pass
 
 # Close MySQL connection
