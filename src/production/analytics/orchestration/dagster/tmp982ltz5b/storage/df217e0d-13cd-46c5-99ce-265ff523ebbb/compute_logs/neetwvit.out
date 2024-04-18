@@ -1441,3 +1441,323 @@
 2024-04-18 14:16:43 [43mdestination[0m > INFO pool-4-thread-2 i.a.i.d.b.BigQueryUtils(getLoadingMethod):419 Selected loading method is set to: STANDARD
 2024-04-18 14:16:44 [43mdestination[0m > INFO pool-4-thread-2 i.a.i.d.b.u.BigQueryUploaderFactory(getBigQueryDirectUploader):88 Will write raw data to GenericData{classInfo=[datasetId, projectId, tableId], {datasetId=airbyte_internal, tableId=oaken_spirits_raw__stream_vendors}} with schema Schema{fields=[Field{name=_airbyte_raw_id, type=STRING, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_extracted_at, type=TIMESTAMP, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_loaded_at, type=TIMESTAMP, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_data, type=STRING, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}]}
 2024-04-18 14:16:44 [43mdestination[0m > INFO pool-4-thread-2 i.a.i.d.b.BigQueryUtils(getLoadingMethod):419 Selected loading method is set to: STANDARD
+2024-04-18 14:16:44 [43mdestination[0m > INFO pool-4-thread-2 i.a.i.d.b.u.BigQueryUploaderFactory(getBigQueryDirectUploader):88 Will write raw data to GenericData{classInfo=[datasetId, projectId, tableId], {datasetId=airbyte_internal, tableId=oaken_spirits_raw__stream_salesLedger}} with schema Schema{fields=[Field{name=_airbyte_raw_id, type=STRING, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_extracted_at, type=TIMESTAMP, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_loaded_at, type=TIMESTAMP, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}, Field{name=_airbyte_data, type=STRING, mode=null, description=null, policyTags=null, maxLength=null, scale=null, precision=null, defaultValueExpression=null, collation=null, rangeElementType=null}]}
+2024-04-18 14:16:45 [43mdestination[0m > INFO pool-4-thread-2 i.a.c.i.d.GlobalMemoryManager(free):88 Freeing 0 bytes..
+2024-04-18 14:16:45 [43mdestination[0m > INFO pool-4-thread-2 i.a.c.i.d.GlobalMemoryManager(free):88 Freeing 1549 bytes..
+2024-04-18 14:16:45 [43mdestination[0m > INFO pool-4-thread-2 i.a.c.i.d.FlushWorkers(lambda$flush$1):173 Flush Worker (fce01) -- Worker finished flushing. Current queue size: 0
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 0 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.675532245Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [46mplatform[0m > starting state flush thread for connectionId 92a36319-c76c-4252-8520-2416aed60f2c
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 1 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.773479155Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 2 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.777019840Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 3 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.779431338Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 4 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.780608650Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 5 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.781668959Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 6 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.782665962Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 7 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.783711590Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 8 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.784886961Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 9 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.785986364Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 10 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.787312771Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 11 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.788321005Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 12 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.789573130Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 13 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.792826060Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 14 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.794195932Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 15 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.795311117Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 16 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.796595900Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 17 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.797854479Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 18 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.799081216Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 19 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.800108852Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 20 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.801620807Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 21 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.802680207Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 22 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.803858048Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 23 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.805454873Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 24 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.806895412Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 25 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.808235470Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 26 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.809471418Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 27 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.810843529Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 28 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.812582160Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 29 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.814264908Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 30 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.816223971Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 31 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.817475010Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 32 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.818588784Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 33 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.819729882Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 34 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.820898252Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 35 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.821902256Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 36 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.823047904Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 37 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.824102933Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 38 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.825117877Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 39 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.826552395Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 40 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.827977272Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 41 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.829493088Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 42 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.831070581Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 43 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.832306878Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 44 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.833452406Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 45 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.834615176Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 46 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.836043334Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 47 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.837141197Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 48 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.837972543Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 49 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.838775256Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 50 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.839887521Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 51 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.840986014Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 52 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.842144564Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 53 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.843230986Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 54 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.844021088Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 55 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.844840792Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 56 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.845764898Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 57 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.846542608Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 58 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.847323648Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 59 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.848454595Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 60 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.849274609Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 61 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.850061901Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 62 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.850697156Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 63 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.851437632Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 64 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.852631215Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 65 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.853365361Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 66 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.854014488Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 67 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.854718425Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.s.GlobalAsyncStateManager(flushStates):196 State with arrival number 68 emitted from thread pool-4-thread-1 at 2024-04-18T14:17:04.855393150Z
+2024-04-18 14:17:04 [46mplatform[0m > Destination state message checksum is valid.
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.GlobalMemoryManager(free):88 Freeing 2545962 bytes..
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.GlobalMemoryManager(free):88 Freeing 285320095 bytes..
+2024-04-18 14:17:04 [43mdestination[0m > INFO pool-4-thread-1 i.a.c.i.d.FlushWorkers(lambda$flush$1):173 Flush Worker (6462e) -- Worker finished flushing. Current queue size: 0
+2024-04-18 14:17:04 [43mdestination[0m > INFO main i.a.c.i.d.FlushWorkers(close):232 Closing flush workers  -- workers shut down
+2024-04-18 14:17:04 [43mdestination[0m > INFO main i.a.c.i.d.b.BufferManager(close):92 Buffers cleared..
+2024-04-18 14:17:34 [43mdestination[0m > INFO main i.a.i.b.d.t.DefaultTyperDeduper(typeAndDedupe):301 Typing and deduping all tables
+2024-04-18 14:17:34 [43mdestination[0m > INFO main i.a.i.b.d.t.DefaultTyperDeduper(lambda$typeAndDedupe$6):323 Skipping typing and deduping for stream oaken_spirits.categories because it had no records during this sync and no unprocessed records from a previous sync.
+2024-04-18 14:17:34 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.DefaultTyperDeduper(lambda$typeAndDedupeTask$4):271 Waiting for raw table writes to pause for oaken_spirits.customers
+2024-04-18 14:17:34 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.DefaultTyperDeduper(lambda$typeAndDedupeTask$4):271 Waiting for raw table writes to pause for oaken_spirits.products
+2024-04-18 14:17:34 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.DefaultTyperDeduper(lambda$typeAndDedupeTask$4):271 Waiting for raw table writes to pause for oaken_spirits.sales
+2024-04-18 14:17:34 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.DefaultTyperDeduper(lambda$typeAndDedupeTask$4):271 Waiting for raw table writes to pause for oaken_spirits.vendors
+2024-04-18 14:17:34 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.DefaultTyperDeduper(lambda$typeAndDedupeTask$4):271 Waiting for raw table writes to pause for oaken_spirits.salesLedger
+2024-04-18 14:17:34 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.TypeAndDedupeTransaction(executeTypeAndDedupe):36 Attempting typing and deduping for oaken_spirits.products with suffix 
+2024-04-18 14:17:34 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.TypeAndDedupeTransaction(executeTypeAndDedupe):36 Attempting typing and deduping for oaken_spirits.salesLedger with suffix 
+2024-04-18 14:17:34 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.TypeAndDedupeTransaction(executeTypeAndDedupe):36 Attempting typing and deduping for oaken_spirits.sales with suffix 
+2024-04-18 14:17:34 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.TypeAndDedupeTransaction(executeTypeAndDedupe):36 Attempting typing and deduping for oaken_spirits.customers with suffix 
+2024-04-18 14:17:34 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.TypeAndDedupeTransaction(executeTypeAndDedupe):36 Attempting typing and deduping for oaken_spirits.vendors with suffix 
+2024-04-18 14:17:43 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.DefaultTyperDeduper(lambda$typeAndDedupeTask$4):283 Allowing other threads to proceed for oaken_spirits.customers
+2024-04-18 14:17:43 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.DefaultTyperDeduper(lambda$typeAndDedupeTask$4):283 Allowing other threads to proceed for oaken_spirits.products
+2024-04-18 14:17:43 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.DefaultTyperDeduper(lambda$typeAndDedupeTask$4):283 Allowing other threads to proceed for oaken_spirits.vendors
+2024-04-18 14:17:53 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.DefaultTyperDeduper(lambda$typeAndDedupeTask$4):283 Allowing other threads to proceed for oaken_spirits.salesLedger
+2024-04-18 14:17:55 [43mdestination[0m > INFO type-and-dedupe i.a.i.b.d.t.DefaultTyperDeduper(lambda$typeAndDedupeTask$4):283 Allowing other threads to proceed for oaken_spirits.sales
+2024-04-18 14:17:55 [43mdestination[0m > INFO main i.a.i.b.d.t.DefaultTyperDeduper(commitFinalTables):342 Committing final tables
+2024-04-18 14:17:55 [43mdestination[0m > INFO main i.a.i.b.d.t.DefaultTyperDeduper(cleanup):383 Cleaning Up type-and-dedupe thread pool
+2024-04-18 14:17:55 [43mdestination[0m > INFO main i.a.c.i.d.AsyncStreamConsumer(close):219 class io.airbyte.cdk.integrations.destination_async.AsyncStreamConsumer closed
+2024-04-18 14:17:55 [43mdestination[0m > INFO main i.a.c.i.b.IntegrationRunner(runInternal):227 Completed integration: io.airbyte.integrations.destination.bigquery.BigQueryDestination
+2024-04-18 14:17:55 [46mplatform[0m > readFromDestination: done. (writeToDestFailed:false, dest.isFinished:true)
+2024-04-18 14:17:55 [46mplatform[0m > thread status... timeout thread: false , replication thread: true
+2024-04-18 14:17:55 [46mplatform[0m > Attempt 0 to Flush States from SyncPersistenceImpl
+2024-04-18 14:17:55 [46mplatform[0m > Attempt 0 to Flush Stats from SyncPersistenceImpl
+2024-04-18 14:17:55 [46mplatform[0m > sync summary: {
+  "status" : "completed",
+  "recordsSynced" : 790525,
+  "bytesSynced" : 266266288,
+  "startTime" : 1713449674628,
+  "endTime" : 1713449875857,
+  "totalStats" : {
+    "bytesCommitted" : 266266288,
+    "bytesEmitted" : 266266288,
+    "destinationStateMessagesEmitted" : 690,
+    "destinationWriteEndTime" : 1713449875797,
+    "destinationWriteStartTime" : 1713449674629,
+    "meanSecondsBeforeSourceStateMessageEmitted" : 1,
+    "maxSecondsBeforeSourceStateMessageEmitted" : 69,
+    "maxSecondsBetweenStateMessageEmittedandCommitted" : 125,
+    "meanSecondsBetweenStateMessageEmittedandCommitted" : 107,
+    "recordsEmitted" : 790525,
+    "recordsCommitted" : 790525,
+    "replicationEndTime" : 1713449875856,
+    "replicationStartTime" : 1713449674628,
+    "sourceReadEndTime" : 1713449728667,
+    "sourceReadStartTime" : 1713449674630,
+    "sourceStateMessagesEmitted" : 690
+  },
+  "streamStats" : [ {
+    "streamName" : "product",
+    "streamNamespace" : "oaken",
+    "stats" : {
+      "bytesCommitted" : 0,
+      "bytesEmitted" : 0,
+      "recordsEmitted" : 0,
+      "recordsCommitted" : 0
+    }
+  }, {
+    "streamName" : "customers",
+    "streamNamespace" : "oaken",
+    "stats" : {
+      "bytesCommitted" : 16595,
+      "bytesEmitted" : 16595,
+      "recordsEmitted" : 50,
+      "recordsCommitted" : 50
+    }
+  }, {
+    "streamName" : "vendor",
+    "streamNamespace" : "oaken",
+    "stats" : {
+      "bytesCommitted" : 0,
+      "bytesEmitted" : 0,
+      "recordsEmitted" : 0,
+      "recordsCommitted" : 0
+    }
+  }, {
+    "streamName" : "sales",
+    "streamNamespace" : "oaken",
+    "stats" : {
+      "bytesCommitted" : 201673855,
+      "bytesEmitted" : 201673855,
+      "recordsEmitted" : 522789,
+      "recordsCommitted" : 522789
+    }
+  }, {
+    "streamName" : "products",
+    "streamNamespace" : "oaken",
+    "stats" : {
+      "bytesCommitted" : 27917,
+      "bytesEmitted" : 27917,
+      "recordsEmitted" : 84,
+      "recordsCommitted" : 84
+    }
+  }, {
+    "streamName" : "salesLedger",
+    "streamNamespace" : "oaken",
+    "stats" : {
+      "bytesCommitted" : 64547020,
+      "bytesEmitted" : 64547020,
+      "recordsEmitted" : 267598,
+      "recordsCommitted" : 267598
+    }
+  }, {
+    "streamName" : "category",
+    "streamNamespace" : "oaken",
+    "stats" : {
+      "bytesCommitted" : 0,
+      "bytesEmitted" : 0,
+      "recordsEmitted" : 0,
+      "recordsCommitted" : 0
+    }
+  }, {
+    "streamName" : "categories",
+    "streamNamespace" : "oaken",
+    "stats" : {
+      "bytesCommitted" : 0,
+      "bytesEmitted" : 0,
+      "recordsEmitted" : 0,
+      "recordsCommitted" : 0
+    }
+  }, {
+    "streamName" : "vendors",
+    "streamNamespace" : "oaken",
+    "stats" : {
+      "bytesCommitted" : 901,
+      "bytesEmitted" : 901,
+      "recordsEmitted" : 4,
+      "recordsCommitted" : 4
+    }
+  }, {
+    "streamName" : "customer",
+    "streamNamespace" : "oaken",
+    "stats" : {
+      "bytesCommitted" : 0,
+      "bytesEmitted" : 0,
+      "recordsEmitted" : 0,
+      "recordsCommitted" : 0
+    }
+  } ],
+  "performanceMetrics" : {
+    "processFromSource" : {
+      "elapsedTimeInNanos" : 3531841925,
+      "executionCount" : 790594,
+      "avgExecTimeInNanos" : 4467.327003493576
+    },
+    "readFromSource" : {
+      "elapsedTimeInNanos" : 37052530601,
+      "executionCount" : 790941,
+      "avgExecTimeInNanos" : 46846.13719733836
+    },
+    "processFromDest" : {
+      "elapsedTimeInNanos" : 42598170,
+      "executionCount" : 69,
+      "avgExecTimeInNanos" : 617364.7826086957
+    },
+    "writeToDest" : {
+      "elapsedTimeInNanos" : 21583024317,
+      "executionCount" : 790594,
+      "avgExecTimeInNanos" : 27299.757292617956
+    },
+    "readFromDest" : {
+      "elapsedTimeInNanos" : 201036775558,
+      "executionCount" : 139,
+      "avgExecTimeInNanos" : 1.4463077378273382E9
+    }
+  }
+}
+2024-04-18 14:17:55 [46mplatform[0m > failures: [ ]
+2024-04-18 14:17:55 [46mplatform[0m > 
+2024-04-18 14:17:55 [46mplatform[0m > ----- END REPLICATION -----
+2024-04-18 14:17:55 [46mplatform[0m > 
