@@ -72,8 +72,8 @@ See [**OAKEN_TECHNICAL_DESIGN.md**](OAKEN_TECHNICAL_DESIGN.md)
 
 ### Instructions Order
 
-1. Requirements
 1. Clone the repository locally
+1. Requirements
 1. Choose Local
 1. Cloud Analytics
 1. Clean up
