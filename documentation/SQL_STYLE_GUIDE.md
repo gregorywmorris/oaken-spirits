@@ -22,10 +22,10 @@
 
 ```SQL
 SELECT
-    domesticated_pets.date_@,
-    domesticated_pets.cats
- FROM
-    domesticated_pets
- LEFT JOIN 
-    zoo on zoo.cats = domesticated_pets.cats;
+        domesticated_pets.date_@,
+        domesticated_pets.cats
+    FROM
+        domesticated_pets
+    LEFT JOIN
+        zoo on zoo.cats = domesticated_pets.cats;
 ```
