@@ -59,6 +59,7 @@ Oaken Spirits is looking to expand and the current application implementations a
 
 #### Data Retention
 
+1. [SQL_STYLE_GUIDE.md](documentation/SQL_STYLE_GUIDE.md)
 1. **OLTP database:** 2 years. Data beyond this point moved to a data warehouse.
 1. **Data Warehouse:** 10 years for audit requirements.
 
