@@ -4,22 +4,19 @@ sys.path.append('..')
 import sys
 import json
 import logging
-from kafka import KafkaConsumer, KafkaProducer
+from kafka import KafkaConsumer
 from json import loads
-import mysql.connector
+import psycopg2
 from logging.handlers import RotatingFileHandler
-from time import sleep
 
-
-# MySQL connection
-mysql_conn = mysql.connector.connect(
-    host='oaken-mysql',
-    user='mysql',
-    password='mysql',
+# PostgreSQL connection
+postgres_conn = psycopg2.connect(
+    host='oaken-postgres',
+    user='postgresword='postgres',
     database='oaken'
 )
 
-mysql_cursor = mysql_conn.cursor()
+postgres_cursor = postgres_conn.cursor()
 
 # Kafka consumers
 shipping_consumer = KafkaConsumer(
@@ -46,40 +43,37 @@ try:
 
             sales = float(shipping_data.get('SaleDollars'))
 
-            # MySQL
+            # PostgreSQL
             try:
                 LEDGER_CREDIT = """
-                    INSERT INTO salesLedger (Invoice, Credit, Note)
+                    INSERT INTO salesLedger (invoice, credit, note)
                     VALUES (%s, %s, 'Sale')
-                    ON DUPLICATE KEY UPDATE Credit = %s
+                    ON CONFLICT (invoice) DO UPDATE SET credit = %s
                 """
                 credit_data = (invoice, sales, sales)
-                mysql_cursor.execute(LEDGER_CREDIT, credit_data)
-                mysql_conn.commit()
+                postgres_cursor.execute(LEDGER_CREDIT, credit_data)
+                postgres_conn.commit()
             except Exception as e:
-                logging.warning(f"Error processing message: {e}")
-                pass
+                logging.warning("Error processing message: %s", e)
 
             try:
                 LEDGER_DEBIT = """
-                    INSERT INTO salesLedger (Invoice, Debit, Note)
+                    INSERT INTO salesLedger (invoice, debit, note)
                     VALUES (%s, %s, 'Shipping')
-                    ON DUPLICATE KEY UPDATE Credit = %s
+                    ON CONFLICT (invoice) DO UPDATE SET debit = %s
                 """
                 debit_data = (invoice, shipping_expense, shipping_expense)
-                mysql_cursor.execute(LEDGER_DEBIT, debit_data)
-                mysql_conn.commit()
+                postgres_cursor.execute(LEDGER_DEBIT, debit_data)
+                postgres_conn.commit()
             except Exception as e:
-                logging.warning(f"Error processing message: {e}")
-                pass
-
+                logging.warning("Error processing message: %s", e)
         except Exception as e:
-            logging.warning(f"Error processing message: {e}")
-            pass
+                logging.warning("Error processing message: %s", e)
 
-# Close MySQL connection
+except Exception as e:
+            logging.warning("Error processing message: %s", e)
+
 finally:
     shipping_consumer.close()
-    mysql_cursor.close()
-    mysql_conn.close()
-    sleep(1)
+    postgres_cursor.close()
+    postgres_conn.close()

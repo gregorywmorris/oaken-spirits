@@ -1,27 +1,24 @@
 import sys
 sys.path.append('..')
 
-import os
 import json
 import logging
 from kafka import KafkaConsumer, KafkaProducer
 from json import loads
 import random
 from datetime import datetime, timedelta
-import mysql.connector
-from logging.handlers import RotatingFileHandler
-from time import sleep
+import psycopg2
 
 
-# MySQL connection
-mysql_conn = mysql.connector.connect(
-    host='oaken-mysql',
-    user='mysql',
-    password='mysql',
+# PostgreSQL connection
+postgres_conn = psycopg2.connect(
+    host='oaken-postgres',
+    user='postgres',
+    password='postgres',
     database='oaken'
 )
 
-mysql_cursor = mysql_conn.cursor()
+postgres_cursor = postgres_conn.cursor()
 
 # Kafka
 invoice_consumer = KafkaConsumer(
@@ -58,20 +55,20 @@ try:
             shipping_date_str = str(shipping_date)
 
             invoice_consumer.commit()
-            # MySQL
+            # PostgreSQL
             UPDATE_QUERY = """
                 UPDATE sales
-                SET ShippingDate = %s, ShippingCost = %s
+                SET shipping_date = %s, shipping_ost = %s
                 WHERE Invoice = %s
             """
 
 
             update_data = (shipping_date, shipping_cost, invoice)
-            mysql_cursor.execute(UPDATE_QUERY, update_data)
+            postgres_cursor.execute(UPDATE_QUERY, update_data)
 
-            mysql_conn.commit()
+            postgres_conn.commit()
         except Exception as e:
-            logging.warning(f"Error processing message: {e}")
+            logging.warning("Error processing message: %s", e)
 
         try:
             # Kafka topic
@@ -85,14 +82,13 @@ try:
 
             shipping_producer.send('shipping', value=shipping_info)
         except Exception as e:
-            logging.warning(f"Error processing message: {e}")
+            logging.warning("Error processing message: %s", e)
             pass
 
-# Close MySQL connection
+# Close PostgreSQL connection
 finally:
     invoice_consumer.close()
     shipping_producer.flush()
     shipping_producer.close()
-    mysql_cursor.close()
-    mysql_conn.close()
-    sleep(1)
+    postgres_cursor.close()
+    postgres_conn.close()

@@ -2,7 +2,7 @@ CREATE DATABASE oaken;
 
 CREATE TABLE customers (
     store_id INTEGER NOT NULL,
-    StoreName VARCHAR(255) NOT NULL,
+    Store_name VARCHAR(255) NOT NULL,
     street_address VARCHAR(255) NOT NULL,
     city VARCHAR(255) NOT NULL,
     county VARCHAR(255) NOT NULL,
