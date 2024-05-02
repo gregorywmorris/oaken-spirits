@@ -1,38 +1,27 @@
 version: '3.8'
 
 services:
-  database-mysql:
-    image: mysql:8.0.34
+
+  database:
+    image: postgres:15.3-alpine3.18
+    restart: unless-stopped
+    hostname: oaken-postgres
+    container_name: oaken-postgres
     env_file:
       - .env
-    restart: always
-    hostname: oaken-mysql
-    container_name: oaken-mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: mysql
-      MYSQL_USER: mysql
-      MYSQL_PASSWORD: mysql
-      MYSQL_DATABASE: oaken
     ports:
-      - 3306:3306
-    expose:
-      - 3306
-    volumes: 
-      - oaken-mysql:/var/lib/mysql
-      - ./app/mysql-startup:/docker-entrypoint-initdb.d
+      - '5432:5432'
+    volumes:
+      - oaken-postgres:/var/lib/postgresql/data
+      - ./app/mysql-startup/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - oaken
-    healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost"]
-      interval: 10s
-      retries: 5
-      timeout: 5s
 
   mysql-kafka-processor:
     image: oaken-mysql-kafka
     env_file:
       - .env
-    restart: always
+    restart: unless-stopped
     hostname: mysql-kafka-processor
     container_name: mysql-kafka-processor
     volumes: 
@@ -40,14 +29,13 @@ services:
     networks:
       - oaken
     depends_on:
-      database-mysql:
-        condition: service_healthy
+      - database
 
   shipping-processor:
     image: oaken-shipping
     env_file:
       - .env
-    restart: always
+    restart: unless-stopped
     hostname: shipping-processor
     container_name: shipping-processor
     volumes: 
@@ -55,14 +43,13 @@ services:
     networks:
       - oaken
     depends_on:
-      database-mysql:
-        condition: service_healthy
+      - database
 
   accounting-processor:
     image: oaken-accounting
     env_file:
       - .env
-    restart: always
+    restart: unless-stopped
     hostname: accounting-processor
     container_name: accounting-processor
     volumes: 
@@ -70,14 +57,13 @@ services:
     networks:
       - oaken
     depends_on:
-      database-mysql:
-        condition: service_healthy
+      - database
 
   cloudbeaver:
     image: dbeaver/cloudbeaver:latest
     container_name: oaken-dbeaver
     hostname: oaken-dbeaver
-    restart: on-failure:5
+    restart: unless-stopped
     ports:
       - 8978:8978
     volumes: 
@@ -85,13 +71,13 @@ services:
     networks:
       - oaken
     depends_on:
-      database-mysql:
-        condition: service_healthy
+      - database
 
   zoo1:
     image: confluentinc/cp-zookeeper:7.3.2
     hostname: zoo1
     container_name: zoo1
+    restart: unless-stopped
     ports:
       - "2181:2181"
     environment:
@@ -105,6 +91,7 @@ services:
     image: confluentinc/cp-kafka:7.3.2
     hostname: kafka1
     container_name: kafka1
+    restart: unless-stopped
     ports:
       - "19092:19092"
     environment:
@@ -126,6 +113,7 @@ services:
     image: confluentinc/cp-kafka:7.3.2
     hostname: kafka2
     container_name: kafka2
+    restart: unless-stopped
     ports:
       - "19093:19093"
     environment:
@@ -147,6 +135,7 @@ services:
     image: confluentinc/cp-kafka:7.3.2
     hostname: kafka3
     container_name: kafka3
+    restart: unless-stopped
     ports:
       - "19094:19094"
     environment:
@@ -182,8 +171,8 @@ networks:
   oaken:
 
 volumes:
-  oaken-mysql:
-    name: oaken-mysql
+  oaken-postgres:
+    name: oaken-postgres
   oaken-api:
     name: oaken-api
   oaken-shipping:
