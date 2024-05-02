@@ -6,8 +6,8 @@ RUN apt-get update && \
     mkdir -p /app && \
     apt-get clean
 
-COPY app/shipping/shipping-docker.py /app
+COPY /app/mysql-api/invoice-api-docker.py /app
 
 WORKDIR /app
 
-CMD ["python", "shipping-docker.py"]
+CMD ["python", "invoice-api-docker.py"]

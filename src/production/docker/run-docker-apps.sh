@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker build -t oaken-mysql-kafka -f mysql-api.yml .
+docker build -t oaken-invoice-api -f invoice-api.yml .
 docker build -t oaken-shipping -f shipping.yml .
 docker build -t oaken-accounting -f accounting.yml .
 

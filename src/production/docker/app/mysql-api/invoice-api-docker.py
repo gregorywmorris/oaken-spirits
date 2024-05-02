@@ -5,7 +5,6 @@ import json
 import logging
 from kafka import KafkaConsumer, KafkaProducer
 from json import loads
-from datetime import datetime
 import psycopg2
 
 

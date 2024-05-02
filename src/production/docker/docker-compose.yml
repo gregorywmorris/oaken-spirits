@@ -18,7 +18,7 @@ services:
       - oaken
 
   invoice-processor:
-    image: oaken-invoice
+    image: oaken-invoice-api
     env_file:
       - .env
     restart: unless-stopped

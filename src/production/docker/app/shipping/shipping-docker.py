@@ -47,8 +47,15 @@ try:
 
             sales = data.get('saleDollars','')
 
-            shipping_cost = round(float(sales) * 0.05,2)
-            shipping_cost_str = str(shipping_cost)
+            def shipping_cost(kwarg):
+                """Determines shipping costs"""
+                cost = round(float(kwarg) * 0.05, 2)
+                if cost < 5:
+                    return "5.00"
+                else:
+                    return str(cost)
+
+            shipping_cost_str = shipping_cost(sales)
 
             random_days = random.randint(0, 4)
             shipping_date = sales_date + timedelta(days=random_days)
@@ -62,8 +69,7 @@ try:
                 WHERE Invoice = %s
             """
 
-
-            update_data = (shipping_date, shipping_cost, invoice)
+            update_data = (shipping_date, shipping_cost_str, invoice)
             postgres_cursor.execute(UPDATE_QUERY, update_data)
 
             postgres_conn.commit()
