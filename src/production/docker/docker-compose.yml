@@ -17,15 +17,15 @@ services:
     networks:
       - oaken
 
-  mysql-kafka-processor:
-    image: oaken-mysql-kafka
+  invoice-processor:
+    image: oaken-invoice
     env_file:
       - .env
     restart: unless-stopped
-    hostname: mysql-kafka-processor
-    container_name: mysql-kafka-processor
+    hostname: invoice-processor
+    container_name: invoice-processor
     volumes: 
-      - oaken-api:/app
+      - invoice-processor:/app
     networks:
       - oaken
     depends_on:
@@ -173,8 +173,8 @@ networks:
 volumes:
   oaken-postgres:
     name: oaken-postgres
-  oaken-api:
-    name: oaken-api
+  invoice-processor:
+    name: invoice-processor
   oaken-shipping:
     name: oaken-shipping
   oaken-accounting:
