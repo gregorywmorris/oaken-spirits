@@ -1,6 +1,7 @@
 import sys
 sys.path.append('..')
 
+import os
 import sys
 import json
 import logging
@@ -11,12 +12,15 @@ from logging.handlers import RotatingFileHandler
 
 # PostgreSQL connection
 postgres_conn = psycopg2.connect(
-    host='oaken-postgres',
-    user='postgresword='postgres',
-    database='oaken'
+    host=os.getenv('POSTGRES_HOST'),
+    user=os.getenv('POSTGRES_USER'),
+    password=os.getenv('POSTGRES_PASSWORD'),
+    database=os.getenv('DATABASE')
 )
 
 postgres_cursor = postgres_conn.cursor()
+
+schema_name=os.getenv('DATABASE')
 
 # Kafka consumers
 shipping_consumer = KafkaConsumer(
@@ -32,48 +36,49 @@ shipping_consumer = KafkaConsumer(
 shipping_consumer.subscribe(topics='shipping')
 
 # Poll for messages
-try:
-    for shipping_message in shipping_consumer:
-        try:
-            shipping_data = shipping_message.value
+for shipping_message in shipping_consumer:
+    try:
+        shipping_data = shipping_message.value
 
-            invoice = shipping_data.get('Invoice', '')
+        invoice = shipping_data.get('Invoice', '')
 
-            shipping_expense = float(shipping_data.get('ShippingCost')) * -1
+        shipping_expense = float(shipping_data.get('ShippingCost')) * -1
 
-            sales = float(shipping_data.get('SaleDollars'))
+        sales = float(shipping_data.get('SaleDollars'))
+    except ValueError as ve:
+        logging.warning("Error processing message: %s", ve)
+        continue
+    except Exception as e:
+        logging.warning("An unexpected error occurred: %s", e)
+        continue
+    # PostgreSQL
+    try:
+        LEDGER_CREDIT = """
+            INSERT INTO {schema_name}.salesLedger (invoice, credit, note)
+            VALUES (%s, %s, 'Sale')
+            ON CONFLICT (invoice) DO UPDATE SET credit = %s
+        """
+        credit_data = (invoice, sales)
+        postgres_cursor.execute(LEDGER_CREDIT.format(schema_name=schema_name), credit_data)
+        postgres_conn.commit()
+    except Exception as e:
+        logging.warning("Error processing message: %s", e)
+        continue
 
-            # PostgreSQL
-            try:
-                LEDGER_CREDIT = """
-                    INSERT INTO salesLedger (invoice, credit, note)
-                    VALUES (%s, %s, 'Sale')
-                    ON CONFLICT (invoice) DO UPDATE SET credit = %s
-                """
-                credit_data = (invoice, sales, sales)
-                postgres_cursor.execute(LEDGER_CREDIT, credit_data)
-                postgres_conn.commit()
-            except Exception as e:
-                logging.warning("Error processing message: %s", e)
+    try:
+        LEDGER_DEBIT = """
+            INSERT INTO {schema_name}.salesLedger (invoice, debit, note)
+            VALUES (%s, %s, 'Shipping')
+            ON CONFLICT (invoice) DO UPDATE SET debit = %s
+        """
+        debit_data = (invoice, shipping_expense)
+        postgres_cursor.execute(LEDGER_DEBIT.format(schema_name=schema_name), debit_data)
+        postgres_conn.commit()
+    except Exception as e:
+        logging.warning("Error processing message: %s", e)
+        continue
 
-            try:
-                LEDGER_DEBIT = """
-                    INSERT INTO salesLedger (invoice, debit, note)
-                    VALUES (%s, %s, 'Shipping')
-                    ON CONFLICT (invoice) DO UPDATE SET debit = %s
-                """
-                debit_data = (invoice, shipping_expense, shipping_expense)
-                postgres_cursor.execute(LEDGER_DEBIT, debit_data)
-                postgres_conn.commit()
-            except Exception as e:
-                logging.warning("Error processing message: %s", e)
-        except Exception as e:
-                logging.warning("Error processing message: %s", e)
 
-except Exception as e:
-            logging.warning("Error processing message: %s", e)
-
-finally:
-    shipping_consumer.close()
-    postgres_cursor.close()
-    postgres_conn.close()
+shipping_consumer.close()
+postgres_cursor.close()
+postgres_conn.close()
