@@ -1,4 +1,4 @@
 select
-    CategoryNumber,
-    CategoryName
+    category_id,
+    category_name
 from {{ source('oaken', 'categories') }}

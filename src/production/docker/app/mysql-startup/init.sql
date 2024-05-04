@@ -49,11 +49,11 @@ CREATE TABLE oaken.employees (
     employee_id INTEGER NOT NULL,
     first_name VARCHAR(255),
     last_name VARCHAR(255),
-    title INTEGER,
+    title_id INTEGER,
     manager_id INTEGER,
     active BOOLEAN NOT NULL,
     PRIMARY KEY (employee_id),
-    FOREIGN KEY (title) REFERENCES oaken.positions(title_id),
+    FOREIGN KEY (title_id) REFERENCES oaken.positions(title_id),
     FOREIGN KEY (manager_id) REFERENCES oaken.employees(employee_id)
 );
 
