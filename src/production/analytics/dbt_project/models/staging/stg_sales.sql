@@ -4,7 +4,7 @@ select
     vendor_id,
     employee_id,
     sale_date,
-    sale_amount,
+    sale_amount_dollar,
     item_id,
     bottle_count,
     volume_liter,

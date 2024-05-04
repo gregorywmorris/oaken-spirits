@@ -1,6 +1,6 @@
 SELECT
-    s.SaleDate,
-    sum(s.SaleDollars) TotalSalesDollars
+    s.sale_date,
+    sum(s.sale_amount) total_sale_dollar
 FROM {{ ref('stg_sales') }} s
-GROUP BY SaleDate
-ORDER BY s.SaleDate ASC
+GROUP BY sale_date
+ORDER BY s.sale_date ASC

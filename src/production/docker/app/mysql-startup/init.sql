@@ -63,7 +63,7 @@ CREATE TABLE oaken.sales (
     vendor_id INTEGER NOT NULL,
     employee_id INTEGER NOT NULL,
     sale_date DATE NOT NULL,
-    sale_amount DECIMAL(11,2) NOT NULL,
+    sale_amount_dollar DECIMAL(11,2) NOT NULL,
     item_id INTEGER NOT NULL,
     bottle_count INTEGER NOT NULL,
     volume_liter DECIMAL(11,2)  NOT NULL,

@@ -1,23 +1,23 @@
 WITH base AS (
   SELECT
-    p.ItemNumber,
-    c.CategoryName,
-    SUM(s.SaleDollars) AS TotalSalesDollars
+    p.item_id,
+    c.category_name,
+    SUM(s.sale_amount_dollar) AS total_sales_dollar
   FROM {{ ref('stg_sales') }} s
-  JOIN {{ ref('stg_product') }} p ON s.ItemNumber = p.ItemNumber
-  JOIN {{ ref('stg_category') }} c ON p.CategoryNumber = c.CategoryNumber
-  GROUP BY p.ItemNumber, c.CategoryName
-  ORDER BY TotalSalesDollars DESC
+  JOIN {{ ref('stg_product') }} p ON s.item_id = p.item_id
+  JOIN {{ ref('stg_category') }} c ON p.category_id = c.category_id
+  GROUP BY p.item_id, c.category_name
+  ORDER BY total_sales_dollar DESC
   LIMIT 10
 )
 SELECT
-    b.CategoryName,
-    s.SaleDate,
-    SUM(s.SaleDollars) AS TotalSalesDollars,
-    SUM(s.BottlesSold) AS TotalBottlesSold
+    b.category_name,
+    s.sale_date,
+    SUM(s.sale_amount_dollar) AS total_sales_dollar,
+    SUM(s.bottle_count) AS total_bottles_sold
 FROM {{ ref('stg_sales') }} s
-JOIN base b ON s.ItemNumber = b.ItemNumber
-LEFT JOIN {{ ref('stg_product') }}  p ON s.ItemNumber = p.ItemNumber
-LEFT JOIN {{ ref('stg_category') }}  c ON p.CategoryNumber = c.CategoryNumber
-GROUP BY b.CategoryName, s.SaleDate
-ORDER BY s.SaleDate ASC
+JOIN base b ON s.item_id = b.item_id
+LEFT JOIN {{ ref('stg_product') }}  p ON s.item_id = p.item_id
+LEFT JOIN {{ ref('stg_category') }}  c ON p.category_id = c.category_id
+GROUP BY b.category_name, s.sale_date
+ORDER BY s.sale_date ASC
