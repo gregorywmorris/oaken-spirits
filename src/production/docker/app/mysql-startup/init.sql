@@ -81,12 +81,15 @@ CREATE TABLE oaken.sales_ledger (
     credit DECIMAL(11,2),
     debit DECIMAL(11,2),
     note VARCHAR(255),
-    PRIMARY KEY (invoice, Note),
+    PRIMARY KEY (invoice),
     FOREIGN KEY (invoice) REFERENCES oaken.sales(invoice)
 );
 
 CREATE ROLE airbyte WITH LOGIN PASSWORD 'airbyte';
-GRANT ALL PRIVILEGES ON DATABASE oaken TO airbyte;
+GRANT CONNECT ON DATABASE oaken TO airbyte;
+GRANT USAGE ON SCHEMA oaken To airbyte;
+GRANT SELECT ON ALL TABLES IN SCHEMA oaken TO airbyte;
+ALTER DEFAULT PRIVILEGES IN SCHEMA SCHEMA oaken TO airbyte;
 
 INSERT INTO oaken.positions VALUES (100, 'CEO');
 INSERT INTO oaken.positions VALUES (110, 'Vice President');

@@ -1,11 +1,11 @@
-select * from customer; 
+select * from customers; 
 
-select * from vendor;
+select * from vendors;
 
-select * from category;
+select * from categories;
 
-select * from product;
+select * from products;
 
 select * from sales;
 
-select * from salesLedger;
+select * from sales_edger;

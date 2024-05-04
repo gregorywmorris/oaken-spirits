@@ -15,23 +15,21 @@ The GitHub repository is [here](https://github.com/dbeaver/cloudbeaver) and you 
 ![cbeaver config](images/cloud-beaver/cbeaver-config.png)
 1. Select **Next** and then **Finish**
 1. Login
-![cbeaver first login](images/cloud-beaver/cbeaver-first-login.png)
+![cbeaver first login](images/cloud-beaver/)
 1. Select the cbeaver icon in the upper left
 ![cbeaver config](images/cloud-beaver/cbeaver-admin.png)
-1. Select the **"+"** icon, **New Connection** and choose MySQL from the list
+1. Select the **"+"** icon, **New Connection** and choose postgres from the list
 ![cbeaver new connection](images/cloud-beaver/cbeaver-new-connection.png)
-![cbeaver new connection](images/cloud-beaver/cbeaver-mysql-selection.png)
+![cbeaver new connection](images/cloud-beaver/)
 1. Enter the information shown here
-![cbeaver mysql admin](images/cloud-beaver/cbeaver-mysql-admin.png)
-    - Enter either **Host** name (**oaken-mysql** for docker) or public IP address for cloud solutions
-    - Enter **Port** 3306
-    - Enter User name = mysql and User password = mysql
+![cbeaver postgres admin](images/)
+    - Enter either **Host** name (**oaken-postgres** for docker) or public IP address for cloud solutions
+    - Enter **Port** 5432
+    - Enter Username = postgres
+    - Enter Password = postgres
     - Enter Database = oaken
-    - Select **DRIVER PROPERTIES** from the top menu
-        - for **allowPublicKeyRetrieval** select **TRUE** from the drop down list
-![cbeaver public key](images/cloud-beaver/cbeaver-public-key.png)
     - Select **Test** and in the bottom right you should get pop up with a green check and **Connection is Established**
-![cbeaver connection established](images/cloud-beaver/cbeaver-connection-established.png)
+![cbeaver connection established](images/cloud-beaver/)
     - Select **Create**
 1. Connect
     - Select the connection from the top drop down.
@@ -40,13 +38,13 @@ The GitHub repository is [here](https://github.com/dbeaver/cloudbeaver) and you 
 1. Confirm database
     - Using the down arrows on the left open the connection, Databases, oaken, Tables and you should see a list of tables.
 
-        ![cbeaver mysql tables](images/cloud-beaver/cbeaver-mysql-tables.png)
+        ![cbeaver postgres tables](images/cloud-beaver/)
     - Verify a table
         - Select the **SQL** icon from above
         - Insert `select * from sales;`
         - From the left click the **orange arrow**
         - Alternatively you can select the **orange list** icon to run a script if it had multiple statements.
-1. MySQl is ready for data ingestion
+1. postgres is ready for data ingestion
 1. To log back in after a timeout or logout, select the gear on the upper right.
 
 ![cbeaver login](images/cloud-beaver/cbeaver-login.png)

@@ -39,68 +39,67 @@ shipping_producer = KafkaProducer(
                         value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
 # Poll for messages
+try:
+    for message in invoice_consumer:
+        try:
+            data = message.value
+            invoice = data.get('Invoice', '')
 
-for message in invoice_consumer:
-    try:
-        data = message.value
-        invoice = data.get('Invoice', '')
+            date_str = data.get('SaleDate','')
+            sales_date = datetime.strptime(date_str, '%Y-%m-%d').date()
 
-        date_str = data.get('SaleDate','')
-        sales_date = datetime.strptime(date_str, '%Y-%m-%d').date()
+            sales = data.get('saleDollars','')
 
-        sales = data.get('saleDollars','')
+            def shipping_cost(kwarg):
+                """Determines shipping costs"""
+                cost = round(float(kwarg) * 0.05, 2)
+                if cost < 5:
+                    return "5.00"
+                else:
+                    return str(cost)
 
-        def shipping_cost(kwarg):
-            """Determines shipping costs"""
-            cost = round(float(kwarg) * 0.05, 2)
-            if cost < 5:
-                return "5.00"
-            else:
-                return str(cost)
+            shipping_cost_str = shipping_cost(sales)
 
-        shipping_cost_str = shipping_cost(sales)
+            random_days = random.randint(0, 4)
+            shipping_date = sales_date + timedelta(days=random_days)
+            shipping_date_str = str(shipping_date)
 
-        random_days = random.randint(0, 4)
-        shipping_date = sales_date + timedelta(days=random_days)
-        shipping_date_str = str(shipping_date)
+            invoice_consumer.commit()
+        except ValueError as ve:
+            logging.warning("Error processing message: %s", ve)
+        except Exception as e:
+            logging.warning("An unexpected error occurred: %s", e)
+        try:
+            # PostgreSQL
+            UPDATE_QUERY = """
+                UPDATE {schema_name}.sales
+                SET shipping_date = %s, shipping_cost = %s
+                WHERE Invoice = %s
+            """
 
-        invoice_consumer.commit()
-    except ValueError as ve:
-        logging.warning("Error processing message: %s", ve)
-        continue
-    except Exception as e:
-        logging.warning("An unexpected error occurred: %s", e)
-        continue
-    try:
-        # PostgreSQL
-        UPDATE_QUERY = """
-            UPDATE {schema_name}.sales
-            SET shipping_date = %s, shipping_cost = %s
-            WHERE Invoice = %s
-        """
+            update_data = (shipping_date, shipping_cost_str, invoice)
+            postgres_cursor.execute(UPDATE_QUERY.format(schema_name=schema_name), update_data)
 
-        update_data = (shipping_date, shipping_cost_str, invoice)
-        postgres_cursor.execute(UPDATE_QUERY.format(schema_name=schema_name), update_data)
+            postgres_conn.commit()
 
-        postgres_conn.commit()
+            # Kafka topic
+            shipping_info = {
+                'Invoice': invoice,
+                'SalesDate': date_str,
+                'SaleDollars': sales,
+                'ShippingDate': shipping_date_str,
+                'ShippingCost': shipping_cost_str
+            }
 
-        # Kafka topic
-        shipping_info = {
-            'Invoice': invoice,
-            'SalesDate': date_str,
-            'SaleDollars': sales,
-            'ShippingDate': shipping_date_str,
-            'ShippingCost': shipping_cost_str
-        }
+            shipping_producer.send('shipping', value=shipping_info)
+        except Exception as e:
+            logging.warning("Error processing message: %s", e)
+except Exception as e:
+    logging.warning("Error processing message: %s", e)
 
-        shipping_producer.send('shipping', value=shipping_info)
-    except Exception as e:
-        logging.warning("Error processing message: %s", e)
-        continue
-
-# Close PostgreSQL connection
-invoice_consumer.close()
-shipping_producer.flush()
-shipping_producer.close()
-postgres_cursor.close()
-postgres_conn.close()
+finally:
+    invoice_consumer.close()
+    shipping_producer.flush()
+    shipping_producer.close()
+    postgres_cursor.close()
+    postgres_conn.close()

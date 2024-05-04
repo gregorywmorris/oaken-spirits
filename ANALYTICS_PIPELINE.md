@@ -10,36 +10,44 @@
 
 ### 1.1 Launch Airbyte in Docker
 
-- From the command line:
-    1. `cd oaken-spirits/src/production/analytics/airbyte`
-    1. Start airbyte
+1. Start airbyte
 
-        ```bash
-        ./start-airbyte.sh -b
-        ```
+    ```bash
+    cd oaken-spirits/src/production/analytics/airbyte
+    chmod +x start-airbyte.sh
+    ./start-airbyte.sh -b
+    ```
 
-    1. Run `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' oaken-mysql` and note the IP address returned. This needed to setup the MySQL source.
+1. Run and note the IP address returned. This needed to setup the postgres source.
+
+    ```bash
+    docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' oaken-postgres
+    ```
 
 ### 1.2. Setting Up Airbyte Connectors Using the UI
 
 Start by launching the Airbyte UI by going to **http://localhost:8000/** in your browser.
 
 1. **Create a login (for first time login only)**:
-    - enter an email = admin@oakenspirits.org
+    - enter an email = admin@oakenspirits.com (fake site as of 5/2024)
     - Organization name = Oaken Spirits
     - Select **Get started**
 
 1. **Create a source**:
     - Select **Create your first connection** in the middle of the page
         - Or go to the Sources tab and click on `+ New source`.
-    - Search for MySQL and select it.
+    - Search for postgres and select it.
     - Set up connection
-        - Source name = Oaken MySQL
-        - Host = the IP address from above, it will not accept host or container name
-        - port = 3306
+        - Source name = Oaken Postgres
+        - Host = use the IP address from above, it will not accept host or container name
+        - port = 5434
         - Database = oaken
         - Username = airbyte
         - Password = airbyte
+        - Optional fields
+            Schemas = oaken
+        - Advanced
+            - Update Method = Detect Changes with Xmin System Column
         - Leave all other settings as default
         - Select **Set up source** at the very bottom
 
@@ -60,7 +68,10 @@ Start by launching the Airbyte UI by going to **http://localhost:8000/** in your
         - Click on `Set up destination`.
 
 1. **Complete connection**:
-    - Under `Activate the streams you want to sync` select the greyed out tab for Sync. This will activate the schema of the MySQL database. All the tabs below should be active. If not, select them manually.
+    - Configurations
+        - Schedule type = Manual
+        - This will be automated by an orchestrator.
+    - Under `Activate the streams you want to sync` select the greyed out tab for Sync. This will activate the schema of the postgres database. All the tabs below should be active. If not, select them manually.
     - Click on `Set up connection`.
 
 1. **Create a connection**: (only if you did not use create your first connection)
@@ -106,7 +117,7 @@ Start by launching the Airbyte UI by going to **http://localhost:8000/** in your
 [Dagster](https://dagster.io/) is the chosen orchestrator.
 
 >[!NOTE]
-> Airbyte and MySQL dockers containers must be running.
+> Airbyte and postgres dockers containers must be running.
 
 1. **Navigate to the Orchestration Directory**:
 

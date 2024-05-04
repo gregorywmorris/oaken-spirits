@@ -34,6 +34,9 @@ Help()
    echo -e ""
 }
 
+########## Create env file ##########
+cp airbyte.env.template .env
+
 ########## Declare assets care about ##########
       docker_compose_yaml="docker-compose.yaml"
 docker_compose_debug_yaml="docker-compose.debug.yaml"
