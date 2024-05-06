@@ -7,9 +7,9 @@ WITH base AS (
 )
 
 SELECT 
-  p.item_id,
-  p.item_description,
-  b.purchase_count
-FROM {{ ref('stg_products') }} p
-LEFT JOIN base b ON p.item_id = b.item_id
-ORDER BY b.purchase_count DESC
+  product.item_id,
+  product.item_description,
+  base.purchase_count
+FROM {{ ref('stg_products') }} product
+LEFT JOIN base ON product.item_id = base.item_id
+ORDER BY base.purchase_count DESC
