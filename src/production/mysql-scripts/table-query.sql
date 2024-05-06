@@ -1,4 +1,4 @@
-select * from customers; 
+select * from customers;
 
 select * from vendors;
 
@@ -8,4 +8,4 @@ select * from products;
 
 select * from sales;
 
-select * from sales_edger;
+select * from sales_ledger;

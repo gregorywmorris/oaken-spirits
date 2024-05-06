@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: oaken
+  - name: oaken_bigquery
     # Use your BigQuery project ID
     database: elaborate-art-318223
     # Use your BigQuery dataset name
@@ -11,55 +11,76 @@ sources:
       - name: customers
         description: "Oaken customer profile"
         columns:
-          - name: StoreNumber
+          - name: Store_id
             description: "Unique identifier for the user."
-          - name: StoreName
-          - name: Address
-          - name: City
-          - name: CountyName
-          - name: State
-          - name: ZipCode
-
-      - name: products
-        description: "Oaken products"
-        columns:
-          - name: ItemNumber
-            description: "Unique identifier for the product."
-          - name: CategoryNumber
-          - name: ItemDescription
-          - name: BottleVolumeML
-          - name: Pack
-          - name: BottleCost
-          - name: BottleRetail
+          - name: store_name
+          - name: street_address
+          - name: city
+          - name: county
+          - name: us_state
+          - name: zip_code
 
       - name: vendors
         description: "Vendors"
         columns:
-          - name: VendorNumber
+          - name: Vendor_id
             description: "Unique identifier for vendors"
-          - name: VendorName
+          - name: vendor_name
 
       - name: categories
         description: "Product categories"
         columns:
-          - name: CategoryNumber
+          - name: category_id
             description: "Unique identifier for categories"
-          - name: CategoryName
+          - name: category_name
+
+      - name: products
+        description: "Oaken products"
+        columns:
+          - name: item_id
+            description: "Unique identifier for the product."
+          - name: category_id
+          - name: item_description
+          - name: bottle_volume_ML
+          - name: pack
+          - name: bottle_cost
+          - name: bottle_retail
+
+      - name: positions
+        description: "Oaken job titles"
+        columns:
+          - name: title_id
+            description: "Unique identifier for categories"
+          - name: title
+
+      - name: employees
+        description: "Oaken employees"
+        columns:
+          - name: employee_id
+            description: "Unique identifier for the user."
+          - name: first_name
+          - name: last_name
+          - name: title_id
+            description: "Foreign key"
+          - name: manager
+          - name: active
 
       - name: sales
         description: "Customer purchases"
         columns:
-          - name: Invoice
+          - name: invoice
             description: "Unique identifier for the purchases."
-          - name: StoreNumber
+          - name: store_id
             description: "Foreign key"
-          - name: VendorNumber
+          - name: vendor_id
             description: "Foreign key"
-          - name: SalesDate
-          - name: SaleDollars
-          - name: ItemNumber
+          - name: employee_id
             description: "Foreign key"
-          - name: BottlesSold
-          - name: VolumesSoldLiters
-          - name: ShippingDate
-          - name: ShippingCost
+          - name: sales_date
+          - name: sale_amount_dollar,
+          - name: item_id
+            description: "Foreign key"
+          - name: bottle_count
+          - name: volume_liter
+          - name: shipping_date
+          - name: shipping_cost

@@ -6,4 +6,4 @@ select
     county,
     us_state,
     zip_code
-from {{ source('oaken', 'customers') }}
+from {{ source('oaken_bigquery', 'customers') }}

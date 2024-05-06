@@ -6,4 +6,4 @@ select
     pack,
     bottle_cost,
     bottle_retail
-from {{ source('oaken', 'products') }}
+from {{ source('oaken_bigquery', 'products') }}

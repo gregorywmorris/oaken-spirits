@@ -5,4 +5,4 @@ select
     title_id,
     manager,
     active
-from {{ source('oaken', 'employees') }}
+from {{ source('oaken_bigquery', 'employees') }}

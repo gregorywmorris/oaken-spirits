@@ -10,4 +10,4 @@ select
     volume_liter,
     shipping_date,
     shipping_cost
-from {{ source('oaken', 'sales') }}
+from {{ source('oaken_bigquery', 'sales') }}
