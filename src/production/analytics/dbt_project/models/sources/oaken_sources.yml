@@ -13,6 +13,9 @@ sources:
         columns:
           - name: Store_id
             description: "Unique identifier for the user."
+            tests:
+              - unique
+              - not_null
           - name: store_name
           - name: street_address
           - name: city
@@ -25,6 +28,9 @@ sources:
         columns:
           - name: Vendor_id
             description: "Unique identifier for vendors"
+            tests:
+              - unique
+              - not_null
           - name: vendor_name
 
       - name: categories
@@ -32,6 +38,9 @@ sources:
         columns:
           - name: category_id
             description: "Unique identifier for categories"
+            tests:
+              - unique
+              - not_null
           - name: category_name
 
       - name: products
@@ -39,6 +48,9 @@ sources:
         columns:
           - name: item_id
             description: "Unique identifier for the product."
+            tests:
+              - unique
+              - not_null
           - name: category_id
           - name: item_description
           - name: bottle_volume_ML
@@ -51,6 +63,9 @@ sources:
         columns:
           - name: title_id
             description: "Unique identifier for categories"
+            tests:
+              - unique
+              - not_null
           - name: title
 
       - name: employees
@@ -58,6 +73,9 @@ sources:
         columns:
           - name: employee_id
             description: "Unique identifier for the user."
+            tests:
+              - unique
+              - not_null
           - name: first_name
           - name: last_name
           - name: title_id
@@ -70,6 +88,9 @@ sources:
         columns:
           - name: invoice
             description: "Unique identifier for the purchases."
+            tests:
+              - unique
+              - not_null
           - name: store_id
             description: "Foreign key"
           - name: vendor_id
