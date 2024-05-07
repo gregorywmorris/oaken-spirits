@@ -4,7 +4,7 @@
 
 ## Video Overview
 
-### Link takes you to YouTube 
+### Link to YouTube
 
 [![YouTube video](https://img.youtube.com/vi/nwtH_r85Qpw/0.jpg)](https://youtu.be/nwtH_r85Qpw)
 
@@ -39,11 +39,11 @@ Formatted as: **Requirement**: My solution
 
 ##### Limitations
 
-1. For grader reproducibility, some things were hardcoded that normally would not be. Host names, secrets, etc. best practices would be to define these either in environment variables or in an encrypted manner.
+1. For grader reproducibility, some things were hardcoded that normally would not be. Host names, secrets, etc. The best practice would be to define these either in environment variables or in an encrypted manner.
 1. Operational applications are scripts to simulate real app output.
 1. A single service account was created, in production there would be a service account for each service.
 1. Batch processing is run manually for demonstration, this would be put on a schedule in production.
-1. Markdown is written for GitHub Markdown, as such it may render better if read on GitHub.
+1. Markdown is written for [GitHub Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax), as such it may render better if read on GitHub.
 
 ## Overview
 
