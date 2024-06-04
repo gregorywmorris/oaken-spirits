@@ -87,9 +87,10 @@ CREATE TABLE oaken.sales_ledger (
 
 CREATE ROLE airbyte WITH LOGIN PASSWORD 'airbyte';
 GRANT CONNECT ON DATABASE oaken TO airbyte;
-GRANT USAGE ON SCHEMA oaken To airbyte;
-GRANT SELECT ON ALL TABLES IN SCHEMA oaken TO airbyte;
-ALTER DEFAULT PRIVILEGES IN SCHEMA SCHEMA oaken TO airbyte;
+GRANT USAGE ON SCHEMA oaken TO airbyte;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA oaken
+GRANT SELECT ON TABLES TO airbyte;
 
 INSERT INTO oaken.positions VALUES (100, 'CEO');
 INSERT INTO oaken.positions VALUES (110, 'Vice President');
@@ -102,38 +103,38 @@ INSERT INTO oaken.positions VALUES (170, 'Inventory Specialist');
 INSERT INTO oaken.positions VALUES (180, 'Human Resource Specialist');
 INSERT INTO oaken.positions VALUES (190, 'Customer Service Representative');
 
-INSERT INTO oaken.employees (employee_id, first_name, last_name, title, manager_id, active)
+INSERT INTO oaken.employees (employee_id, first_name, last_name, title_id, manager_id, active)
     VALUES (10000,'Alan','Brand',100,NULL,true);
-INSERT INTO oaken.employees (employee_id, first_name, last_name, title, manager_id, active)
+INSERT INTO oaken.employees (employee_id, first_name, last_name, title_id, manager_id, active)
     VALUES (10001,'Jan','Levinson-Gould',110,10000,true);
-INSERT INTO oaken.employees (employee_id, first_name, last_name, title, manager_id, active)
+INSERT INTO oaken.employees (employee_id, first_name, last_name, title_id, manager_id, active)
     VALUES (10002,'Nellie','Bertram',120,10001,true);
-INSERT INTO oaken.employees (employee_id, first_name, last_name, title, manager_id, active)
+INSERT INTO oaken.employees (employee_id, first_name, last_name, title_id, manager_id, active)
     VALUES (10003,'Michael','Scott',130,10002,true);
-INSERT INTO oaken.employees (employee_id, first_name, last_name, title, manager_id, active)
+INSERT INTO oaken.employees (employee_id, first_name, last_name, title_id, manager_id, active)
     VALUES (10004,'Pam','Beesly',140,10003,true);
-INSERT INTO oaken.employees (employee_id, first_name, last_name, title, manager_id, active)
+INSERT INTO oaken.employees (employee_id, first_name, last_name, title_id, manager_id, active)
     VALUES (10005,'Oscar','Nunez',160,10002,true);
-INSERT INTO oaken.employees (employee_id, first_name, last_name, title, manager_id, active)
+INSERT INTO oaken.employees (employee_id, first_name, last_name, title_id, manager_id, active)
     VALUES (10006,'Mindy','Kaling',190,10003,true);
-INSERT INTO oaken.employees (employee_id, first_name, last_name, title, manager_id, active)
+INSERT INTO oaken.employees (employee_id, first_name, last_name, title_id, manager_id, active)
     VALUES (10007,'Tolby','Flenderson',180,10002,true);
-INSERT INTO oaken.employees (employee_id, first_name, last_name, title, manager_id, active)
+INSERT INTO oaken.employees (employee_id, first_name, last_name, title_id, manager_id, active)
     VALUES (10008,'Darryl','Philbin',170,10003,true);
 -- Sales
-INSERT INTO oaken.employees (employee_id, first_name, last_name, title, manager_id, active)
+INSERT INTO oaken.employees (employee_id, first_name, last_name, title_id, manager_id, active)
     VALUES (20001,'Dwight','Schrute',150,10003,true);
-INSERT INTO oaken.employees (employee_id, first_name, last_name, title, manager_id, active)
+INSERT INTO oaken.employees (employee_id, first_name, last_name, title_id, manager_id, active)
     VALUES (20002,'Jim','Halpert',150,10003,true);
-INSERT INTO oaken.employees (employee_id, first_name, last_name, title, manager_id, active)
+INSERT INTO oaken.employees (employee_id, first_name, last_name, title_id, manager_id, active)
     VALUES (20003,'Stanley','Hudson',150,10003,true);
-INSERT INTO oaken.employees (employee_id, first_name, last_name, title, manager_id, active)
+INSERT INTO oaken.employees (employee_id, first_name, last_name, title_id, manager_id, active)
     VALUES (20004,'Phyllis','Vance',150,10003,true);
-INSERT INTO oaken.employees (employee_id, first_name, last_name, title, manager_id, active)
+INSERT INTO oaken.employees (employee_id, first_name, last_name, title_id, manager_id, active)
     VALUES (20005,'Andy','Bernard',150,10003,true);
-INSERT INTO oaken.employees (employee_id, first_name, last_name, title, manager_id, active)
+INSERT INTO oaken.employees (employee_id, first_name, last_name, title_id, manager_id, active)
     VALUES (20006,'Danny','Cordray',150,10003,true);
-INSERT INTO oaken.employees (employee_id, first_name, last_name, title, manager_id, active)
+INSERT INTO oaken.employees (employee_id, first_name, last_name, title_id, manager_id, active)
     VALUES (20007,'Todd','Packer',150,10003,true);
-INSERT INTO oaken.employees (employee_id, first_name, last_name, title, manager_id, active)
+INSERT INTO oaken.employees (employee_id, first_name, last_name, title_id, manager_id, active)
     VALUES (20008,'Karen','Filippell',150,10003,true);

@@ -168,7 +168,7 @@ try:
 
         try:
             SALES_QUERY = '''
-            INSERT INTO {schema_name}.sales (invoice,store_id,vendor_id,employee_id,sale_date,sale_amount,
+            INSERT INTO {schema_name}.sales (invoice,store_id,vendor_id,employee_id,sale_date,sale_amount_dollar,
             item_id,volume_liter,bottle_count)
             VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
             '''

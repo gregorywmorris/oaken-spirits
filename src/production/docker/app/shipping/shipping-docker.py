@@ -50,11 +50,13 @@ try:
 
             sales = data.get('saleDollars','')
 
+            SHIPPING_RATE = 0.05
+            SHIPPING_MIN = 5.00
             def shipping_cost(kwarg):
                 """Determines shipping costs"""
-                cost = round(float(kwarg) * 0.05, 2)
+                cost = round(float(kwarg) * SHIPPING_RATE, 2)
                 if cost < 5:
-                    return "5.00"
+                    return SHIPPING_MIN
                 else:
                     return str(cost)
 

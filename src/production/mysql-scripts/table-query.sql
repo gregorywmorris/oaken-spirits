@@ -9,3 +9,7 @@ select * from products;
 select * from sales;
 
 select * from sales_ledger;
+
+select * from employees;
+
+select * from positions;
