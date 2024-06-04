@@ -11,6 +11,8 @@
 
 ### Set up data source
 
+Dashboard status: down 6/4/2024
+
 1. Open web browser and go to [Looker Studio](https://lookerstudio.google.com/).
 1. Login with the same account as GCP
 1. Select **Blank Report**
